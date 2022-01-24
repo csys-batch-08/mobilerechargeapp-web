@@ -96,7 +96,7 @@
 <a href="wallet.jsp">wallet</a>
 <a href="history.jsp">RechargeHistory</a>
 <a href="aboutus.jsp">AboutUs</a>
-<a href="contectus.jsp">ContactUs</a>
+<a href="ContactUs.jsp">ContactUs</a>
 
 <a href="index.jsp">Logout</a>
 </div>

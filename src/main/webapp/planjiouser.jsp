@@ -174,7 +174,7 @@ if(error!=null){
         <li> <a href="wallet.jsp">wallet</a> </li> 
         <li><a href="history.jsp">RechargeHistory</a> </li>
         <li> <a href="aboutus.jsp">AboutUs</a></li> 
-        <li> <a href="contact us.jsp">ContectUs</a></li>
+        <li> <a href="contactus.jsp">ContactUs</a></li>
         <li><a href="index.jsp">Logout</a></li> 
         </div>
         <li class="search-icon">
