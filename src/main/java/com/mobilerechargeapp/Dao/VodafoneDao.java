@@ -1,6 +1,6 @@
 package com.mobilerechargeapp.Dao;
 
-import java.sql.ResultSet;
+
 import java.util.List;
 
 import com.mobilerechargeapp.model.VodafoneUser;
@@ -11,6 +11,8 @@ public interface VodafoneDao {
 	public boolean deleteVodafone(int vodafoneId);
 	public int findvodafoneId(String planName, Double price) ;
 	public List<VodafoneUser> showViplan();
-	public ResultSet  findVodafonevalidity();
-
+	public List<VodafoneUser> showViplan(String search);
+//	public ResultSet  findVodafonevalidity();
+	public VodafoneUser findPlan(int id);
+	public int findVodafonevalidity(VodafoneUser vodafoneUser);
 }

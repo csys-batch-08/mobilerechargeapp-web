@@ -60,14 +60,14 @@ public class AdminController extends HttpServlet {
 	    try {
 		if(admin)
 		{
-			response.sendRedirect("AdminHome.jsp");
+			response.sendRedirect("adminHome.jsp");
 		}
 		else if(user!=null)
 		{
 			HttpSession session=request.getSession();
 			session.setAttribute("CurrentUser", user);
 			session.setAttribute("amount",user.getWallet());
-			response.sendRedirect("Operator.jsp");
+			response.sendRedirect("operator.jsp");
 		}
 		else
 		{

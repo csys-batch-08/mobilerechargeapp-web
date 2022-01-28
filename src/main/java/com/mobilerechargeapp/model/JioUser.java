@@ -14,7 +14,6 @@ public class JioUser {
 	
 	
 //	
-//	
 //	public int getJioId() {
 //		return jioId;
 //	}

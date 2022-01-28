@@ -19,28 +19,30 @@ import com.mobilerechargeapp.util.ConnectionClass;
 public class HistorydetailsDAOImpl implements HistorydetailsDao {
        public boolean insertDetails(HistoryDetails historyDetails) {
     	   boolean flag=false;
-   		ConnectionClass conclass = new ConnectionClass();
-   		Connection con = conclass.getConnection();
+   		ConnectionClass connectionClass = new ConnectionClass();
+   		Connection connection = connectionClass.getConnection();
    		
   		String insertQuery="insert into  history_details (user_id,mobile_number,operator_id,plan_id,Recharge_date,Payment)values(?,?,?,?,?,?)";
+  		PreparedStatement preparedStatement=null;
+  		ResultSet resultSet=null;
    		try {
-   			
-   			
-   			
-			PreparedStatement pstmt = con.prepareStatement(insertQuery);
-			pstmt.setInt(1,  historyDetails.getUserId());
-			pstmt.setLong(2, historyDetails.getMobileNumber());
-			pstmt.setInt(3,historyDetails.getOperatorId());
-			pstmt.setInt(4,historyDetails.getPlanId());
+			preparedStatement=connection.prepareStatement(insertQuery);
+			preparedStatement.setInt(1,  historyDetails.getUserId());
+			preparedStatement.setLong(2, historyDetails.getMobileNumber());
+		    preparedStatement.setInt(3,historyDetails.getOperatorId());
+			preparedStatement.setInt(4,historyDetails.getPlanId());
 			//pstmt.setDate(4,(Date) historyDetails.getRechargeDate());
-	        pstmt.setDate(5,new java.sql.Date(historyDetails.getRechargeDate().getTime()));	    
-	       	pstmt.setDouble(6,historyDetails.getWallet());
-			flag=pstmt.executeUpdate()>0;
+	        preparedStatement.setDate(5,new java.sql.Date(historyDetails.getRechargeDate().getTime()));	    
+	       	preparedStatement.setDouble(6,historyDetails.getWallet());
+			flag=preparedStatement.executeUpdate()>0;
    			
 
 		} catch (SQLException e) {
-			System.out.println("Query will be invalid");
+			
 			e.printStackTrace();
+		}
+   		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 		return flag;
 	
@@ -48,7 +50,7 @@ public class HistorydetailsDAOImpl implements HistorydetailsDao {
        public List<HistoryDetails> showHistoryDetails()
        {
     	   List<HistoryDetails> historyList=new ArrayList<HistoryDetails>();
-    	   String query="select * from history_details";
+    	   String query="select history_id,user_id,operator_id,mobile_number,plan_id,Recharge_date,Payment  from history_details";
     	   Connection con=ConnectionClass.getConnection();
     	   try
     	   {
@@ -65,6 +67,7 @@ public class HistorydetailsDAOImpl implements HistorydetailsDao {
     	   {
     		   e.printStackTrace();
     	   }
+    	   
     	   return historyList;
     	   
        }
@@ -95,7 +98,7 @@ public class HistorydetailsDAOImpl implements HistorydetailsDao {
 	{
 		UserDAOImpl userDao=new UserDAOImpl();
 		List<HistoryDetails> userHistoryList=new ArrayList<HistoryDetails>();
-		String query="select * from history_details";
+		String query="select history_id,user_id,operator_id,mobile_number,plan_id,Recharge_date,Payment from history_details";
 		Connection con=ConnectionClass.getConnection();
  	   try
  	   {
@@ -119,48 +122,6 @@ public class HistorydetailsDAOImpl implements HistorydetailsDao {
 	
 	
 	
-	
-//	public int checkValidity(User user)
-//	{
-//		List<HistoryDetails> historyList=findUserHistory(user);
-//		
-//		HistoryDetails history=historyList.get(0);
-//		
-//		
-//		
-//		retrun 0;
-//	}
 }
-//   	public HistoryDetails rechargeRemainder(User user) {
-//   		ConnectionClass conclass = new ConnectionClass();
-//   		Connection con = conclass.getConnection();
-//   		UserDAOImpl userDao=new UserDAOImpl();
-//   		HistoryDetails hisDetails=null;
-//   		String Query="select * from  history_details where mobile_number=? and user_id=?";
-//   		int userId=userDao.findUserId(user);
-//   		try {
-//			PreparedStatement pstmt=con.prepareStatement(Query);
-//			pstmt.setLong(1, user.getPhonenumber());
-//			pstmt.setInt(2,userId );
-//			ResultSet rs=pstmt.executeQuery();
-//			if(rs.next())
-//			{
-//				java.util.Date rechargeDate = null;
-//				hisDetails=new HistoryDetails(userId, userId, userId, userId, rechargeDate, null);
-//			}
-////			pstmt.setDate(3, rechargeDate);
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//   		
-//		return hisDetails;
-////		Date today=new Date();
-//   		
-//   	}
-//	  
-//  }
-
 
 

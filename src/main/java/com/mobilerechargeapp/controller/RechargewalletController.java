@@ -14,9 +14,7 @@ import com.mobilerechargeapp.daoimpl.UserDAOImpl;
 import com.mobilerechargeapp.model.User;
 import com.mobilerechargeapp.util.ConnectionClass;
 
-/**
- * Servlet implementation class RechargewalletController
- */
+
 @WebServlet("/RechargewalletController")
 public class RechargewalletController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

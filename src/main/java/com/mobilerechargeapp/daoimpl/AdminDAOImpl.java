@@ -14,13 +14,17 @@ import com.mobilerechargeapp.util.ConnectionClass;
 public class AdminDAOImpl implements AdminDao {
     public boolean validateAdmin(String emailId,String password)
     {
-    	Connection con=ConnectionClass.getConnection();
-    	String insertQuery="select * from Admin where Admin_emailid='"+emailId+"' and password='"+password+"' ";
+    	Connection connection=ConnectionClass.getConnection();
+    	String insertQuery="select admin_emailid,password from Admin where Admin_emailid='"+emailId+"' and password='"+password+"' ";
     	boolean flag=false;
+    	PreparedStatement preparedStatement=null;
+        ResultSet resultSet=null;
     	try {
-			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(insertQuery);
-			if(rs.next()) {
+    		preparedStatement=connection.prepareStatement(insertQuery);
+    		resultSet=preparedStatement.executeQuery();
+//			Statement st=con.createStatement();
+//			ResultSet rs=st.executeQuery(insertQuery);
+			if(resultSet.next()) {
 				//System.out.println(rs.getString(1));
 				flag=true;
 			}

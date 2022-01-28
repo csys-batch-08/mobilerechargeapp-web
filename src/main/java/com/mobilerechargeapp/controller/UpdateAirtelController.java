@@ -18,7 +18,7 @@ import com.mobilerechargeapp.util.ConnectionClass;
 /**
  * Servlet implementation class UpdateairtrelController
  */
-@WebServlet("/UpdateairtrelController")
+@WebServlet("/UpdateairtelController")
 public class UpdateAirtelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,7 +48,7 @@ public class UpdateAirtelController extends HttpServlet {
 		String validity=request.getParameter("validity");
 		String benefits=request.getParameter("benefits");
 		int airtelplanId =Integer.parseInt(request.getParameter("airtelplanId"));
-		Connection con=ConnectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		AirtelUser airtelUser=new 	AirtelUser();
 		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
 		boolean b=airtelDao.updateAirtel(planname, price, validity, benefits, airtelplanId);

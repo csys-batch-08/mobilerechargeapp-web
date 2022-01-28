@@ -42,7 +42,7 @@ public class DeleteJioController extends HttpServlet {
         boolean b=jiodao.deleteJio(jioId);
         if(b) {
         	response.sendRedirect("jio.jsp");
-        	System.out.println("deleted successfully");
+        	
         }
 		
 	}

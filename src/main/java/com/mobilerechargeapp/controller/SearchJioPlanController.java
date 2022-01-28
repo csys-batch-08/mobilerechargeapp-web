@@ -59,7 +59,7 @@ public class SearchJioPlanController extends HttpServlet {
 		}
 		HttpSession session=request.getSession();
 		session.setAttribute("list", ShowPlan);
-		response.sendRedirect("SearchJioPlan.jsp");
+		response.sendRedirect("searchJioPlan.jsp");
 		
 		
 			

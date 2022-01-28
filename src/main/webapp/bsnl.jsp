@@ -67,11 +67,11 @@ td.links a {
 <body>
 <body style="text-align: center;">
 <div class="header">
-<a href="AdminHome.jsp">ADMIN</a>
-<a href="AddJio.jsp"> JIO </a>
-<a href="AddAirtel.jsp">AIRTEL</a>
-<a href="AddVodafone.jsp">VODAFONE</a>
-<a href="AddBsnl.jsp">BSNL</a>
+<a href="adminHome.jsp">ADMIN</a>
+<a href="addJio.jsp"> JIO </a>
+<a href="addAirtel.jsp">AIRTEL</a>
+<a href="addVodafone.jsp">VODAFONE</a>
+<a href="addBsnl.jsp">BSNL</a>
 
 <a href="index.jsp">LOGOUT</a>
 
@@ -108,8 +108,7 @@ for(int i=0;i<showBsnlplan.size();i++)
 <td><%= bsnlUser.getBenfits() %></td>
 <td><%= bsnlUser.getOperator().getOperatorname() %></td>
 <td><a href="DeletebsnlController?bsnlId=<%=findbsnlId %>">delete</a></td>
-<td><a href="updatebsnl.jsp">Update</a>
-<%-- <td><a href="updatebsnl.jsp?planName=<%=bsnlUser.getPlanName() %>">edit</a></td> --%>
+<td><a href="updateBsnl.jsp">Update</a></td>
 </tr>
 <%}%>
 </table>

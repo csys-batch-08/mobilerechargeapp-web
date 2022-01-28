@@ -15,9 +15,7 @@ import com.mobilerechargeapp.model.AirtelUser;
 import com.mobilerechargeapp.model.Operator;
 import com.mobilerechargeapp.util.ConnectionClass;
 
-/**
- * Servlet implementation class AddairtelController
- */
+
 @WebServlet("/AddairtelController")
 public class AddAirtelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -51,7 +49,7 @@ public class AddAirtelController extends HttpServlet {
 		String operatorName=request.getParameter("operatorName");
 		OperatorDAOImpl operatorDao=new OperatorDAOImpl();
 		Operator operator=operatorDao.findOperator(operatorName);
-		Connection con=ConnectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		AirtelUser airtelUser=new AirtelUser(planname,price,validity,benefits,operator);
 		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
 		boolean b=airtelDao.insertAirtelnet(airtelUser);

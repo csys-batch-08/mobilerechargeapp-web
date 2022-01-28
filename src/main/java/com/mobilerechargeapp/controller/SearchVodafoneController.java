@@ -64,7 +64,7 @@ List<VodafoneUser>ShowPlan=vodafoneDao.showViplan(plan);
 		}
 		HttpSession session=request.getSession();
 		session.setAttribute("list", ShowPlan);
-		response.sendRedirect("SearchViPlan.jsp");
+		response.sendRedirect("searchVodafonePlan.jsp");
 		
 		
 			

@@ -92,7 +92,7 @@
 <!--   <h1 style="text-align:center">SELECT YOUR NETWORK</h1> -->
   </div>
 <div class="header">
-<a href="Operator.jsp">Home</a>
+<a href="operator.jsp">Home</a>
 <a href="wallet.jsp">wallet</a>
 <a href="history.jsp">RechargeHistory</a>
 <a href="aboutus.jsp">AboutUs</a>
@@ -103,19 +103,19 @@
 <div align="center">
  
 <div class="singleCard">
-<a href="planjiouser.jsp"><h1>Jio</h1></a>
+<a href="planJioUser"><b>Jio</b></a>
 <img src="images/jiologo.jpg">
 </div>
 	<div class="singleCard">
-	<a href="planairteluser.jsp"><h1>Airtel</h1></a>
+	<a href="planAirtelUser"><b>Airtel</b></a>
 	<img src="images/airtel logo.png">
 	</div>
 	<div class="singleCard">
-	<a href="planvodafoneUser.jsp"><h1>vodafone</h1></a>
+	<a href="planVodafoneUser"><b>vodafone</b></a>
 	<img src="images/VI-Logo-PNG.jpg">
 	</div>
 	<div class="singleCard">
-	<a href="planbsnluser.jsp"><h1>Bsnl</h1></a>
+	<a href="planBsnlUser"><b>Bsnl</b></a>
 	<img src="images/BSNL logo.png">
 	</div>
 </div>
@@ -156,6 +156,7 @@ long validity=0;
 	else if(operator.getOperatorname().equals("Airtel")){
 		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
 	planAirtel=airtelDao.findPlan(history.getPlanId());
+	System.out.println(planAirtel);
 	validity=Integer.valueOf(planAirtel.getValidity().split(" ")[0])-days;
     System.out.println ("Days: "+validity );
 	}

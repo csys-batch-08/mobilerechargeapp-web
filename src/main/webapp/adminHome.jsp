@@ -88,11 +88,11 @@ ul.dropdownlist li {
 <body>
 
 <div class="header">
-<a href="AdminHome.jsp">ADMIN</a>
-<a href="AddJio.jsp"> JIO </a>
-<a href="AddAirtel.jsp">AIRTEL</a>
-<a href="AddVodafone.jsp">VODAFONE</a>
-<a href="AddBsnl.jsp">BSNL</a>
+<a href="adminHome.jsp">ADMIN</a>
+<a href="addJio.jsp"> JIO </a>
+<a href="addAirtel.jsp">AIRTEL</a>
+<a href="addVodafone.jsp">VODAFONE</a>
+<a href="addBsnl.jsp">BSNL</a>
 
 <a href="index.jsp">LOGOUT</a>
 
@@ -101,7 +101,7 @@ ul.dropdownlist li {
 		<!-- <h1>SELECT OPERATOR</h1> -->
 
 		<div class="singleCard">
-			<a href="jio.jsp">JIO</a> <img src="images/jiologo.jpg">
+			<a href="jio">JIO</a> <img src="images/jiologo.jpg">
 		</div>
 		<div class="singleCard">
 			<a href="airtel.jsp">AIRTEL</a> <img src="images/airtel logo.png">

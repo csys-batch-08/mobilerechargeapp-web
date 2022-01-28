@@ -97,7 +97,7 @@ button {
 <%} %>
 
 <div class="header">
-<a href="Operator.jsp">Home</a>
+<a href="operator.jsp">Home</a>
 <a href="wallet.jsp">wallet</a>
 <a href="history.jsp">RechargeHistory</a>
 <a href="aboutus.jsp">AboutUs</a>

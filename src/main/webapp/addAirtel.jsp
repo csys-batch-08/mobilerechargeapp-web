@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>InsertBSNLPlan</title>
+<title>InsertAirtelPlan</title>
 <style>
-
-* {
+ * {
 	margin: 0%;
 	padding: 0%;
 	box-sizing: border-box;
@@ -29,10 +28,10 @@ form {
     padding: 29px 16px;
     flex-direction: column;
     background:white;
-     background: rgba(255, 255, 255, .5); 
+     background:rgba(255, 255, 255, .5); 
     box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
-  border-radius: 30px; 
-   border-left: 1px solid;
+    /*  border-radius: 30px; */
+  /*  border-left: 1px solid;*/
      border-left: 1px solid rgba(255, 255, 255, .3); 
     border-left: 1px solid rgba(255, 255, 255, .3); 
 }
@@ -44,13 +43,13 @@ h1 {
     text-shadow: 2px 2px 4px rgb(0 0 0 / 20%); 
     letter-spacing: 3px;
     margin-bottom: 2%;
-   
+    /* opacity: .6; */
     margin-top: 10px;
 }
 label {
     font-size: 15px;
     color:black;
- 
+  /*   opacity: .8; */
     text-shadow: 2px 2px 4px rgb(0 0 0 / 20%);
     text-align: left;
     margin-top: 11px;
@@ -79,7 +78,7 @@ input {
     margin-top: 17px;
 }
 button{
-     width: 30%;
+width: 30S%;
 	margin: 3% auto;
 	color:black;
 	font-size:15px;
@@ -87,7 +86,7 @@ button{
 	padding:10px 30px;
 
 }
-.header a {
+.header a{
     padding: 12px 28px;
     text-decoration: none;
     font-weight: bold;
@@ -99,7 +98,7 @@ button{
     padding: 0px;
     display: flex;
     justify-content: flex-end;
-    position: absolute;
+     position: absolute;
     top:0px;
     width: 1500px;
 }
@@ -107,36 +106,33 @@ button{
     background: white;
     color: black;
 }
-</style>
 
+</style>
 </head>
 <body style="text-align:center;">
-
 <div class="header">
-<a href="AdminHome.jsp">ADMIN</a>
-<a href="AddJio.jsp"> JIO </a>
-<a href="AddAirtel.jsp">AIRTEL</a>
-<a href="AddVodafone.jsp">VODAFONE</a>
-<a href="AddBsnl.jsp">BSNL</a>
+<a href="adminHome.jsp">ADMIN</a>
+<a href="addJio.jsp"> JIO </a>
+<a href="addAirtel.jsp">AIRTEL</a>
+<a href="addVodafone.jsp">VODAFONE</a>
+<a href="addBsnl.jsp">BSNL</a>
 <a href="index.jsp">LOGOUT</a>
 </div>
 
-
-
-<form action="AddbsnlController" method="post">
- <h1 style="font-style: italic;">ADD NETWORK </h1>
+<form action="AddairtelController" method="post">
+  <h1 style="font-style: italic;">ADD PLAN </h1>
 <label for="PlanName"><strong>PlanName</strong></label>
 <input type="text" name="planname" id="planName"><br><br>
 <label for="Price"><strong>PlanAmount</strong></label>
-<input type="text" name="price" id="Price"  pattern="[0-9]+" title="invalid price,Amount should be in Positive value"><br><br>
+<input type="text" name="price"  id="Price" pattern="[0-9]+" title="invalid price,Amount should be in Positive value"><br><br>
 <label for="Validity"><strong>Validity</strong></label>
 <input type="text" name="validity" id="Validity"><br><br>
 <label for="Benefits"><strong>Benefits</strong></label>
-<input type="text" name="benefits" id="Benefits" required><br><br>
+<input type="text" name="benefits" id="Benefits"><br><br>
 <label for="Operatorname"><strong>OperatorName</strong></label> 
 <input type="text" name="operatorName" id="Operatorname"  required><br><br>
-<!-- <input type="submit" value="ADD">  -->
+<!-- <input type="submit" value="ADD"> -->
 <button>INSERT</button>
-</form>
+	</form>
 </body>
 </html>

@@ -17,7 +17,7 @@ public class OperatorDAOImpl implements OperatorDao {
 		Connection con = ConnectionClass.getConnection();
 		try {
 			Statement stmt = con.createStatement();
-			String Query = "select * from operator_details where operator_name='" + name + "'";
+			String Query = "select operator_id,operator_name from operator_details where operator_name='" + name + "'";
 			ResultSet rs = stmt.executeQuery(Query);
 			if (rs.next()) {
 				operator = new Operator(rs.getInt(1), rs.getString(2));
@@ -53,7 +53,7 @@ public class OperatorDAOImpl implements OperatorDao {
 	public Operator findOperator1(int id) {
 
 		Connection con = ConnectionClass.getConnection();
-		String Query = "select * from operator_details where operator_id='" + id + "'";
+		String Query = "select  operator_id,operator_name from operator_details where operator_id='" + id + "'";
 
 		Operator operator = null;
 		Statement stmt;

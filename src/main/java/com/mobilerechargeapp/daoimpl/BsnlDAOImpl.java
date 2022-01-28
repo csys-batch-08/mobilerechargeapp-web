@@ -17,103 +17,112 @@ import com.mobilerechargeapp.model.User;
 import com.mobilerechargeapp.util.ConnectionClass;
 
 public class BsnlDAOImpl implements BsnlDao{
-	public boolean insertBsnlnetwork(BsnlUser bsnl)  {
+	public boolean insertBsnlnetwork(BsnlUser bsnl) {
 		boolean flag = false;
-		ConnectionClass conclass = new ConnectionClass();
-		Connection con = conclass.getConnection();
-		String subQuery = "select * from operator_details where operator_name=?";
-		try {
-		PreparedStatement pst = con.prepareStatement(subQuery);
-		pst.setString(1, bsnl.getOperator().getOperatorname());
-		ResultSet rst = pst.executeQuery();
-		int opId = 0;
-		if (rst.next()) {
-			opId = rst.getInt(1);
-		}
-		System.out.println(opId);
-
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = connectionClass.getConnection();
 		String insertQuery = "insert into bsnl_plans(plan_name,price,validity,benefits,operator_id)values(?,?,?,?,?)";
-		
-			PreparedStatement pstmt = con.prepareStatement(insertQuery);
-			pstmt.setString(1, bsnl.getPlanName());
-			pstmt.setDouble(2, bsnl.getPrice());
-			pstmt.setString(3, bsnl.getValidity());
-			pstmt.setString(4, bsnl.getBenfits());
-			pstmt.setInt(5, opId);
-			flag=pstmt.executeUpdate()>0;
-		
-		} catch (SQLException e) 
-		{
+		String subQuery = "select operator_id,operator_name from operator_details where operator_name=?";
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			preparedStatement = connection.prepareStatement(insertQuery);
+			preparedStatement.setString(1, bsnl.getPlanName());
+			preparedStatement.setDouble(2, bsnl.getPrice());
+			preparedStatement.setString(3, bsnl.getValidity());
+			preparedStatement.setString(4, bsnl.getBenfits());
+
+			PreparedStatement preparedStatement2 = connection.prepareStatement(subQuery);
+
+			preparedStatement2.setString(1, bsnl.getOperator().getOperatorname());
+
+			resultSet = preparedStatement2.executeQuery();
+			int opId = 0;
+			if (resultSet.next()) {
+				opId = resultSet.getInt(1);
+			}
+			preparedStatement.setInt(5, opId);
+			flag = preparedStatement.executeUpdate() > 0;
+//		System.out.println(opId);
+
+		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 		return flag;
 
 	}
 
 	public boolean updateBsnl(String planName, Double price, String validity, String benefits, int bsnlId) {
-		ConnectionClass conclass = new ConnectionClass();
-		Connection con = conclass.getConnection();
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = connectionClass.getConnection();
 		boolean flag = false;
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		String updateQuery = "update bsnl_plans set plan_name=?,price=?,validity=?,benefits=? where bsnlplan_id=?";
 
 		try {
-			pstmt = con.prepareStatement(updateQuery);
-			pstmt.setString(1, planName);
-			pstmt.setDouble(2, price);
-			pstmt.setString(3, validity);
-			pstmt.setString(4, benefits);
-			pstmt.setInt(5, bsnlId);
-			flag = pstmt.executeUpdate() > 0;
-			System.out.println("updated succesfully");
+			preparedStatement = connection.prepareStatement(updateQuery);
+			preparedStatement.setString(1, planName);
+			preparedStatement.setString(3, validity);
+			preparedStatement.setString(4, benefits);
+			preparedStatement.setInt(5, bsnlId);
+			flag = preparedStatement.executeUpdate() > 0;
+
 		} catch (SQLException e) {
-			System.out.println("updated not properly");
+
 			e.printStackTrace();
+		} finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 		return flag;
 	}
 
 	public boolean deleteBsnl(int bsnlId) {
 		boolean flag = false;
-		ConnectionClass conclass = new ConnectionClass();
-		Connection con = conclass.getConnection();
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = connectionClass.getConnection();
 		String deleteQuery = "delete from bsnl_plans where bsnlplan_id=?";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 
 		try {
-			pstmt = con.prepareStatement(deleteQuery);
-			pstmt.setInt(1, bsnlId);
-			flag = pstmt.executeUpdate() > 0;
-	
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("Query is Error");
-		}
+			preparedStatement = connection.prepareStatement(deleteQuery);
+			preparedStatement.setInt(1, bsnlId);
+			flag = preparedStatement.executeUpdate() > 0;
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
 		return flag;
 	}
 
 	public int findbsnlId(String planName, Double price) {
 		String query = "select bsnlplan_id from BSNL_plans where plan_name=? and price=?";
-		ConnectionClass conclass = new ConnectionClass();
-		Connection con = conclass.getConnection();
-		PreparedStatement pstmt;
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = connectionClass.getConnection();
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 		int bsnlId = 0;
 		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, planName);
-			pstmt.setDouble(2, price);
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				bsnlId = rs.getInt(1);
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, planName);
+			preparedStatement.setDouble(2, price);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				bsnlId = resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
-
 		return bsnlId;
 
 	}
@@ -121,21 +130,26 @@ public class BsnlDAOImpl implements BsnlDao{
 	public List<BsnlUser> showBsnlplan() {
 		BsnlUser bsnl = new BsnlUser();
 		List<BsnlUser> bsnlList = new ArrayList<BsnlUser>();
-		String showQuery = "select * from BSNL_plans ";
-		ConnectionClass conclass = new ConnectionClass();
-		Connection con = conclass.getConnection();
+		String showQuery = "select bsnlplan_id,plan_name,price,validity,benefits,operator_id from BSNL_plans ";
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = connectionClass .getConnection();
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
 		try {
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(showQuery);
+			preparedStatement=connection.prepareStatement(showQuery);
+			resultSet  = preparedStatement.executeQuery();
 			OperatorDAOImpl operatordao = new OperatorDAOImpl();
-			while (rs.next()) {
-				Operator operator = operatordao.findOperator1(rs.getInt(6));
-				bsnl = new BsnlUser(rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5), operator);
+			while (resultSet.next()) {
+				Operator operator = operatordao.findOperator1(resultSet.getInt(6));
+				bsnl = new BsnlUser(resultSet.getString(2), resultSet.getDouble(3),resultSet.getString(4),resultSet.getString(5), operator);
 				bsnlList.add(bsnl);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}
+		finally {
+			ConnectionClass.close(connection, preparedStatement,resultSet );
 		}
 		return bsnlList;
 	}
@@ -143,21 +157,26 @@ public class BsnlDAOImpl implements BsnlDao{
 	public List<BsnlUser> showBsnlplan(String search) {
 		BsnlUser bsnl = new BsnlUser();
 		List<BsnlUser> bsnlList = new ArrayList<BsnlUser>();
-		String showQuery = "select * from BSNL_plans where plan_name like '"+search+"%' or price like '"+search+"%'";
-		ConnectionClass conclass = new ConnectionClass();
-		Connection con = conclass.getConnection();
+		String showQuery = "select bsnlplan_id,plan_name,price,validity,benefits,operator_id from BSNL_plans where plan_name like '"+search+"%' or price like '"+search+"%'";
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection=connectionClass.getConnection();
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
 		try {
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(showQuery);
+			preparedStatement=connection.prepareStatement(showQuery);
+			resultSet=preparedStatement.executeQuery();
 			OperatorDAOImpl operatordao = new OperatorDAOImpl();
-			while (rs.next()) {
-				Operator operator = operatordao.findOperator1(rs.getInt(6));
-				bsnl = new BsnlUser(rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5), operator);
+			while (resultSet.next()) {
+				Operator operator = operatordao.findOperator1(resultSet.getInt(6));
+				bsnl = new BsnlUser(resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4), resultSet.getString(5), operator);
 				bsnlList.add(bsnl);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}
+		finally {
+			ConnectionClass.close(connection, preparedStatement,resultSet );
 		}
 		return bsnlList;
 	}
@@ -165,53 +184,68 @@ public class BsnlDAOImpl implements BsnlDao{
 	
 	
 	
-	public ResultSet  findBsnlvalidity() {
-		ConnectionClass conclass = new ConnectionClass();
-		Connection con = conclass.getConnection();
-		BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
-		BsnlUser bsnlUser=new BsnlUser();
-		int BsnlUserId=bsnlDao. findbsnlId(bsnlUser.getPlanName(),bsnlUser.getPrice());
-		String Query = "select validity from jio_plans where jioplan_id="+BsnlUserId;
-		ResultSet rs=null;
-		try {
-			
-			Statement stmt=con.createStatement();
-		     rs = stmt.executeQuery(Query);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return rs;
-		
-	}
+
 	public BsnlUser findPlan(int id)
 	{
-		ConnectionClass conclass = new ConnectionClass();
-		Connection con = conclass.getConnection();
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = connectionClass.getConnection();
 		BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
 		int validity=0;
 		//int JioUserId = jioDao.findjioId(jioUser.getPlanName(), jioUser.getPrice());
-		String Query = "select * from BSNL_plans where bsnlplan_id=" + id;
-		ResultSet rs = null;
+		String Query = "select bsnlplan_id,plan_name,price,validity,benefits,operator_id from BSNL_plans where bsnlplan_id=?";
+		ResultSet resultSet = null;
+		PreparedStatement preparedStatement=null;
 		BsnlUser plan=null;
 		try {
+             preparedStatement=connection.prepareStatement(Query);
+             preparedStatement.setInt(1, id);
+             resultSet=preparedStatement.executeQuery();
 
-			Statement stmt = con.createStatement();
-			rs = stmt.executeQuery(Query);
-			if(rs.next())
+			if(resultSet.next())
 			{
 				OperatorDAOImpl operDao=new OperatorDAOImpl();
-				Operator operator=operDao.findOperator(rs.getInt(6));
-				plan=new BsnlUser(rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),operator );
+				Operator operator=operDao.findOperator(resultSet.getInt(6));
+				plan=new BsnlUser(resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4), resultSet.getString(5),operator );
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
+		}
+		
+		finally {
+			ConnectionClass.close(connection, preparedStatement,resultSet );
 		}
 		return plan;
 		
 	}
 
+	public int  findBsnlvalidity(BsnlUser bsnlUser) {
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = connectionClass.getConnection();
+		BsnlDAOImpl bsnlDAOImpl=new BsnlDAOImpl();
+		
+		int validity = 0;
+		int  BsnlUserId=bsnlDAOImpl. findbsnlId(bsnlUser.getPlanName(),bsnlUser.getPrice());
+		String Query = "select validity from  BSNL_plans where bsnlplan_id=?" +  BsnlUserId;
+		ResultSet resultSet = null;
+		PreparedStatement preparedStatement=null;
+		try {
+            preparedStatement=connection.prepareStatement(Query);
+            resultSet=preparedStatement.executeQuery();
+            preparedStatement.setInt(1, BsnlUserId);
+			if (resultSet.next()) {
+				validity = resultSet.getInt(1);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionClass.close(connection, preparedStatement,resultSet );
+		}
+
+		return validity;
+
+	}
 
 }

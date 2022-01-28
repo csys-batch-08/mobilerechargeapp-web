@@ -79,9 +79,9 @@ td.links a {
 <body>
 	<form>
 		<div class="header">
-			<a href="Operator.jsp">Home</a> <a href="wallet.jsp">wallet</a> <a
+			<a href="operator.jsp">Home</a> <a href="wallet.jsp">wallet</a> <a
 				href="history.jsp">RechargeHistory</a> <a href="aboutus.jsp">AboutUs</a>
-			<a href="contectus.jsp">ContectUs</a> <a href="logout.jsp">Logout</a>
+			<a href="ContactUs.jsp">contactUs</a> <a href="index.jsp">Logout</a>
 		</div>
 	</form>
 	<table style="width: 100%">

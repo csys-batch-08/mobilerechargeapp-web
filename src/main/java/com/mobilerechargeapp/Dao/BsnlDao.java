@@ -1,6 +1,6 @@
 package com.mobilerechargeapp.Dao;
 
-import java.sql.ResultSet;
+
 import java.util.List;
 
 import com.mobilerechargeapp.model.BsnlUser;
@@ -11,6 +11,9 @@ public interface BsnlDao {
 	public boolean deleteBsnl(int bsnlId);
 	public int findbsnlId(String planName, Double price);
 	public List<BsnlUser> showBsnlplan();
-	public ResultSet  findBsnlvalidity() ;
+	public List<BsnlUser> showBsnlplan(String search);
+//	public ResultSet  findBsnlvalidity() ;
+	public BsnlUser findPlan(int id);
+	public int  findBsnlvalidity(BsnlUser bsnlUser);
 
 }

@@ -13,7 +13,7 @@
 <title>UserHistoryDetails</title>
 <style type="text/css">
 BODY{
-background-image: url("images/blur-background-2.jpg");
+background-image: url("images/backimg.jpg");
 
 }
 * {
@@ -46,8 +46,8 @@ table, tr, td {
 }
 
 tr:nth-child(even) {
-	background-color:blue;
-	color: white;
+ 	background-color:blue;
+    color: white;
 	padding: 10px;
 	margin-left: 19px;
 }
@@ -78,23 +78,28 @@ tr:hover {
     background: white;
     color: black;
 }
+h1{
+text-align: center;
+font-weight: bold;
+font-family: sans-serif; 
+}
 </style>
 </head>
 <body >
 
 <div class="header">
-<a href="Operator.jsp">Home</a>
+<a href="operator.jsp">Home</a>
 <a href="wallet.jsp">wallet</a>
 <a href="history.jsp">RechargeHistory</a>
 <a href="aboutus.jsp">AboutUs</a>
-<a href="contectus.jsp">ContectUs</a>
+<a href="ContactUs.jsp">ContactUs</a>
 
 <a href="index.jsp">Logout</a>
 </div>
 
 
 
-	<h1>History Details</h1>
+	<h1>HISTORY DETAILS</h1>
 	<%
 	User user = (User)session.getAttribute("CurrentUser");
 	/*   HistoryDetails history=(HistoryDetails)session.getAttribute("history"); */
@@ -131,12 +136,12 @@ tr:hover {
 
 	<table style="width:100%">
 		<tr>
-			<td>USERNAME</td>
-			<td>OPERATORNAME</td>
-			<td>PLANID</td>
-			<td>RECHARGEDATE</td>
-			<td>PAYMENT</td>
-			<td>MOBILENUMBER</td>
+			<td><strong>USER NAME</strong></td>
+			<td><strong>OPERATOR NAME</strong></td>
+			<td><strong>PLAN ID</strong></td>
+			<td><strong>RECHARGE DATE</strong></td>
+			<td><strong>PAYMENT</strong></td>
+			<td><strong>MOBILE NUMBER</strong></td>
 		</tr>
 		<%
 		while(rs.next()) {

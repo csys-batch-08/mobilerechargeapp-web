@@ -65,6 +65,19 @@ td.links a {
 }</style>
 </head>
 <body style="text-align: center;">
+<div class="header">
+<a href="adminHome.jsp">ADMIN</a>
+<a href="addJio.jsp"> JIO </a>
+<a href="addAirtel.jsp">AIRTEL</a>
+<a href="addVodafone.jsp">VODAFONE</a>
+<a href="addBsnl.jsp">BSNL</a>
+
+<a href="index.jsp">LOGOUT</a>
+
+</div>
+
+
+
 <h1><strong>VODAFONE NETWORK</strong></h1>
  
   <table style=width:100% >
@@ -94,7 +107,7 @@ for(int i=0;i<ShowViplan.size();i++)
 <td><%= vodafoneUser.getBenfits() %></td>
 <td><%= vodafoneUser.getOperator().getOperatorname() %></td>
 <td><a href="DeletevodafoneController?vodfoneId=<%= findvodafoneId %>">delete</a></td>
-<td><a href="UpdateVodafone.jsp">UPDATE</a></td>
+<td><a href="updateVodafone.jsp">UPDATE</a></td>
 </tr>
 <%}%>
 </table>

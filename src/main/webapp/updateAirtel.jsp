@@ -50,7 +50,7 @@ button {
 }
 </style>
 <body style="text-align: center;">
-<form action="UpdateairtrelController" method="post">
+<form action="UpdateairtelController" method="post">
 <h1>UpdatePlan</h1>
 <div>
 <label for="planName"><strong>PlanName</strong></label>

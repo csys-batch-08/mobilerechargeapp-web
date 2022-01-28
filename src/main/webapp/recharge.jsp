@@ -111,7 +111,7 @@ h1 {
 
 
 	<div class="header">
-		<a href="Operator.jsp">Home</a> <a href="wallet.jsp">wallet</a> <a
+		<a href="operator.jsp">Home</a> <a href="wallet.jsp">wallet</a> <a
 			href="history.jsp">RechargeHistory</a> <a href="aboutus.jsp">AboutUs</a>
 		<a href="contectus.jsp">ContectUs</a> <a href="logout.jsp">Logout</a>
 	</div>
@@ -178,17 +178,17 @@ User user=(User)session.getAttribute("CurrentUser");
 		 HttpSession session1=request.getSession();
 		 session1.setAttribute("balance", e.getMessage1());
 		 if(operator.equals("jio")){
-		 response.sendRedirect("planjiouser.jsp");
+		 response.sendRedirect("planJioUser.jsp");
 
 		 }
 		 else if(operator.equals("Airtel")){
-		 response.sendRedirect("planairteluser.jsp"); 
+		 response.sendRedirect("planAirtelUser.jsp"); 
 		 }
 		 else if(operator.equals("Vodafone")){
-		response.sendRedirect("planvodafoneUser.jsp");  
+		response.sendRedirect("planVodafoneUser.jsp");  
 		 }
 		 else{
-			 response.sendRedirect("planbsnluser.jsp");  
+			 response.sendRedirect("planBsnlUser.jsp");  
 		 }
        }
 	

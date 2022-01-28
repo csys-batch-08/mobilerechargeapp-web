@@ -2,6 +2,7 @@
 <%@page import="com.mobilerechargeapp.model.JioUser"%>
 <%@page import="java.util.List"%>
 <%@page import="com.mobilerechargeapp.daoimpl.JioDAOImpl"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -81,11 +82,11 @@ td.links a {
 </head>
 <body style="text-align: center;">
 <div class="header">
-<a href="AdminHome.jsp">ADMIN</a>
-<a href="AddJio.jsp"> JIO </a>
-<a href="AddAirtel.jsp">AIRTEL</a>
-<a href="AddVodafone.jsp">VODAFONE</a>
-<a href="AddBsnl.jsp">BSNL</a>
+<a href="adminHome.jsp">ADMIN</a>
+<a href="addJio.jsp"> JIO </a>
+<a href="addAirtel.jsp">AIRTEL</a>
+<a href="addVodafone.jsp">VODAFONE</a>
+<a href="addBsnl.jsp">BSNL</a>
 
 <a href="index.jsp">LOGOUT</a>
 
@@ -94,7 +95,7 @@ td.links a {
 
 <h1><strong>JIO NETWORK</strong></h1>
   
-  <table style="width:100%" >
+  <!-- <table style="width:100%" >
     <tr>
     <td><strong>PLANID</strong></td>
     <td><strong>PLANNAME</strong></td>
@@ -102,9 +103,9 @@ td.links a {
     <td><strong>VALIDITY</strong></td>
     <td><strong>BENEFITS</strong></td>
   	<td><strong>OPERATOR</strong></td>
- 
+  -->
   	
-  	</tr>
+  <%-- 	</tr>
 <%
 JioDAOImpl jioDao=new JioDAOImpl();
  List<JioUser>ShowPlan=jioDao.showJioplan();
@@ -129,7 +130,31 @@ JioDAOImpl jioDao=new JioDAOImpl();
 <td><a href="updateJio.jsp">Edit</a>
 
 </tr>
-<%}%>
+<%}%> --%>
+<table style="width:100%" >
+    <tr>
+  
+    <td><strong>PLANID</strong></td>
+    <td><strong>PLANNAME</strong></td>
+    <td><strong>PRICE</strong></td>
+    <td><strong>VALIDITY</strong></td>
+    <td><strong>BENEFITS</strong></td>
+  	<td><strong>OPERATOR</strong></td>
+
+   <c:forEach items="${sessionScope.jiolist}" var="jioUser">
+					<tr>
+					    <td>${findjioId }</td>
+						<td>${jioUser.getPlanName()}</td>
+						<td>${jioUser.getPrice()}</td>
+						<td>${jioUser.getValidity()}</td>
+						<td>${jioUser.getBenfits()}</td>
+						<td>${jioUser.getOperator().getOperatorname()}</td>
+						 <td><a href="deleteplan?jioId=${findjioId}">Delete</a></td> 
+						 <td><a href="updateJio.jsp">Edit</a>
+						</tr>
+				</c:forEach>
+						
+
 </table>
   
 
