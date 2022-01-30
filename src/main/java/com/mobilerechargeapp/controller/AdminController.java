@@ -67,7 +67,7 @@ public class AdminController extends HttpServlet {
 			HttpSession session=request.getSession();
 			session.setAttribute("CurrentUser", user);
 			session.setAttribute("amount",user.getWallet());
-			response.sendRedirect("operator.jsp");
+			response.sendRedirect("ShowValidityController");
 		}
 		else
 		{

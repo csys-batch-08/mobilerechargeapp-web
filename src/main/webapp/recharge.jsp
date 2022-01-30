@@ -120,83 +120,7 @@ h1 {
 		<label for="MobileNumber"><strong>MOBILE NUMBER</strong></label> <input
 			type="text" name="mobileNumber" id="MobileNumber"
 			pattern="[7-9]{1}[0-9]{9}"
-			title="Phone number with 7-9 and remaing 9 digit with 0-9" required><br>
-
-		<%
-User user=(User)session.getAttribute("CurrentUser");
-//	User user1=new User(user.getEmailid());	
-		
-	UserDAOImpl userDao=new UserDAOImpl();
-	int userId=userDao.findUserId(user);
-	OperatorDAOImpl operDao=new OperatorDAOImpl();
-	String operator=request.getParameter("operator");
-	int operatorId=operDao.findOperatorId(operator);
-	String planName=request.getParameter("planName");
-	/* System.out.println(planName); */
-	double amount=Double.parseDouble(request.getParameter("price"));
-	/* System.out.println(amount); */
-	int planId;
-/* 	 userId = userdao.findUserId(currentUser); */
-	/* operatorId =  */
-	
-	try{
-	 if(user.getWallet()>amount){
-		
-	 if (operator.equals("jio")){
-	 JioDAOImpl jioDao=new JioDAOImpl();
-     planId=jioDao.findjioId(planName, amount);
-    /*  System.out.println(planId); */
-	 }
-     else if(operator.equals("Airtel")){
-     AirtelDAOImpl airtelDao=new AirtelDAOImpl();
-	 planId=airtelDao.findairtelId(planName, amount);
-	   /* System.out.println(planId); */
-     }
-     else if(operator.equals("Vodafone")){
-	 VodafoneDAOImpl vodafoneDao=new VodafoneDAOImpl();
-	 planId=vodafoneDao.findvodafoneId(planName, amount);
-	   /* System.out.println(planId); */
-     }else {
-	 BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
-	 planId=bsnlDao.findbsnlId(planName, amount);
-	  /*  System.out.println(planId); */
-     }
-	
-	Date today=new Date();
-   HistoryDetails hDetails=new HistoryDetails(userId,operatorId,0,planId,today,amount);
-     System.out.println(userId+" "+hDetails);  
-   session.setAttribute("history", hDetails);
-   user.setWallet(user.getWallet()-amount);
-   userDao.updateuserWallet(user);
-	 }
-	 else
-	 {
-		 throw  new ErrorFound();
-	 }
-	}catch(ErrorFound e)
-       {
-		 HttpSession session1=request.getSession();
-		 session1.setAttribute("balance", e.getMessage1());
-		 if(operator.equals("jio")){
-		 response.sendRedirect("planJioUser.jsp");
-
-		 }
-		 else if(operator.equals("Airtel")){
-		 response.sendRedirect("planAirtelUser.jsp"); 
-		 }
-		 else if(operator.equals("Vodafone")){
-		response.sendRedirect("planVodafoneUser.jsp");  
-		 }
-		 else{
-			 response.sendRedirect("planBsnlUser.jsp");  
-		 }
-       }
-	
-
-%>
-
-
-		<!-- --  <a href="RechargeController?Amount=<%=amount %>"></a>---->
+			title="Phone number with 7-9 and remaing 9 digit with 0-9" required><br>		
 		<div class="formBtn">
 
 			<input type="submit" value="Recharge">
@@ -204,3 +128,7 @@ User user=(User)session.getAttribute("CurrentUser");
 	</form>
 </body>
 </html>
+
+
+
+	

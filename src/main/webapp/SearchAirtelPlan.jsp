@@ -1,5 +1,6 @@
 <%@page import="com.mobilerechargeapp.model.AirtelUser"%>
 <%@page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -84,7 +85,45 @@ td.links a {
 			<a href="ContactUs.jsp">contactUs</a> <a href="index.jsp">Logout</a>
 		</div>
 	</form>
-	<table style="width: 100%">
+	
+	
+	<form>
+		<div>
+			<table style="width: 100%">
+
+				<tr>
+
+					<td><strong>PLANNAME</strong></td>
+					<td><strong>PRICE</strong></td>
+					<td><strong>VALIDITY</strong></td>
+					<td><strong>BENEFITS</strong></td>
+					<td><strong>OPERATOR</strong></td>
+					
+				</tr>
+				
+
+					<c:forEach items="${sessionScope.airtelplan}" var="airtelUser">
+					<tr>
+						<td>${airtelUser.getPlanName()}</td>
+						<td>${airtelUser.getPrice()}</td>
+						<td>${airtelUser.getValidity()}</td>
+						<td>${airtelUser.getBenfits()}</td>
+						<td>${airtelUser.getOperator().getOperatorname()}</td>
+					
+						<td class="links"><a href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</a></button></td>
+						
+				</tr>
+				</c:forEach>
+
+			</table>
+		</div>
+	</form>
+	
+	
+	
+</body>
+</html>
+<%-- <table style="width: 100%">
 		<tr>
 
 			<td><strong>PLANNAME</strong></td>
@@ -115,6 +154,4 @@ td.links a {
 		<%
 		}
 		%>
-	</table>
-</body>
-</html>
+	</table> --%>

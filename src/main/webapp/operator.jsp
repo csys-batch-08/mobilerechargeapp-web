@@ -21,7 +21,7 @@
 <%@page import="com.mobilerechargeapp.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,74 +121,11 @@
 </div>
 
 
-<%User user =(User)session.getAttribute("CurrentUser");
-long validity=0;
 
+<c:if test="${validity!=null }">
+    <h1>${validity} days remaining validity only</h1> 
+        </c:if>
 
-	HistorydetailsDAOImpl hisDao=new HistorydetailsDAOImpl();
-	List<HistoryDetails> rechargeHistory=hisDao.findUserHistory(user);
-	if(rechargeHistory.size()>0)
-	{
-	HistoryDetails history=rechargeHistory.get(0);
-	OperatorDAOImpl operDao=new OperatorDAOImpl();
-	Operator operator=operDao.findOperator(history.getOperatorId());
-	Date sysDate=new Date();
-	long timediff=sysDate.getTime()-history.getRechargeDate().getTime();
-	long days=timediff/(1000*60*60*24)%365;
-	if(operator!=null)
-	{
-	JioUser planJio=null;
-	AirtelUser	planAirtel=null;
-	VodafoneUser planVodafone=null;
-	BsnlUser planBsnl=null;
-	
-	if(operator.getOperatorname().equals("jio"))
-	{
-		
-		JioDAOImpl jioDao=new JioDAOImpl();
-		planJio=jioDao.findPlan(history.getPlanId());
-		 System.out.println(planJio);
-		validity=Integer.valueOf(planJio.getValidity().split(" ")[0])-days;
-		
-	    System.out.println ("Days: "+validity );
-		
-	}
-	else if(operator.getOperatorname().equals("Airtel")){
-		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
-	planAirtel=airtelDao.findPlan(history.getPlanId());
-	System.out.println(planAirtel);
-	validity=Integer.valueOf(planAirtel.getValidity().split(" ")[0])-days;
-    System.out.println ("Days: "+validity );
-	}
-	else if(operator.getOperatorname().equals("Vodafone")){
-		VodafoneDAOImpl vodafoneDao=new VodafoneDAOImpl();
-		planVodafone=vodafoneDao.findPlan(history.getPlanId());
-		validity=Integer.valueOf(planVodafone.getValidity().split(" ")[0])-days;
-	    System.out.println ("Days: "+validity );
-	}
-	else if(operator.getOperatorname().equals("BSNL")) {
-		BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
-		planBsnl=bsnlDao.findPlan(history.getPlanId());
-		validity=Integer.valueOf(planBsnl.getValidity().split(" ")[0])-days;
-	    System.out.println ("Days: "+validity );
-		
-	}
-	
-	
-	
-	/* if(plan!=null)
-	{
-	validity=Integer.valueOf(plan.getValidity().split(" ")[0])-days;
-	    System.out.println ("Days: "+validity );
-	
-	}    */
-	}
-	}
-	
-
-%>
-<%-- <%if(validity<=10) { %> --%>
-<h1><%=  validity %> days remaining validity only</h1>
 
 
 </body>

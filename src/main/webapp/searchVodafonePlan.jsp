@@ -1,12 +1,13 @@
 <%@page import="com.mobilerechargeapp.model.VodafoneUser"%>
 <%@page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>selectViplan</title>
+<title>SelectVodafoneplan</title>
 <style>
 body{
 overflow: hidden;
@@ -86,7 +87,42 @@ td.links a {
 	</form>
 
 
-<table style="width: 100%">
+	<form>
+		<div>
+			<table style="width: 100%">
+
+				<tr>
+
+					<td><strong>PLANNAME</strong></td>
+					<td><strong>PRICE</strong></td>
+					<td><strong>VALIDITY</strong></td>
+					<td><strong>BENEFITS</strong></td>
+					<td><strong>OPERATOR</strong></td>
+
+				</tr>
+
+
+				<c:forEach items="${sessionScope.Vodafonelist}" var="vodafoneUser">
+					<tr>
+						<td>${vodafoneUser.getPlanName()}</td>
+						<td>${vodafoneUser.getPrice()}</td>
+						<td>${vodafoneUser.getValidity()}</td>
+						<td>${vodafoneUser.getBenfits()}</td>
+						<td>${vodafoneUser.getOperator().getOperatorname()}</td>
+						<td class="links"><a
+							href="RechargeVodafonecontroller?planName=${vodafoneUser.getPlanName()}&price=${vodafoneUser.getPrice()}&operator=${vodafoneUser.getOperator().getOperatorname()}"><button>RECHARGE</a>
+						</button></td>
+					</tr>
+				</c:forEach>
+
+			</table>
+		</div>
+	</form>
+
+
+</body>
+</html>
+<%-- <table style="width: 100%">
 		<tr>
 
 			<td><strong>PLANNAME</strong></td>
@@ -120,6 +156,4 @@ td.links a {
 		</tr>
 
 		<%}%>
-	</table>
-</body>
-</html>
+	</table> --%>

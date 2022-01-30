@@ -191,46 +191,8 @@ if(error!=null){
 
 
 
-	<%-- 	<form>
-		<table style="width: 100%">
-			<tr>
 
-				<td><strong>PLANNAME</strong></td>
-				<td><strong>PRICE</strong></td>
-				<td><strong>VALIDITY</strong></td>
-				<td><strong>BENEFITS</strong></td>
-				<td><strong>OPERATOR</strong></td>
-
-
-			</tr>
-			<%
-VodafoneDAOImpl vodafoneDao=new VodafoneDAOImpl();
- List<VodafoneUser>ShowPlan=vodafoneDao.showViplan();
- 
-for(int i=0;i<ShowPlan.size();i++)
-{
-	VodafoneUser vodafoneUser=ShowPlan.get(i);
-	String planName=vodafoneUser.getPlanName();
-%>
-			<tr>
-
-				<td><%= vodafoneUser.getPlanName() %></td>
-				<td><%= vodafoneUser.getPrice() %></td>
-				<td><%= vodafoneUser.getValidity() %></td>
-				<td><%= vodafoneUser.getBenfits() %></td>
-				<td><%= vodafoneUser.getOperator().getOperatorname() %></td>
-				<td class="links"><a
-					href="recharge.jsp?planName=<%=vodafoneUser.getPlanName() %>&price=<%= vodafoneUser.getPrice() %>
-&operator=<%= vodafoneUser.getOperator().getOperatorname() %>"><button>Recharge</a></button></td>
-
-			</tr>
-			<%}%>
-		</table>
-
-
-
-	</form> --%>
-	<form method="get">
+	<form>
 		<div>
 			<table style="width: 100%">
 
@@ -252,7 +214,9 @@ for(int i=0;i<ShowPlan.size();i++)
 						<td>${vodafoneUser.getValidity()}</td>
 						<td>${vodafoneUser.getBenfits()}</td>
 						<td>${vodafoneUser.getOperator().getOperatorname()}</td>
-
+						<td class="links"><a
+							href="RechargeVodafonecontroller?planName=${vodafoneUser.getPlanName()}&price=${vodafoneUser.getPrice()}&operator=${vodafoneUser.getOperator().getOperatorname()}"><button>RECHARGE</a>
+						</button></td>
 					</tr>
 				</c:forEach>
 

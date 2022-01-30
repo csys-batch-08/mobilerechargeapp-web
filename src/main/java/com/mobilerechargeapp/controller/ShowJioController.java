@@ -14,24 +14,12 @@ import javax.servlet.http.HttpSession;
 import com.mobilerechargeapp.daoimpl.JioDAOImpl;
 import com.mobilerechargeapp.model.JioUser;
 
-/**
- * Servlet implementation class ShowJioController
- */
+
 @WebServlet("/planJioUser")
 public class ShowJioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShowJioController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		JioDAOImpl jioDao=new JioDAOImpl();

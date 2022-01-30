@@ -173,8 +173,6 @@ public class JioDAOImpl implements JioDao {
             preparedStatement=connection.prepareStatement(Query);
             preparedStatement.setInt(1, JioUserId);
             resultSet=preparedStatement.executeQuery();
-//			Statement stmt = con.createStatement();
-//			rs = stmt.executeQuery(Query);
 			if (resultSet.next()) {
 				validity = resultSet.getInt(1);
 			}
@@ -199,9 +197,7 @@ public class JioDAOImpl implements JioDao {
 		ResultSet resultSet=null;
 		try {
 			preparedStatement=connection.prepareStatement(showQuery);
-			resultSet=preparedStatement.executeQuery();
-//			Statement stmt = con.createStatement();
-//			ResultSet rs = stmt.executeQuery(showQuery);
+			resultSet=preparedStatement.executeQuery();		
 			OperatorDAOImpl operatordao = new OperatorDAOImpl();
 
 			while (resultSet.next()) {

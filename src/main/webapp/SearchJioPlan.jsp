@@ -1,5 +1,6 @@
 <%@page import="com.mobilerechargeapp.daoimpl.JioDAOImpl"%>
 <%@page import="com.mobilerechargeapp.model.JioUser"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -7,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Selectjioplan</title>
+<title>SelectJioplan</title>
 </head>
 <style>
 body {
@@ -86,7 +87,8 @@ td.links a {
 				href="history.jsp">RechargeHistory</a> <a href="aboutus.jsp">AboutUs</a>
 			<a href="ContactUs.jsp">ContactUs</a> <a href="index.jsp">Logout</a>
 		</div>
-	</form>
+		</form>
+	<%-- </form>
 	<table style="width: 100%">
 		<tr>
 
@@ -119,7 +121,40 @@ td.links a {
 		</tr>
 
 		<%}%>
-	</table>
+	</table> --%>
+	
+	
+	<form>
+		<div>
+			<table style="width: 100%">
+
+				<tr>
+
+					<td><strong>PLANNAME</strong></td>
+					<td><strong>PRICE</strong></td>
+					<td><strong>VALIDITY</strong></td>
+					<td><strong>BENEFITS</strong></td>
+					<td><strong>OPERATOR</strong></td>
+					
+				</tr>
+				
+
+					<c:forEach items="${sessionScope.jioplan}" var="jioUser">
+					<tr>
+						<td>${jioUser.getPlanName()}</td>
+						<td>${jioUser.getPrice()}</td>
+						<td>${jioUser.getValidity()}</td>
+						<td>${jioUser.getBenfits()}</td>
+						<td>${jioUser.getOperator().getOperatorname()}</td>
+					
+						<td class="links"><a href="RechargeJioController?planName=${jioUser.getPlanName()}&price=${jioUser.getPrice()}&operator=${jioUser.getOperator().getOperatorname()}"><button>RECHARGE</a></button></td>
+						
+				</tr>
+				</c:forEach>
+
+			</table>
+		</div>
+	</form>
 
 </body>
 </html>

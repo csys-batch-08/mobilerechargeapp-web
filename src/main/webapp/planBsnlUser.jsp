@@ -142,12 +142,17 @@ nav ul .search-icon .icon span {
 </head>
 <body>
 
-	<%String error=(String)session.getAttribute("balance");
-if(error!=null){
-%>
-	<h1><%=error %></h1>
-	<%session.removeAttribute("balance"); %>
-	<%} %>
+	<%
+	String error = (String) session.getAttribute("balance");
+	if (error != null) {
+	%>
+	<h1><%=error%></h1>
+	<%
+	session.removeAttribute("balance");
+	%>
+	<%
+	}
+	%>
 
 
 
@@ -190,39 +195,8 @@ if(error!=null){
 	</nav>
 
 
-	<%-- <form>
-		<table style="width: 100%">
-			<tr>
 
-				<td><strong>PLANNAME</strong></td>
-				<td><strong>PRICE</strong></td>
-				<td><strong>VALIDITY</strong></td>
-				<td><strong>BENEFITS</strong></td>
-				<td><strong>OPERATOR</strong></td>
-				<%
-BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
-List<BsnlUser> ShowPlan=bsnlDao.showBsnlplan();
- 
-for(int i=0;i<ShowPlan.size();i++){
-	BsnlUser bsnlUser=ShowPlan.get(i);
-	String planName=bsnlUser.getPlanName();
-	%>
-			
-			<tr>
-				<td><%= bsnlUser.getPlanName() %></td>
-				<td><%= bsnlUser.getPrice() %></td>
-				<td><%= bsnlUser.getValidity() %></td>
-				<td><%= bsnlUser.getBenfits() %></td>
-				<td><%= bsnlUser.getOperator().getOperatorname() %></td>
-				<td class="links"><a
-					href="recharge.jsp?planName=<%=bsnlUser.getPlanName() %>&price=<%=  bsnlUser.getPrice() %>
-&operator=<%= bsnlUser.getOperator().getOperatorname() %>"><button>Recharge </a></button></td>
-			</tr>
-			<%}%>
-
-		</table>
-	</form> --%>
-	<form method="get">
+	<form>
 		<div>
 			<table style="width: 100%">
 
@@ -244,7 +218,9 @@ for(int i=0;i<ShowPlan.size();i++){
 						<td>${bsnlUser.getValidity()}</td>
 						<td>${bsnlUser.getBenfits()}</td>
 						<td>${bsnlUser.getOperator().getOperatorname()}</td>
-
+						<td class="links"><a
+							href="RechargeBsnlController?planName=${bsnlUser.getPlanName()}&price=${bsnlUser.getPrice()}&operator=${bsnlUser.getOperator().getOperatorname()}"><button>RECHARGE</a>
+							</button></td>
 					</tr>
 				</c:forEach>
 

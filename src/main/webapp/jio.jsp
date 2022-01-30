@@ -141,10 +141,11 @@ JioDAOImpl jioDao=new JioDAOImpl();
     <td><strong>BENEFITS</strong></td>
   	<td><strong>OPERATOR</strong></td>
 
-   <c:forEach items="${sessionScope.jiolist}" var="jioUser">
+					    <c:forEach items="${sessionScope.jiolist}" var="jioUser">
+
 					<tr>
-					    <td>${findjioId }</td>
-						<td>${jioUser.getPlanName()}</td>
+					    <td>${jioUser.findjioId }</td>						    
+						<td>${jioUser.getPlanName}</td>
 						<td>${jioUser.getPrice()}</td>
 						<td>${jioUser.getValidity()}</td>
 						<td>${jioUser.getBenfits()}</td>

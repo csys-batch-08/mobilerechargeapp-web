@@ -165,51 +165,7 @@ if(error!=null){
 	</nav>
 
 
-
-
-	<%-- <form>
-		<table style="width: 100%">
-			<tr>
-
-				<td><strong>PLANNAME</strong></td>
-				<td><strong>PRICE</strong></td>
-				<td><strong>VALIDITY</strong></td>
-				<td><strong>BENEFITS</strong></td>
-				<td><strong>OPERATOR</strong></td>
-
-
-			</tr>
-			<%
-			AirtelDAOImpl airtelDao = new AirtelDAOImpl();
-
-			List<AirtelUser> ShowPlan = airtelDao.showAirtelplan();
-			for (int i = 0; i < ShowPlan.size(); i++) {
-				AirtelUser airtelUser = ShowPlan.get(i);
-				String planName = airtelUser.getPlanName();
-			%>
-			<tr>
-				<td><%=airtelUser.getPlanName()%></td>
-				<td><%=airtelUser.getPrice()%></td>
-				<td><%=airtelUser.getValidity()%></td>
-				<td><%=airtelUser.getBenfits()%></td>
-				<td><%=airtelUser.getOperator().getOperatorname()%></td>
-				<td class="links"><a
-					href="recharge.jsp?planName=<%=airtelUser.getPlanName()%>&price=<%=airtelUser.getPrice()%>
-&operator=<%=airtelUser.getOperator().getOperatorname()%>"><button>Recharge</a>
-					</button></td>
-
-
-			</tr>
-			<%
-			}
-			%>
-		</table>
-
-
-
-	</form> --%>
-
-	<form method="get">
+	<form>
 		<div>
 			<table style="width: 100%">
 
@@ -231,7 +187,9 @@ if(error!=null){
 						<td>${airtelUser.getValidity()}</td>
 						<td>${airtelUser.getBenfits()}</td>
 						<td>${airtelUser.getOperator().getOperatorname()}</td>
-
+						<td class="links"><a
+							href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</a>
+						</button></td>
 					</tr>
 				</c:forEach>
 

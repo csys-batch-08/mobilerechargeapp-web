@@ -178,42 +178,8 @@ if(error!=null){
 		</ul>
 	</nav>
 
-	<%-- <table style="width: 100%">
-			<tr>
-
-				<td><strong>PLANNAME</strong></td>
-				<td><strong>PRICE</strong></td>
-				<td><strong>VALIDITY</strong></td>
-				<td><strong>BENEFITS</strong></td>
-				<td><strong>OPERATOR</strong></td>
-
-
-			</tr>
-			<%
-			JioDAOImpl jioDao = new JioDAOImpl();
-			List<JioUser> ShowPlan = jioDao.showJioplan();
-
-			for (int i = 0; i < ShowPlan.size(); i++) {
-				JioUser jioUser = ShowPlan.get(i);
-				String planName = jioUser.getPlanName();
-			%>
-			<tr>
-				<td><%=jioUser.getPlanName()%></td>
-				<td><%=jioUser.getPrice()%></td>
-				<td><%=jioUser.getValidity()%></td>
-				<td><%=jioUser.getBenfits()%></td>
-				<td><%=jioUser.getOperator().getOperatorname()%></td>
-				<td class="links"><a
-					href="recharge.jsp?planName=<%=jioUser.getPlanName()%>&price=<%=jioUser.getPrice()%>
-&operator=<%=jioUser.getOperator().getOperatorname()%>"><button>Recharge</a>
-					</button></td>
-			</tr>
-
-			<%
-			}
-			%>
-		</table> --%>
-	<form method="get">
+	
+	<form>
 		<div>
 			<table style="width: 100%">
 
@@ -235,7 +201,8 @@ if(error!=null){
 						<td>${jioUser.getValidity()}</td>
 						<td>${jioUser.getBenfits()}</td>
 						<td>${jioUser.getOperator().getOperatorname()}</td>
-						<td><a href="recharge.jsp?planName=${jioUser.getplanName()"}>recharge</a></td>
+					
+						<td class="links"><a href="RechargeJioController?planName=${jioUser.getPlanName()}&price=${jioUser.getPrice()}&operator=${jioUser.getOperator().getOperatorname()}"><button>RECHARGE</a></button></td>
 						
 				</tr>
 				</c:forEach>

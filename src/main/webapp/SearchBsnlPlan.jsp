@@ -1,5 +1,6 @@
 <%@page import="com.mobilerechargeapp.model.BsnlUser"%>
 <%@page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="com.mobilerechargeapp.daoimpl.BsnlDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -87,7 +88,41 @@ td.links a {
 			<a href="ContactUs.jsp">ContactUs</a> <a href="index.jsp">Logout</a>
 		</div>
 	</form>
-	<form>
+	
+		<form>
+		<div>
+			<table style="width: 100%">
+
+				<tr>
+
+					<td><strong>PLANNAME</strong></td>
+					<td><strong>PRICE</strong></td>
+					<td><strong>VALIDITY</strong></td>
+					<td><strong>BENEFITS</strong></td>
+					<td><strong>OPERATOR</strong></td>
+
+				</tr>
+
+
+				<c:forEach items="${sessionScope.bsnlplan}" var="bsnlUser">
+					<tr>
+						<td>${bsnlUser.getPlanName()}</td>
+						<td>${bsnlUser.getPrice()}</td>
+						<td>${bsnlUser.getValidity()}</td>
+						<td>${bsnlUser.getBenfits()}</td>
+						<td>${bsnlUser.getOperator().getOperatorname()}</td>
+						<td class="links"><a
+							href="RechargeBsnlController?planName=${bsnlUser.getPlanName()}&price=${bsnlUser.getPrice()}&operator=${bsnlUser.getOperator().getOperatorname()}"><button>RECHARGE</a>
+							</button></td>
+					</tr>
+				</c:forEach>
+
+			</table>
+		</div>
+	</form>
+</body>
+</html>
+<%-- 	<form>
 		<table style="width: 100%">
 			<tr>
 
@@ -118,6 +153,4 @@ td.links a {
 			%>
 
 		</table>
-	</form>
-</body>
-</html>
+	</form> --%>
