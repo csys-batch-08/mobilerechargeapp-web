@@ -3,7 +3,7 @@ package com.mobilerechargeapp.model;
 import java.util.Objects;
 
 public class JioUser {
-//	private int jioId;
+	private int jioId;
 	private String planName;
 	private double price;
 	private  String validity;
@@ -13,13 +13,13 @@ public class JioUser {
 	
 	
 	
-//	
-//	public int getJioId() {
-//		return jioId;
-//	}
-//	public void setJioId(int jioId) {
-//		this.jioId = jioId;
-//	}
+
+	public int getJioId() {
+		return jioId;
+	}
+	public void setJioId(int jioId) {
+		this.jioId = jioId;
+	}
 	public String getPlanName() {
 		return planName;
 	}

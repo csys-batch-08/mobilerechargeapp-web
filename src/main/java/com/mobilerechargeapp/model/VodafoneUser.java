@@ -3,11 +3,21 @@ package com.mobilerechargeapp.model;
 import java.util.Objects;
 
 public class VodafoneUser {
+	private int vodafoneId;
 	private String planName;
 	private double price;
 	private  String validity;
 	private String benfits;
 	private Operator operator;
+	
+	
+	
+	public int getVodafoneId() {
+		return vodafoneId;
+	}
+	public void setVodafoneId(int vodafoneId) {
+		this.vodafoneId = vodafoneId;
+	}
 	public String getPlanName() {
 		return planName;
 	}

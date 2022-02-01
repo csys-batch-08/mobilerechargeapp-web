@@ -19,19 +19,9 @@ import com.mobilerechargeapp.util.ConnectionClass;
 public class RechargewalletController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RechargewalletController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 
 		
 		Double amount = Double.parseDouble(request.getParameter("amount"));
@@ -41,8 +31,9 @@ public class RechargewalletController extends HttpServlet {
         User user=(User)session.getAttribute("CurrentUser");
         user.setWallet(user.getWallet()+amount);
 		int i=userDao.updateuserWallet(user);
-		if(i>0) {
-	          session.setAttribute("recharge", 1);
+		if(i!=0) {
+			   session.setAttribute("wallet", user);
+                session.setAttribute("recharge", i);
 	          response.sendRedirect("wallet.jsp");
 	          
 			
@@ -53,11 +44,9 @@ public class RechargewalletController extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
 		doGet(request, response);
 	}
 

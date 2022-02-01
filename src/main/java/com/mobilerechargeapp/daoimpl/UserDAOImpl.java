@@ -71,7 +71,7 @@ public class UserDAOImpl implements UserDao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-			System.out.println("invalid Statement ");
+			
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
@@ -142,7 +142,7 @@ public class UserDAOImpl implements UserDao {
 		ConnectionClass connectionClass  = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
 		String Query = "update userlogin set wallet=? where Email_id=?";
-		// String getWalletquery = "select wallet from userlogin where Email_id=?";
+		
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet=null;
 		int i = 0;
@@ -155,10 +155,13 @@ public class UserDAOImpl implements UserDao {
 			// wallet = rs.getDouble(1);
 			// }
 		    preparedStatement = connection.prepareStatement(Query);
-			preparedStatement.setDouble(1, user.getWallet());
+		preparedStatement.setDouble(1, user.getWallet());
+	
 			preparedStatement.setString(2, user.getEmailid());
 			resultSet=preparedStatement.executeQuery();
 			i = preparedStatement.executeUpdate();
+//			user.setWallet(user.getWallet()+amount);
+		//	user.setWallet(user.getWallet()-planPrice);
 			System.out.println(i + "updated");
 
 		} catch (SQLException e) {
@@ -191,9 +194,11 @@ public class UserDAOImpl implements UserDao {
 			}
 			preparedStatement = connection.prepareStatement(Query);
 			preparedStatement.setDouble(1, wallet - planPrice);
+			
 			preparedStatement.setString(2, user.getEmailid());
 			flag =preparedStatement.executeUpdate() > 0;
-			// System.out.println(a + "wallet updated");
+			
+		
 
 		} catch (SQLException e) {
 
@@ -244,24 +249,40 @@ public class UserDAOImpl implements UserDao {
 
 	}
 
-	public ResultSet history(int userId) {
+	public List<Object> history(int userId) {
 		ConnectionClass conclass = new ConnectionClass();
 		Connection con = conclass.getConnection();
-		String joinQuery = "select u.user_name,o.operator_name,h.plan_id,h.Recharge_date,h.Payment,h.mobile_number from userlogin u join operator_details o on u.operator_id=o.operator_id join  history_details h on h.user_id=u.user_id where h.user_id="
-				+ userId;
-		ResultSet rs = null;
+//		String joinQuery = "select u.user_name,o.operator_name,h.plan_id,h.Recharge_date,h.Payment,h.mobile_number from userlogin u join operator_details o on u.operator_id=o.operator_id join  history_details h on h.user_id=u.user_id where h.user_id="
+//				+ userId;
+		String joinQuery="select o.operator_name,h.mobile_number,h.plan_id,h.Recharge_date,h.Payment from operator_details o join history_details h on o.operator_id=h.operator_id where h.user_id=?";
+		ResultSet resultSet = null;
+		List<Object> list=null;
+		List<Object> listObject=null;
+		PreparedStatement preparedStatement=null;
+		
 		try {
-			Statement stmt = con.createStatement();
-			rs = stmt.executeQuery(joinQuery);
+			preparedStatement=con.prepareStatement(joinQuery);
+			preparedStatement.setInt(1, userId);
+			resultSet = preparedStatement.executeQuery();
+           listObject=new ArrayList<Object>();
+           while(resultSet.next()) {	
+        	   list=new ArrayList<Object>();
+           
+        	   list.add(resultSet.getString("operator_name"));
+        	   list.add(resultSet.getLong("mobile_number"));
+        	   list.add(resultSet.getInt("plan_id"));
+        	   list.add(resultSet.getDate("Recharge_date"));
+        	   list.add(resultSet.getDouble("Payment"));
+        	   listObject.add(list);
+           }
 
-//			System.out.println(rs);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
-		return rs;
+		return  listObject;
 	}
 
 }

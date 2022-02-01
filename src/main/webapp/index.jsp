@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +24,17 @@ body {
 	align-items: center;
 	background: linear-gradient(to right, #3f56fb, #fc466b);
 }
+  form:before{
+content:'';
+position:absolute;
+bottom:3%;
+right:28px;
+height:200px;
+background:green;
+border-radius:50%;
+z-index:-1;
+opacity:.8; 
+}  
 
 form {
     width: 25rem;
@@ -36,17 +48,7 @@ form {
     border-left: 1px solid;
     border-left: 1px solid rgba(255, 255, 255, .3);
 }
- /* form:after{
-content:'';
-position:absolute;
-bottom:3%;
-right:200px;
-height:200px;
-background:green;
-border-radius:50%;
-z-index:-1;
-opacity:.8;
-}  */
+
 
 h1 {
 	text-align: center;
@@ -108,11 +110,12 @@ a{
 <body>
 <div>
 <h1 >Mobile Recharge App</h1>
- <%String message=(String)session.getAttribute("invalid"); 
- if(message!=null){%>
- <h1><%=message %></h1>
- <%session.removeAttribute("invalid"); %>
- <%} %>
+
+ 
+ <c:if test="${invalid!=null }">
+        <h2>${invalid}</h2>
+        <c:remove var="invalid" scope="session" />
+        </c:if> 
 	<Form action="AdminController" method="post">
 		<h1 style="font-style: italic;">Login</h1>
 

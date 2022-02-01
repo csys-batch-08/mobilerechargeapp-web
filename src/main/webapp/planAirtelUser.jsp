@@ -136,13 +136,19 @@ nav ul .search-icon .icon span {
 </style>
 <body>
 
-
+<%-- 
 	<%String error=(String)session.getAttribute("balance");
 if(error!=null){
 %>
 	<h1><%=error %></h1>
 	<%session.removeAttribute("balance"); %>
-	<%} %>
+	<%} %> --%>
+	 <c:if test="${balanceAirtel!=null }">
+        <h2>${balanceAirtel}</h2>
+        <c:remove var="balanceAirtel" scope="session" />
+        </c:if> 
+        
+	
 
 	<nav>
 		<ul>
@@ -196,7 +202,6 @@ if(error!=null){
 			</table>
 		</div>
 	</form>
-
 
 </body>
 </html>

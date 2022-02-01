@@ -147,16 +147,21 @@ background-image:url("images/backimg.jpg");
 <body>
 
 
-	<%String error=(String)session.getAttribute("balance");
+	<%-- <%String error=(String)session.getAttribute("balance");
 if(error!=null){
 %>
 	<h1><%=error %></h1>
 	<%session.removeAttribute("balance"); %>
-	<%} %>
-
-
-
-
+	<%} %> --%>
+<%-- <c:set var = "balanceinfo" scope = "session" value = "${balance}"/>
+<c:if test="${not empty balanceinfo}">
+			<h2><c:out value="${balanceinfo}" /></h2>
+			 <c:remove var="balanceinfo" scope="session" />
+		</c:if> --%>
+<c:if test="${balancejio!=null }">
+        <h2>${balancejio}</h2>
+        <c:remove var="balancejio" scope="session" />
+        </c:if> 
 
 	<nav>
 		<ul>

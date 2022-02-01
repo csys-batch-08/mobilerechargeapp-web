@@ -3,12 +3,21 @@ package com.mobilerechargeapp.model;
 import java.util.Objects;
 
 public class BsnlUser {
-
+    private int bsnlId;
 	private String planName;
 	private double price;
 	private  String validity;
 	private String benfits;
 	private Operator operator;
+	
+	
+	
+	public int getBsnlId() {
+		return bsnlId;
+	}
+	public void setBsnlId(int bsnlId) {
+		this.bsnlId = bsnlId;
+	}
 	public String getPlanName() {
 		return planName;
 	}

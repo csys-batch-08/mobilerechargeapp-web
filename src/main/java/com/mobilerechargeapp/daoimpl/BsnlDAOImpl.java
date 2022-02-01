@@ -142,6 +142,7 @@ public class BsnlDAOImpl implements BsnlDao{
 			while (resultSet.next()) {
 				Operator operator = operatordao.findOperator1(resultSet.getInt(6));
 				bsnl = new BsnlUser(resultSet.getString(2), resultSet.getDouble(3),resultSet.getString(4),resultSet.getString(5), operator);
+				bsnl.setBsnlId(resultSet.getInt(1));
 				bsnlList.add(bsnl);
 			}
 		} catch (SQLException e) {

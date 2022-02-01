@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,12 +79,11 @@ input {
 
 </head>
 <body>
-<%String UserError=(String)session.getAttribute("email");
-if(UserError!=null){
-%>
-<h1><%=UserError %></h1>
-<%session.removeAttribute("email"); %>
-<%} %>
+
+<c:if test="${email!=null }">
+<h2>${email}</h2>
+  <c:remove var="email" scope="session" />
+        </c:if> 
 	<form action="UserController" style="text-align: center" method="post">
 
 		<h1 style="font-style: italic;">Register Login</h1>

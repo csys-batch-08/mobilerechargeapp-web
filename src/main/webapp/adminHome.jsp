@@ -104,13 +104,13 @@ ul.dropdownlist li {
 			<a href="jio">JIO</a> <img src="images/jiologo.jpg">
 		</div>
 		<div class="singleCard">
-			<a href="airtel.jsp">AIRTEL</a> <img src="images/airtel logo.png">
+			<a href="Airtel">AIRTEL</a> <img src="images/airtel logo.png">
 		</div>
 		<div class="singleCard">
-			<a href="vodafone.jsp">VODAFONE</a> <img src="images/VI-Logo-PNG.jpg">
+			<a href="vodadone">VODAFONE</a> <img src="images/VI-Logo-PNG.jpg">
 		</div>
 		<div class="singleCard">
-			<a href="bsnl.jsp">BSNL</a> <img src="images/BSNL logo.png">
+			<a href="Bsnl">BSNL</a> <img src="images/BSNL logo.png">
 		</div>
 	</div>
 </body>

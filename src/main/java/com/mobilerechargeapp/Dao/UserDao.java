@@ -1,6 +1,7 @@
 package com.mobilerechargeapp.Dao;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 import com.mobilerechargeapp.model.User;
 
@@ -10,6 +11,7 @@ public interface UserDao {
 	public int findUserId(User user);
 	public  User findUser(String emailId);
 	public int updateuserWallet(User user);
+//	public int updateuserWallet(User user,double amount);
     public boolean rechargeWalletupdate(double planPrice, User user);
-    public ResultSet history(int userId);
+    public List<Object> history(int userId) ;
 }

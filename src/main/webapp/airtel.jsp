@@ -1,6 +1,7 @@
 <%@page import="com.mobilerechargeapp.model.AirtelUser"%>
 <%@page import="java.util.List"%>
 <%@page import="com.mobilerechargeapp.daoimpl.AirtelDAOImpl"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -78,38 +79,31 @@ td.links a {
 
  <h1>AIRTEL NETWORK</h1>
 
-  <table style="width:100%">
-    <tr>
-    <td><strong>PLANID</strong></td>
-    <td><strong>PLANNAME</strong></td>
-    <td><strong>PRICE</strong></td>
-    <td><strong>VALIDITY</strong></td>
-    <td><strong>BENEFITS</strong></td>
-  	<td><strong>OPERATOR</strong></td>
-  	</tr>
-  	<%
-AirtelDAOImpl airtelDao=new AirtelDAOImpl();
-List<AirtelUser> ShowPlan=airtelDao.showAirtelplan();
-for(int i=0;i<ShowPlan.size();i++)
-{
-   AirtelUser airtelUser=ShowPlan.get(i);
-   int findAirtelId=airtelDao.findairtelId(airtelUser.getPlanName(),airtelUser.getPrice());
-	%>
-	
 
-	<tr>
-<td><%= findAirtelId %>	
-<td><%= airtelUser.getPlanName() %></td>
-<td><%= airtelUser.getPrice() %></td>
-<td><%= airtelUser.getValidity() %></td>
-<td><%= airtelUser.getBenfits() %></td>
-<td><%= airtelUser.getOperator().getOperatorname() %></td>
-<td><a href="DeleteairtelController?airtelId=<%= findAirtelId %>">delete</a></td>
-<td><a href="updateAirtel.jsp">Edit</a></td>
-</tr>
-<%}%>
-</table>
+<table style="width: 100%">
+		<tr>
 
+			<td><strong>PLANID</strong></td>
+			<td><strong>PLANNAME</strong></td>
+			<td><strong>PRICE</strong></td>
+			<td><strong>VALIDITY</strong></td>
+			<td><strong>BENEFITS</strong></td>
+			<td><strong>OPERATOR</strong></td>
 
+			<c:forEach items="${sessionScope.airtellist}" var="airtelUser">
+
+				<tr>
+					
+                     <td>${airtelUser.getAirtelId()}</td>
+					<td>${airtelUser.getPlanName()}</td>
+					<td>${airtelUser.getPrice()}</td>
+					<td>${airtelUser.getValidity()}</td>
+					<td>${airtelUser.getBenfits()}</td>
+					<td>${airtelUser.getOperator().getOperatorname()}</td>
+					<td><a href="DeleteairtelController?airtelId=${airtelUser.getAirtelId()}">Delete</a></td>
+					<td><a href="updateJio.jsp">Edit</a>
+				</tr>
+			</c:forEach>
+	</table>
 </body>
 </html>

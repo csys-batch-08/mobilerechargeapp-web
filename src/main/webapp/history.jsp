@@ -3,6 +3,7 @@
 <%@page import="com.mobilerechargeapp.model.User"%>
 <%@page import="com.mobilerechargeapp.model.HistoryDetails"%>
 <%@page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="com.mobilerechargeapp.daoimpl.HistorydetailsDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -12,7 +13,7 @@
 <meta charset="ISO-8859-1">
 <title>UserHistoryDetails</title>
 <style type="text/css">
-BODY{
+BODY {
 background-image: url("images/backimg.jpg");
 
 }
@@ -78,12 +79,24 @@ tr:hover {
     background: white;
     color: black;
 }
-h1{
+h1 {
 text-align: center;
 font-weight: bold;
 font-family: sans-serif; 
 }
+/* .singleCard {
+    width: 100%;
+    display:inline-flex;
+    background:white;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    box-shadow: white;
+    margin-top: 13px;
+    border-radius: 4px;
+    }  */
 </style>
+
 </head>
 <body >
 
@@ -100,68 +113,46 @@ font-family: sans-serif;
 
 
 	<h1>HISTORY DETAILS</h1>
-	<%
-	User user = (User)session.getAttribute("CurrentUser");
-	/*   HistoryDetails history=(HistoryDetails)session.getAttribute("history"); */
-	  
-	
-	HistorydetailsDAOImpl historyDao = new HistorydetailsDAOImpl();
-	/*  List<HistoryDetails>history=historyDao.showHistoryDetails(); */
-	
-	
-	
-	UserDAOImpl userDao = new UserDAOImpl();
 
-	
-	ResultSet rs = userDao.history(user.getUserId());
-	
-	
-	%> 
+	 
 	
 	
-	
-	 <%=user.getUserId()%> 
-	<%-- <%
-	 HistoryDetails history=(HistoryDetails)session.getAttribute("history");
-	HistorydetailsDAOImpl historyDao = new HistorydetailsDAOImpl();
-	UserDAOImpl userDao=new UserDAOImpl();
-	User user = (User) session.getAttribute("CurrentUser");
-
-	List<User>user1=userDao.history1(userId1);
-	
-	
-	%> --%>
 	
 	
 
 	<table style="width:100%">
 		<tr>
-			<td><strong>USER NAME</strong></td>
+			
 			<td><strong>OPERATOR NAME</strong></td>
 			<td><strong>PLAN ID</strong></td>
 			<td><strong>RECHARGE DATE</strong></td>
 			<td><strong>PAYMENT</strong></td>
 			<td><strong>MOBILE NUMBER</strong></td>
 		</tr>
-		<%
-		while(rs.next()) {
-		%>
+	<c:forEach items="${sessionScope.List}" var="list">
 		<tr>
-			<td><%=rs.getString(1)%></td>
-			<td><%=rs.getString(2)%></td>
-			<td><%=rs.getInt(3) %></td>
-			<td><%=rs.getDate(4)%></td>
-			<td><%=rs.getDouble(5)%></td>
-			<td><%=rs.getLong(6) %></td>
+			<td>${list.get(0)} </td>
+			<td>${list.get(1)}</td>
+			<td>${list.get(2)}</td>
+			<td>${list.get(3)} </td>
+			<td>${list.get(4)} </td>
+	
 		</tr>
-		<%
-		}
-		%>
+		</c:forEach>
 	</table>
+ 
+<%-- <div >
+<c:forEach items="${sessionScope.List}" var="list">
+<ul class="singleCard">
 
+<li>OPERATOR NAME:${list.get(0)}</li>
+<li>MOBILE NUMBER:${list.get(1)}</li>
+<li>PLAN ID:${list.get(2)}</li>
+<li>RECHARGE DATE:${list.get(3)}</li>
+<li>PAYMENT:${list.get(4)}</li>
 
-
-
-
+</ul>
+</c:forEach>
+</div> --%>
 </body>
 </html>

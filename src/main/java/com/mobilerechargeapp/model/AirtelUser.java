@@ -66,16 +66,7 @@ public AirtelUser(int airtelId, String planName, double price, String validity, 
 		this.benfits = benfits;
 		this.operator = operator;
 	}
-//	public AirtelUser(int airtelId,String planName, double price, String validity, String benfits, Operator operator ) {
-//		super();
-//		this.airtelplanId = airtelId;
-//		this.planName = planName;
-//		this.price = price;
-//		this.validity = validity;
-//		this.benfits = benfits;
-//		this.operator = operator;
-//		
-//	}
+
 	public AirtelUser(String planName, double price, String validity, String benfits, Operator operator) {
 		super();
 		

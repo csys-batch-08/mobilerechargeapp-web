@@ -119,8 +119,8 @@ public class JioDAOImpl implements JioDao {
 
 				Operator operator = operatordao.findOperator1(resultSet.getInt(6));
 
-//			System.out.println(operator);
 				jio = new JioUser(resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4), resultSet.getString(5), operator);
+				jio.setJioId(resultSet.getInt(1));
 				jioList.add(jio);
 			}
 		} catch (SQLException e) {

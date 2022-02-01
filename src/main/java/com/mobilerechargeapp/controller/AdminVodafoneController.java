@@ -11,32 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mobilerechargeapp.daoimpl.JioDAOImpl;
-import com.mobilerechargeapp.model.JioUser;
+
+import com.mobilerechargeapp.daoimpl.VodafoneDAOImpl;
+
+import com.mobilerechargeapp.model.VodafoneUser;
 
 
-@WebServlet("/jio")
-public class AdminJioController extends HttpServlet {
+@WebServlet("/vodadone")
+public class AdminVodafoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
+
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		HttpSession session=request.getSession();
-		JioDAOImpl jioDao=new JioDAOImpl();
-		JioUser jioUser=new JioUser();
-		List<JioUser>jioUserList=jioDao.showJioplan();
-
+	VodafoneDAOImpl vodadoneDao=new VodafoneDAOImpl();
 	
-//	    int findjioId=jioDao.findjioId(jioUser.getPlanName(),jioUser.getPrice());
-		
-//    	session.setAttribute("findjioId",findjioId);
-		session.setAttribute("jiolist",jioUserList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("jio.jsp");
+		List<VodafoneUser>vodafoneUserList=vodadoneDao.showViplan();
+		session.setAttribute("vodafonelist",vodafoneUserList);
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("vodafone.jsp");
 		requestDispatcher.forward(request, response);
-		
 	}
-
-	
-	
 
 }

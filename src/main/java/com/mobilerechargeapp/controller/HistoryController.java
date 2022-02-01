@@ -16,16 +16,13 @@ import com.mobilerechargeapp.daoimpl.HistorydetailsDAOImpl;
 import com.mobilerechargeapp.model.HistoryDetails;
 import com.mobilerechargeapp.model.User;
 
-/**
- * Servlet implementation class HistorydetailsController
- */
+
 @WebServlet("/HistorydetailsController")
 public class HistoryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("CurrentUser");
 		SimpleDateFormat sdf=new SimpleDateFormat();
@@ -48,6 +45,8 @@ public class HistoryController extends HttpServlet {
 				rechargeDate, amount);
 		HistorydetailsDAOImpl historyDao = new HistorydetailsDAOImpl();
 		boolean b = historyDao.insertDetails(historyDetails);
+		
+		
 	
 		if(b == true) {
 			response.sendRedirect("operator.jsp");

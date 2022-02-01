@@ -146,6 +146,7 @@ public class VodafoneDAOImpl implements VodafoneDao {
 				Operator operator = operatordao.findOperator1(resultSet.getInt(6));
 				vodafone = new VodafoneUser(resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4),
 						resultSet.getString(5), operator);
+				vodafone.setVodafoneId(resultSet.getInt(1));
 				vodafoneList.add(vodafone);
 			}
 		} catch (SQLException e) {

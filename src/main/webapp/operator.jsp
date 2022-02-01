@@ -83,18 +83,23 @@
 </style>
 </head>
 <body>
- <%Double Amount=(Double)session.getAttribute("amount");
+<c:if test="${amount!=null }">
+        <h3>AvailableBalance:${amount}</h3>
+        </c:if>
+
+
+<%--  <%Double Amount=(Double)session.getAttribute("amount");
  if(Amount!=null){
  %>
  <h3>AvailableBalance:<%=Amount %></h3>
- <%} %>
+ <%} %> --%>
  <div>
 <!--   <h1 style="text-align:center">SELECT YOUR NETWORK</h1> -->
   </div>
 <div class="header">
 <a href="operator.jsp">Home</a>
 <a href="wallet.jsp">wallet</a>
-<a href="history.jsp">RechargeHistory</a>
+<a href="ViewHistoryController">RechargeHistory</a>
 <a href="aboutus.jsp">AboutUs</a>
 <a href="ContactUs.jsp">ContactUs</a>
 
