@@ -37,7 +37,7 @@ public class JioDAOImpl implements JioDao {
 			if (resultSet.next()) {
 				opId = resultSet.getInt(1);
 			}
-			preparedStatement2.setInt(5, opId);
+			preparedStatement.setInt(5, opId);
 			flag = preparedStatement.executeUpdate() > 0;
 
 

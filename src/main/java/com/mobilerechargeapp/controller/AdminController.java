@@ -16,41 +16,17 @@ import com.mobilerechargeapp.exception.ErrorFound;
 import com.mobilerechargeapp.model.Admin;
 import com.mobilerechargeapp.model.User;
 
-/**
- * Servlet implementation class AdminController
- */
+
 @WebServlet("/AdminController")
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-	}
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+    
+	
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String emailId=request.getParameter("email");
-		String password=request.getParameter("password");
-		PrintWriter pw=response.getWriter();
-		pw.write("EmailId"+emailId);
-		pw.write("PASSWORD"+password);
+		String password=request.getParameter("password");	
 		boolean admin=false;
 		User user=null;
 		AdminDAOImpl adminDao=new AdminDAOImpl ();

@@ -32,8 +32,8 @@ public class RechargewalletController extends HttpServlet {
         user.setWallet(user.getWallet()+amount);
 		int i=userDao.updateuserWallet(user);
 		if(i!=0) {
-			   session.setAttribute("wallet", user);
-                session.setAttribute("recharge", i);
+			   session.setAttribute("amount", user.getWallet());
+               session.setAttribute("recharge", i);
 	          response.sendRedirect("wallet.jsp");
 	          
 			

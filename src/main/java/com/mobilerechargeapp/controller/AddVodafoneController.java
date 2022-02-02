@@ -16,35 +16,14 @@ import com.mobilerechargeapp.model.Operator;
 import com.mobilerechargeapp.model.VodafoneUser;
 import com.mobilerechargeapp.util.ConnectionClass;
 
-/**
- * Servlet implementation class AddvodafoneController
- */
+
 @WebServlet("/AddvodafoneController")
 public class AddVodafoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddVodafoneController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+   
 	
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+			
 		doGet(request, response);
 		
 		String planname=request.getParameter("planname");

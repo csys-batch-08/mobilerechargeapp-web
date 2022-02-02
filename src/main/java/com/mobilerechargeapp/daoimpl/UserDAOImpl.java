@@ -147,20 +147,14 @@ public class UserDAOImpl implements UserDao {
 		ResultSet resultSet=null;
 		int i = 0;
 		try {
-			// pstmt = con.prepareStatement(getWalletquery);
-			// pstmt.setString(1, user.getEmailid());
-			// ResultSet rs = pstmt.executeQuery();
-			// double wallet = 0;
-			// if (rs.next()) {
-			// wallet = rs.getDouble(1);
-			// }
+			
 		    preparedStatement = connection.prepareStatement(Query);
 		preparedStatement.setDouble(1, user.getWallet());
 	
 			preparedStatement.setString(2, user.getEmailid());
 			resultSet=preparedStatement.executeQuery();
 			i = preparedStatement.executeUpdate();
-//			user.setWallet(user.getWallet()+amount);
+			user.setWallet(user.getWallet());
 		//	user.setWallet(user.getWallet()-planPrice);
 			System.out.println(i + "updated");
 
@@ -231,7 +225,7 @@ public class UserDAOImpl implements UserDao {
 			preparedStatement.setInt(1, userId);
 			resultSet = preparedStatement.executeQuery();
 //		   ResultSet rs = stmt.executeQuery(Query);
-//			 stmt =con.createStatement();
+//		  stmt =con.createStatement();
 
 			if (resultSet.next()) {
 				Operator operator = operatordao.findOperator1(resultSet.getInt(7));

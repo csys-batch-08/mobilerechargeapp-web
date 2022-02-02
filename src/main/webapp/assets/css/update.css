@@ -1,0 +1,41 @@
+@charset "ISO-8859-1";
+ body{
+ height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: threedlightshadow;
+ }
+ label{
+ width:120px;
+ display:inline-block;
+ }
+ form {
+    width: 25rem;
+    /* height: 28rem; */
+    padding: 45px 0px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+    border-radius: 10px;
+    border-left: 1px solid;
+    border-left: 1px solid rgba(255, 255, 255, .3);
+}
+button {
+	width: 50%;
+	margin: 3% auto;
+	color:black;
+	font-size:15px;
+	opacity:.7;
+	background:black(255,255,255,0.06);
+	padding:10px 30px;
+	border:none;
+	outline:none;
+	border-radiurs:20px;
+	text-shadow:2px 2px 4px rgba(255,255,255,0.2);
+	box-shadow:3px 3px 5px rgba(31,38,135,.37);
+	border-left:1px solid rgba(255,255,255,.3);
+	border-top:1px solid rgba(255,255,255,.3)
+}
