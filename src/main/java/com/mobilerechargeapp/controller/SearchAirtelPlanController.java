@@ -23,33 +23,9 @@ public class SearchAirtelPlanController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//      String plan=request.getParameter("airtelplan");
-//		
-//		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
-//		List<AirtelUser> ShowPlan=airtelDao.showAirtelplan(plan);
-////		List<AirtelUser> list=new ArrayList<AirtelUser>();
-//		for(int i=0;i<ShowPlan.size();i++)
-//		{
-//			AirtelUser user=ShowPlan.get(i);
-//		if(user.getPlanName().equalsIgnoreCase(plan))
-//		{
-//			ShowPlan.add(user);
-//		}
-//	
-//		//Double amount=Double.parseDouble(plan);
-//		//String s=String.valueOf(amount);
-//		else if(String.valueOf(user.getPrice()).equalsIgnoreCase(plan))
-//		{
-//			ShowPlan.add(user);
-//		}
-//		
-//		
-//		
-//		}
-//		HttpSession session=request.getSession();
-//		session.setAttribute("list", ShowPlan);
-//		response.sendRedirect("searchAirtelPlan.jsp");
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		
 		String plan=request.getParameter("airtelplan");
 		AirtelDAOImpl airtelDao=new AirtelDAOImpl();

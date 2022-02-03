@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>LoginPage</title>
@@ -36,7 +36,7 @@
 
        <button>LOGIN</button>
        <a href="register.jsp">SignUp?</a> 
-<!--  <input type="sumbit" value="login"> -->
+
 	</Form>
 </div>
 </body>

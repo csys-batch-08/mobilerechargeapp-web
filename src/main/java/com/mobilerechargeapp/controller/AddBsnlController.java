@@ -12,35 +12,15 @@ import com.mobilerechargeapp.daoimpl.OperatorDAOImpl;
 import com.mobilerechargeapp.model.BsnlUser;
 import com.mobilerechargeapp.model.Operator;
 
-/**
- * Servlet implementation class AddbsnlController
- */
+
 @WebServlet("/AddbsnlController")
 public class AddBsnlController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddBsnlController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+   
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	}
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 		
 		String planname=request.getParameter("planname");
 		Double  price=Double.parseDouble(request.getParameter("price"));
@@ -52,7 +32,7 @@ public class AddBsnlController extends HttpServlet {
 		BsnlUser bsnlUser=new BsnlUser(planname,price,validity,benefits,operator);
 		BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
 		boolean b=bsnlDao.insertBsnlnetwork(bsnlUser);
-		if(b==true) {
+		if(b) {
 			response.sendRedirect("bsnl.jsp");
 		}
 	

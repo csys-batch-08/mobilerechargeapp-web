@@ -22,18 +22,18 @@ public class AdminDAOImpl implements AdminDao {
     	try {
     		preparedStatement=connection.prepareStatement(insertQuery);
     		resultSet=preparedStatement.executeQuery();
-//			Statement st=con.createStatement();
-//			ResultSet rs=st.executeQuery(insertQuery);
 			if(resultSet.next()) {
-				//System.out.println(rs.getString(1));
+				
 				flag=true;
 			}
 			
 		} catch (SQLException e) {
-		System.out.println("query not excuted correctly");
+		
 			e.printStackTrace();
 		}
-    	
+    	 finally {
+ 			ConnectionClass.close(connection, preparedStatement, resultSet);
+ 		}
 		return flag;
     	
     	

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>ModifyOperator</title>
@@ -21,7 +21,7 @@
 
 </div>
 	<div align="center">
-		<!-- <h1>SELECT OPERATOR</h1> -->
+		
 
 		<div class="singleCard">
 			<a href="jio">JIO</a> <img src="images/jiologo.jpg">

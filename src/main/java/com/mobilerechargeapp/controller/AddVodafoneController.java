@@ -22,9 +22,10 @@ public class AddVodafoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-		doGet(request, response);
+		
 		
 		String planname=request.getParameter("planname");
 		Double  price=Double.parseDouble(request.getParameter("price"));
@@ -36,7 +37,7 @@ public class AddVodafoneController extends HttpServlet {
 		VodafoneUser vodafoneUser=new VodafoneUser(planname,price,validity,benefits,operator);
 		VodafoneDAOImpl vodafoneDao=new VodafoneDAOImpl();
 		boolean b=vodafoneDao.vodafoneNetwork(vodafoneUser);
-		if(b==true) {
+		if(b) {
 			response.sendRedirect("vodafone.jsp");
 		}
 		else {

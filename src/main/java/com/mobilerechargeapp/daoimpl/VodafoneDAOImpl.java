@@ -32,10 +32,9 @@ public class VodafoneDAOImpl implements VodafoneDao {
 			preparedStatement.setDouble(2, vodafone.getPrice());
 			preparedStatement.setString(3, vodafone.getValidity());
 			preparedStatement.setString(4, vodafone.getBenfits());
-
-			PreparedStatement preparedStatement1 = connection.prepareStatement(subQueries);
-			preparedStatement1.setString(1, vodafone.getOperator().getOperatorname());
-			resultSet = preparedStatement1.executeQuery();
+            preparedStatement= connection.prepareStatement(subQueries);
+			preparedStatement.setString(1, vodafone.getOperator().getOperatorname());
+			resultSet = preparedStatement.executeQuery();
 			int opId = 0;
 			if (resultSet.next()) {
 				opId = resultSet.getInt(1);
@@ -45,7 +44,6 @@ public class VodafoneDAOImpl implements VodafoneDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Query will incorrect");
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}

@@ -1,6 +1,6 @@
 @charset "ISO-8859-1";
 BODY {
-background-image: url("images/backimg.jpg");
+background-image: url("../images/backimg.jpg");
 
 }
 * {

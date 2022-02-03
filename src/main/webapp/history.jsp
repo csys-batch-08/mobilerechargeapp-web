@@ -7,17 +7,27 @@
 <%@page import="com.mobilerechargeapp.daoimpl.HistorydetailsDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>UserHistoryDetails</title>
 <link rel="stylesheet" type="text/css" href="assets/css/history.css"> 
 
-
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
+  </script>
 </head>
 <body >
 
+  <script>
+    swal("RECHARGE","IS","SUCCESFULLY", {
+      button: "I am new button",
+ 
+    });
+  </script>
 <div class="header">
 <a href="operator.jsp">Home</a>
 <a href="wallet.jsp">wallet</a>
@@ -51,8 +61,12 @@
 		<tr>
 			<td>${list.get(0)} </td>
 			<td>${list.get(1)}</td>
-			<td>${list.get(2)}</td>
-			<td>${list.get(3)} </td>
+			<%-- <td><fmt:parseDate value="${list.get(2)}" pattern="yyyy-MM-dd" var="macthDate" type="date"/>   
+                 <fmt:formatDate pattern="dd/MM/yyyy" value="${macthDate}"/></td> --%>
+			 <td>${list.get(2)}</td>
+			 <td><fmt:parseDate value="${list.get(3)}" pattern="yyyy-MM-dd" var="macthDate" type="date"/>   
+                 <fmt:formatDate pattern="dd/MM/yyyy" value="${macthDate}"/></td> 
+		<%-- 	<td>${list.get(3)} </td> --%>
 			<td>${list.get(4)} </td>
 	
 		</tr>

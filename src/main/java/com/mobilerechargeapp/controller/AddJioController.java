@@ -18,51 +18,16 @@ import com.mobilerechargeapp.model.JioUser;
 import com.mobilerechargeapp.model.Operator;
 import com.mobilerechargeapp.util.ConnectionClass;
 
-/**
- * Servlet implementation class AddJioController
- */
+
 @WebServlet("/AddJioController")
 public class AddJioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public AddJioController() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		// try {
-	
-	
-//		catch(PriceInvalid e)
-//		{   
-//			HttpSession session=request.getSession();
-//			session.setAttribute(, e)
-//			response.sendRedirect("PriceInvalid.jsp?message="+e.getMessage());
-//		}
-
-//		
-	}
-
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
 		String planname = request.getParameter("planname");
 		Double price = Double.parseDouble(request.getParameter("price"));
 		String validity = request.getParameter("validity");
@@ -76,9 +41,9 @@ public class AddJioController extends HttpServlet {
 			JioDAOImpl jioDao = new JioDAOImpl();
 			boolean b = jioDao.insertJionet(jioUser);
 
-			if (b == true) {
+			if (b==false) {
 				HttpSession session=request.getSession();
-			     session.setAttribute("add",b);
+			    session.setAttribute("add",b);
 				response.sendRedirect("jio.jsp");
 			}
 		

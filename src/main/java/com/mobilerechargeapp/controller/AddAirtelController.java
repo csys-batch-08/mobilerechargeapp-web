@@ -20,28 +20,13 @@ import com.mobilerechargeapp.util.ConnectionClass;
 public class AddAirtelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddAirtelController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
+	
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	}
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 		String planname=request.getParameter("planname");
 		Double  price=Double.parseDouble(request.getParameter("price"));
 		String validity=request.getParameter("validity");
@@ -49,11 +34,10 @@ public class AddAirtelController extends HttpServlet {
 		String operatorName=request.getParameter("operatorName");
 		OperatorDAOImpl operatorDao=new OperatorDAOImpl();
 		Operator operator=operatorDao.findOperator(operatorName);
-		Connection connection=ConnectionClass.getConnection();
 		AirtelUser airtelUser=new AirtelUser(planname,price,validity,benefits,operator);
 		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
 		boolean b=airtelDao.insertAirtelnet(airtelUser);
-		if(b==true) {
+		if(b==false) {
 			response.sendRedirect("airtel.jsp");
 		}
 	

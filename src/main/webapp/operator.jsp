@@ -23,13 +23,16 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>SELECTYOURNETWORK</title>
 <link rel="stylesheet" type="text/css" href="assets/css/operator.css"> 
 </head>
 <body>
+<c:if test="${name!=null }">
+        <h3>Welcome  ${name}</h3>
+        </c:if>
 <c:if test="${amount!=null }">
         <h3>AvailableBalance:${amount}</h3>
         </c:if>

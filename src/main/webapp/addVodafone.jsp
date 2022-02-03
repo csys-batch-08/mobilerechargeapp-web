@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>insertVodafone</title>
@@ -17,7 +17,7 @@
 	</div>
 
 
-	<form action="AddvodafoneController" method="post">
+	<form action="AddvodafoneController">
 		<h1 style="font-style: italic;">ADD PLAN
 		</h1>
 		<label for="PlanName"><strong>PlanName</strong></label> <input
@@ -32,7 +32,7 @@
 		<br> <label for="Operatorname"><strong>OperatorName</strong></label>
 		<input type="text" name="operatorName" id="Operatorname" required><br>
 		<br>
-		<!--  <input type="submit" value="ADD">  -->
+
 		<button>INSERT</button>
 	</form>
 </body>

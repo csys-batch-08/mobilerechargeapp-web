@@ -22,34 +22,10 @@ public class SearchJioPlanController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-//		String plan=request.getParameter("jioplan");
-//		
-//		JioDAOImpl jioDao=new JioDAOImpl();
-//		List<JioUser> ShowPlan=jioDao.showJioplan(plan);
-////		List<JioUser> list=new ArrayList<JioUser>();
-//		for(int i=0;i<ShowPlan.size();i++)
-//		{
-//			JioUser user=ShowPlan.get(i);
-//		if(user.getPlanName().equalsIgnoreCase(plan))
-//		{
-//			ShowPlan.add(user);
-//		}
-//		
-//		else if(String.valueOf(user.getPrice()).equalsIgnoreCase(plan))
-//		{
-//			ShowPlan.add(user);
-//		}
-//		
-//		
-//		
-//		}
-//		HttpSession session=request.getSession();
-//		session.setAttribute("list", ShowPlan);
-//		response.sendRedirect("searchJioPlan.jsp");
-		String plan=request.getParameter("jioplan");
+	String plan=request.getParameter("jioplan");
 		JioDAOImpl jioDao=new JioDAOImpl();
 		List<JioUser> ShowPlan=jioDao.showJioplan(plan);
 		HttpSession session=request.getSession();

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>InsertAirtelPlan</title>
@@ -17,7 +17,7 @@
 <a href="index.jsp">LOGOUT</a>
 </div>
 
-<form action="AddairtelController" method="post">
+<form action="AddairtelController">
   <h1 style="font-style: italic;">ADD PLAN </h1>
 <label for="PlanName"><strong>PlanName</strong></label>
 <input type="text" name="planname" id="planName"><br><br>
@@ -29,7 +29,7 @@
 <input type="text" name="benefits" id="Benefits"><br><br>
 <label for="Operatorname"><strong>OperatorName</strong></label> 
 <input type="text" name="operatorName" id="Operatorname"  required><br><br>
-<!-- <input type="submit" value="ADD"> -->
+
 <button>INSERT</button>
 	</form>
 </body>

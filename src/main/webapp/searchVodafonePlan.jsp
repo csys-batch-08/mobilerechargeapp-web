@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>SelectVodafoneplan</title>
@@ -55,38 +55,4 @@
 
 </body>
 </html>
-<%-- <table style="width: 100%">
-		<tr>
-
-			<td><strong>PLANNAME</strong></td>
-			<td><strong>PRICE</strong></td>
-			<td><strong>VALIDITY</strong></td>
-			<td><strong>BENEFITS</strong></td>
-			<td><strong>OPERATOR</strong></td>
-
-
-		</tr>
-		<%
-          
-		List<VodafoneUser> vodafoneUser=(List<VodafoneUser>)session.getAttribute("list");	
-			for(int i=0;i<vodafoneUser.size();i++)
-			{
-			VodafoneUser vodafoneUser1=vodafoneUser.get(i);
 	
-	
-           %>
-
-		<tr>
-			<td><%= vodafoneUser1.getPlanName() %></td>
-			<td><%= vodafoneUser1.getPrice() %></td>
-			<td><%=vodafoneUser1.getValidity() %></td>
-			<td><%= vodafoneUser1.getBenfits() %></td>
-			<td><%= vodafoneUser1.getOperator().getOperatorname() %></td>
-			<td class="links"><a
-				href="recharge.jsp?planName=<%=vodafoneUser1.getPlanName() %>&price=<%= vodafoneUser1.getPrice() %>
-&operator=<%= vodafoneUser1.getOperator().getOperatorname() %>"><button>Recharge</a>
-				</button></td>
-		</tr>
-
-		<%}%>
-	</table> --%>

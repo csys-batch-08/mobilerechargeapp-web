@@ -54,15 +54,7 @@ public class JioUser {
 		super();
 		
 	}
-//	public JioUser(int jioId,String planName, double price, String validity, String benfits, Operator operator) {
-//		super();
-//		this.jioId=jioId;
-//		this.planName = planName;
-//		this.price = price;
-//		this.validity = validity;
-//		this.benfits = benfits;
-//		this.operator = operator;
-//	}
+
 	
 	
 	

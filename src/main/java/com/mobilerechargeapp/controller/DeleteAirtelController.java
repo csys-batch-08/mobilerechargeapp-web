@@ -22,7 +22,8 @@ import com.mobilerechargeapp.util.ConnectionClass;
 public class DeleteAirtelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 HttpSession session=request.getSession();
 		int airtelId=Integer.parseInt(request.getParameter("airtelId"));
 		AirtelDAOImpl airtelDao=new AirtelDAOImpl();

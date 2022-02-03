@@ -20,7 +20,8 @@ public class ShowJioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
  
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		JioDAOImpl jioDao=new JioDAOImpl();
 		List<JioUser>jioUserList=jioDao.showJioplan();
@@ -33,9 +34,6 @@ public class ShowJioController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		doGet(request, response);
-	}
 
 }

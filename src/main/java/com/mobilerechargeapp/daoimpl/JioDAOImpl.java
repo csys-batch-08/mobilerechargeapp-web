@@ -15,6 +15,7 @@ import com.mobilerechargeapp.model.User;
 import com.mobilerechargeapp.util.ConnectionClass;
 
 public class JioDAOImpl implements JioDao {
+	
 	public boolean insertJionet(JioUser jio) {
 		boolean flag = false;
 		ConnectionClass connectionClass = new ConnectionClass();
@@ -23,20 +24,19 @@ public class JioDAOImpl implements JioDao {
 		PreparedStatement preparedStatement=null;
 		ResultSet resultSet=null;
 		try {
+			String subQuery = "select operator_id,operator_name from operator_details where operator_name=?";
+			   preparedStatement = connection.prepareStatement(subQuery);
+				preparedStatement.setString(1, jio.getOperator().getOperatorname());
+				resultSet = preparedStatement.executeQuery();
+				int opId = 0;
+				if (resultSet.next()) {
+					opId = resultSet.getInt(1);
+				}
 			preparedStatement = connection.prepareStatement(insertQuery);
 			preparedStatement.setString(1, jio.getPlanName());
 			preparedStatement.setDouble(2, jio.getPrice());
 			preparedStatement.setString(3, jio.getValidity());
 			preparedStatement.setString(4, jio.getBenfits());
-//			pstmt.setInt(5, jio.getOperator().getOperatorId1());
-			String subQuery = "select operator_id,operator_name from operator_details where operator_name=?";
-			PreparedStatement preparedStatement2 = connection.prepareStatement(subQuery);
-			preparedStatement2.setString(1, jio.getOperator().getOperatorname());
-			resultSet = preparedStatement2.executeQuery();
-			int opId = 0;
-			if (resultSet.next()) {
-				opId = resultSet.getInt(1);
-			}
 			preparedStatement.setInt(5, opId);
 			flag = preparedStatement.executeUpdate() > 0;
 

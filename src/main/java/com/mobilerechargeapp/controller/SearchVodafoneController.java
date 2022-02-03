@@ -24,7 +24,8 @@ public class SearchVodafoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		
 //String plan=request.getParameter("Viplan");
 //		

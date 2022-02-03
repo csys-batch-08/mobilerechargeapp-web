@@ -22,28 +22,26 @@ public class AirtelDAOImpl implements AirtelDao {
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
 		String insertQue = "insert into Airtel_plans (plan_name,price,validity,benefits,operator_id)values(?,?,?,?,?)";
-		
+		String subQuery = "select operator_id,operator_name from operator_details where operator_name=?";
 		PreparedStatement preparedStatement = null;
      	ResultSet resultSet = null;
 		try {
-			preparedStatement = connection.prepareStatement(insertQue);
-//			resultSet=preparedStatement.executeQuery();
-			preparedStatement.setString(1, airtel.getPlanName());
-			preparedStatement.setDouble(2, airtel.getPrice());
-			preparedStatement.setString(3, airtel.getValidity());
-			preparedStatement.setString(4, airtel.getBenfits());
-//			preparedStatement.setInt(5, opId);
-			
-			String subQuery = "select operator_id,operator_name from operator_details where operator_name=?";
-		    PreparedStatement	preparedStatement1 = connection.prepareStatement(subQuery);
-			preparedStatement1.setString(1, airtel.getOperator().getOperatorname());
-			resultSet=preparedStatement1.executeQuery();
+			preparedStatement = connection.prepareStatement(subQuery);
+			preparedStatement.setString(1, airtel.getOperator().getOperatorname());
+			resultSet=preparedStatement.executeQuery();
 			
 			int opId = 0;
 			if (resultSet.next()) {
 				opId = resultSet.getInt(1);
 			}
+			preparedStatement = connection.prepareStatement(insertQue);
+			preparedStatement.setString(1, airtel.getPlanName());
+			preparedStatement.setDouble(2, airtel.getPrice());
+			preparedStatement.setString(3, airtel.getValidity());
+			preparedStatement.setString(4, airtel.getBenfits());
 			preparedStatement.setInt(5, opId);
+		  	
+			
 			flag = preparedStatement.executeUpdate() > 0;
 
 		} catch (SQLException e) {
