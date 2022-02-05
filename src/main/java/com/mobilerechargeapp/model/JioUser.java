@@ -9,6 +9,7 @@ public class JioUser {
 	private  String validity;
 	private String benfits;
 	private Operator operator;
+	private String status;
 	
 	
 	
@@ -50,14 +51,19 @@ public class JioUser {
 	public void setOperator(Operator operator) {
 		this.operator = operator;
 	}
+	
+
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	public JioUser() {
 		super();
 		
 	}
-
-	
-	
-	
 	public JioUser(String planName, double price, String validity, String benfits, Operator operator) {
 		super();
 		

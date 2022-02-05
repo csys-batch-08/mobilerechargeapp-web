@@ -29,8 +29,8 @@
 <input type="text" name="benefits" id="Benefits"><br><br>
 <label for="Operatorname"><strong>OperatorName</strong></label> 
  <input type="text" name="operatorName" id="Operatorname"  required><br><br>
-
 <button>INSERT</button>
+
 </form>
 </body>
 </html>

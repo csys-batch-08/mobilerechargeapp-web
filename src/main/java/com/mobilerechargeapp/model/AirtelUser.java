@@ -9,6 +9,7 @@ public class AirtelUser {
 	private  String validity;
 	private String benfits;
 	private Operator operator;
+	private String Status;
 	
 	
 	
@@ -48,6 +49,12 @@ public class AirtelUser {
 	}
 	public void setOperator(Operator operator) {
 		this.operator = operator;
+	}
+	public String getStatus() {
+		return Status;
+	}
+	public void setStatus(String status) {
+		Status = status;
 	}
 	public AirtelUser() {
 		super();

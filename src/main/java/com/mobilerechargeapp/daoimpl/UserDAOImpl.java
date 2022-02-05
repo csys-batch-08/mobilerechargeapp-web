@@ -264,5 +264,25 @@ public class UserDAOImpl implements UserDao {
 
 		return listObject;
 	}
+	public boolean forgetPasssword(String Emailid, String password) {
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = connectionClass.getConnection();
+		boolean flag = false;
+		String query="update userlogin set password=? where Email_id=?";
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		
+		try {
+			preparedStatement=connection.prepareStatement(query);
+			preparedStatement.setString(1,Emailid );
+			preparedStatement.setString(2,password) ;
+			flag=preparedStatement.executeUpdate()>0;
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		
 
+		return flag;
+	}
 }

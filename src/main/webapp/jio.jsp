@@ -30,42 +30,7 @@
 		<strong>JIO NETWORK</strong>
 	</h1>
 
-	<!-- <table style="width:100%" >
-    <tr>
-    <td><strong>PLANID</strong></td>
-    <td><strong>PLANNAME</strong></td>
-    <td><strong>PRICE</strong></td>
-    <td><strong>VALIDITY</strong></td>
-    <td><strong>BENEFITS</strong></td>
-  	<td><strong>OPERATOR</strong></td>
-  -->
 
-	<%-- 	</tr>
-<%
-JioDAOImpl jioDao=new JioDAOImpl();
- List<JioUser>ShowPlan=jioDao.showJioplan();
- for(int i=0;i<ShowPlan.size();i++)
- {
-   JioUser jioUser=ShowPlan.get(i);
-    int findjioId=jioDao.findjioId(jioUser.getPlanName(),jioUser.getPrice());
- 	%>
- 	
-
-
-  
-
-<tr>
-<td><%= findjioId %></td>
-<td><%= jioUser.getPlanName() %></td>
-<td><%= jioUser.getPrice() %></td>
-<td><%= jioUser.getValidity() %></td>
-<td><%= jioUser.getBenfits() %></td>
-<td><%= jioUser.getOperator().getOperatorname() %></td>
-<td><a href="deleteplan?jioId=<%= findjioId %>">delete</a></td>
-<td><a href="updateJio.jsp">Edit</a>
-
-</tr>
-<%}%> --%>
 	<table style="width: 100%">
 		<tr>
 
@@ -76,18 +41,20 @@ JioDAOImpl jioDao=new JioDAOImpl();
 			<td><strong>BENEFITS</strong></td>
 			<td><strong>OPERATOR</strong></td>
 </tr>
-			<c:forEach items="${sessionScope.jiolist}" var="jioUser">
+			<c:forEach items="${sessionScope.jiolist}" var="jioUserList">
 
 				<tr>
 					
-                     <td>${jioUser.getJioId()}</td>
-					<td>${jioUser.getPlanName()}</td>
-					<td>${jioUser.getPrice()}</td>
-					<td>${jioUser.getValidity()}</td>
-					<td>${jioUser.getBenfits()}</td>
-					<td>${jioUser.getOperator().getOperatorname()}</td>
-					<td><a href="deleteplan?jioId=${jioUser.getJioId()}">Delete</a></td>
+                     <td>${jioUserList.getJioId()}</td>
+					<td>${jioUserList.getPlanName()}</td>
+					<td>${jioUserList.getPrice()}</td>
+					<td>${jioUserList.getValidity()}</td>
+					<td>${jioUserList.getBenfits()}</td>
+					<td>${jioUserList.getOperator().getOperatorname()}</td>
+					<td>${jioUserList.getStatus()}</td>
+					<td><a href="jioDelete.jsp?jioId=${jioUserList.getJioId()}&planName=${jioUserList.getPlanName()}&price=${jioUserList.getPrice()}&validity=${jioUserList.getValidity()}&benefits=${jioUserList.getBenfits()}&operator=${jioUserList.getOperator().getOperatorname()}">Delete</a></td>
 					<td><a href="updateJio.jsp">Edit</a>
+					
 				</tr>
 			</c:forEach>
 	</table>

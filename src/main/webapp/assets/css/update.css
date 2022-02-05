@@ -1,15 +1,24 @@
 @charset "ISO-8859-1";
+* {
+	margin: 0%;
+	padding: 0%;
+	box-sizing: border-box;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+		'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+/* 	cursor: pointer; */
+}
  body{
  height: 100vh;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: threedlightshadow;
+	background: linear-gradient(#e66465, #9198e5);
  }
  label{
  width:120px;
  display:inline-block;
+ 
  }
  form {
     width: 25rem;
@@ -33,9 +42,31 @@ button {
 	padding:10px 30px;
 	border:none;
 	outline:none;
-	border-radiurs:20px;
+	border-radius:20px;
 	text-shadow:2px 2px 4px rgba(255,255,255,0.2);
 	box-shadow:3px 3px 5px rgba(31,38,135,.37);
 	border-left:1px solid rgba(255,255,255,.3);
 	border-top:1px solid rgba(255,255,255,.3)
+}
+.header a {
+    padding: 12px 84px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    
+}
+
+
+.header {
+    background: linear-gradient(to right, #3f56fb, #fc466b);
+    padding: 2px;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: 2%;
+
+}
+.header a:hover {
+	background: white;
+	color: black;
 }

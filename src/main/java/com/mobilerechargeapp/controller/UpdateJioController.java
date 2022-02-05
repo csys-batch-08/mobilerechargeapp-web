@@ -35,19 +35,13 @@ public class UpdateJioController extends HttpServlet {
 		JioDAOImpl jioDao=new 	JioDAOImpl();
 		boolean b=jioDao.updateJio(planname, price, validity, benefits, jioplanId);
 		if(b==true) {
-			response.sendRedirect("jio.jsp");
+			response.sendRedirect("jio");
 		}
 		
 		
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	
 
 }

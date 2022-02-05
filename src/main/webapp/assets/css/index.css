@@ -83,7 +83,7 @@ button {
 	padding:10px 30px;
 	border:none;
 	outline:none;
-	border-radiurs:20px;
+	border-radius:20px;
 	text-shadow:2px 2px 4px rgba(255,255,255,0.2);
 	box-shadow:3px 3px 5px rgba(31,38,135,.37);
 	border-left:1px solid rgba(255,255,255,.3);

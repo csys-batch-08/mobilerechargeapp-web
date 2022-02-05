@@ -10,7 +10,18 @@
 <link rel="stylesheet" type="text/css" href="assets/css/update.css"> 
 </head>
 <body style="text-align: center;">
+
+
+<div class="header">
+		<a href="adminHome.jsp">ADMIN</a> <a href="addJio.jsp"> JIO </a> <a
+			href="addAirtel.jsp">AIRTEL</a> <a href="addVodafone.jsp">VODAFONE</a>
+		<a href="addBsnl.jsp">BSNL</a> <a href="index.jsp">LOGOUT</a>
+
+	</div>
 <form action="UpdatejioController " method="get">
+
+
+	
 <h1>UPDATE JIOPLAN</h1>
 <div>
 <label for="planName"><strong>PlanName:</strong></label>

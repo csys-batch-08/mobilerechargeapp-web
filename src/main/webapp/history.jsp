@@ -16,18 +16,18 @@
 <title>UserHistoryDetails</title>
 <link rel="stylesheet" type="text/css" href="assets/css/history.css"> 
 
-<script src=
+<!-- <script src=
 "https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
-  </script>
+  </script> -->
 </head>
 <body >
 
-  <script>
+<!--   <script>
     swal("RECHARGE","IS","SUCCESFULLY", {
       button: "I am new button",
  
     });
-  </script>
+  </script> -->
 <div class="header">
 <a href="operator.jsp">Home</a>
 <a href="wallet.jsp">wallet</a>

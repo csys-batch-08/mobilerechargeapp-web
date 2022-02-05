@@ -35,6 +35,7 @@
         </c:if> 
 
        <button>LOGIN</button>
+       <a href="forgetPassword.jsp">ForgetPassword?</a>
        <a href="register.jsp">SignUp?</a> 
 
 	</Form>

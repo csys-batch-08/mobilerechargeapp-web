@@ -39,18 +39,18 @@
 			<td><strong>VALIDITY</strong></td>
 			<td><strong>BENEFITS</strong></td>
 			<td><strong>OPERATOR</strong></td>
-
+ </tr>
 			<c:forEach items="${sessionScope.airtellist}" var="airtelUser">
 
 				<tr>
-					
-                     <td>${airtelUser.getAirtelId()}</td>
+                    <td>${airtelUser.getAirtelId()}</td>
 					<td>${airtelUser.getPlanName()}</td>
 					<td>${airtelUser.getPrice()}</td>
 					<td>${airtelUser.getValidity()}</td>
 					<td>${airtelUser.getBenfits()}</td>
 					<td>${airtelUser.getOperator().getOperatorname()}</td>
-					<td><a href="DeleteairtelController?airtelId=${airtelUser.getAirtelId()}">Delete</a></td>
+					<td>${airtelUser.getStatus()}</td>
+					<td><a href="airtelDelete.jsp?airtelId=${airtelUser.getAirtelId()}&planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&validity=${airtelUser.getValidity()}&benefits=${airtelUser.getBenfits()}&operator=${airtelUser.getOperator().getOperatorname()}">Delete</a></td>
 					<td><a href="updateAirtel.jsp">Edit</a>
 				</tr>
 			</c:forEach>

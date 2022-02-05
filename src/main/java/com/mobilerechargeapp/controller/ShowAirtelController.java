@@ -20,7 +20,7 @@ import com.mobilerechargeapp.model.AirtelUser;
  * Servlet implementation class ShowAirtelUser
  */
 @WebServlet("/planAirtelUser")
-public class ShowAirtelUser extends HttpServlet {
+public class ShowAirtelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
     
@@ -29,7 +29,7 @@ public class ShowAirtelUser extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
-		List<AirtelUser>airtelUserList=airtelDao.showAirtelplan();
+		List<AirtelUser>airtelUserList=airtelDao.showUserAirtelplan();
 		HttpSession session=request.getSession();
 		session.setAttribute("airtellist",airtelUserList);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("planAirtelUser.jsp");
@@ -37,12 +37,6 @@ public class ShowAirtelUser extends HttpServlet {
 	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	
 
 }

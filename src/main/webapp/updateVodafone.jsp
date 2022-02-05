@@ -9,6 +9,13 @@
 
 </head>
 <body style="text-align: center">
+
+<div class="header">
+		<a href="adminHome.jsp">ADMIN</a> <a href="addJio.jsp"> JIO </a> <a
+			href="addAirtel.jsp">AIRTEL</a> <a href="addVodafone.jsp">VODAFONE</a>
+		<a href="addBsnl.jsp">BSNL</a> <a href="index.jsp">LOGOUT</a>
+
+	</div>
 <form action="UpdatevodafoneController" method="get">
 <h1>UPDATE PLAN</h1>
 <div>

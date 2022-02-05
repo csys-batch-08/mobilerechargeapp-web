@@ -28,9 +28,9 @@ public class AdminJioController extends HttpServlet {
 		List<JioUser>jioUserList=jioDao.showJioplan();
 
 	
-//	    int findjioId=jioDao.findjioId(jioUser.getPlanName(),jioUser.getPrice());
+	    int findjioId=jioDao.findjioId(jioUser.getPlanName(),jioUser.getPrice());
 		
-//    	session.setAttribute("findjioId",findjioId);
+   	    session.setAttribute("findjioId",findjioId);
 		session.setAttribute("jiolist",jioUserList);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("jio.jsp");
 		requestDispatcher.forward(request, response);

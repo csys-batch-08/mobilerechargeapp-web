@@ -41,10 +41,10 @@ public class AddJioController extends HttpServlet {
 			JioDAOImpl jioDao = new JioDAOImpl();
 			boolean b = jioDao.insertJionet(jioUser);
 
-			if (b==false) {
+			if (b) {
 				HttpSession session=request.getSession();
 			    session.setAttribute("add",b);
-				response.sendRedirect("jio.jsp");
+				response.sendRedirect("jio");
 			}
 		
 	}

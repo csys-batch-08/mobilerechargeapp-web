@@ -15,7 +15,7 @@ body {
 	justify-content: center;
 	align-items: center;
 /* 	background: linear-gradient(to right, #3f56fb, #fc466b);; */
-background-image:url("images/Recbackground.jpeg");
+background-image:url("../images/Recbackground.jpeg");
 }
 
 form {

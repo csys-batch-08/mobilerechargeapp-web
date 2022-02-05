@@ -28,6 +28,8 @@ public class AdminAirtelController extends HttpServlet {
         AirtelDAOImpl airtelDao=new AirtelDAOImpl();
 		AirtelUser airtelUser=new AirtelUser();
 		List<AirtelUser>airtelUserList=airtelDao.showAirtelplan();
+		int findairtelId=airtelDao.findairtelId(airtelUser.getPlanName(),airtelUser.getPrice());
+		session.setAttribute("findairtelId",findairtelId);
 		session.setAttribute("airtellist",airtelUserList);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("airtel.jsp");
 		requestDispatcher.forward(request, response);
