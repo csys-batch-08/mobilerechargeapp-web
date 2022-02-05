@@ -5,7 +5,7 @@
 	box-sizing: border-box;
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
 		'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-	/* 	cursor: pointer; */
+	
 }
 
 body {
@@ -33,9 +33,10 @@ form {
 
 h1 {
 	text-align: center;
+		font: bold;
 	font-size: 21px;
 	color: black;
-	font: bolder;
+
 	text-shadow: 2px 2px 4px rgb(0 0 0/ 20%);
 	letter-spacing: 3px;
 	margin-bottom: 2%;
