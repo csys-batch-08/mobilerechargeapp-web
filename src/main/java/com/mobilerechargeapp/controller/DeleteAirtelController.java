@@ -31,7 +31,7 @@ public class DeleteAirtelController extends HttpServlet {
         if(b) {
 
     		List<AirtelUser>airtelUserList=airtelDao.showAirtelplan();
-    		session.setAttribute("airtellist",airtelUserList);
+    		request.setAttribute("airtellist",airtelUserList);
 			 response.sendRedirect("airtel.jsp"); 
         	
 			

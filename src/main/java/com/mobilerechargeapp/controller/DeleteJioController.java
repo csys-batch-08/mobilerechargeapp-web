@@ -29,8 +29,8 @@ public class DeleteJioController extends HttpServlet {
         boolean b=jioDao.deleteJio(jioId);
         if(b) {
         	List<JioUser>jioUserList=jioDao.showJioplan();
-        	session.setAttribute("jiolist",jioUserList);
-        	response.sendRedirect("jio.jsp");
+        	request.setAttribute("jiolist",jioUserList);
+        	response.sendRedirect("jio");
         	
         }
 		

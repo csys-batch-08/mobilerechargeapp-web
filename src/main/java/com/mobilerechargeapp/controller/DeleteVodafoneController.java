@@ -22,13 +22,13 @@ public class DeleteVodafoneController extends HttpServlet {
     
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-HttpSession session=request.getSession();
+		HttpSession session=request.getSession();
 		int vodafoneId=Integer.parseInt(request.getParameter("vodfoneId"));
 	     VodafoneDAOImpl vodafoneDao=new VodafoneDAOImpl();
-        boolean b=vodafoneDao.deleteVodafone(vodafoneId);
+       boolean b=vodafoneDao.deleteVodafone(vodafoneId);
         if(b) {
         	List<VodafoneUser>vodafoneUserList=vodafoneDao.showViplan();
-    		session.setAttribute("vodafonelist",vodafoneUserList);
+    		request.setAttribute("vodafonelist",vodafoneUserList);
         	response.sendRedirect("vodafone.jsp");
         	
         }
