@@ -86,7 +86,7 @@
 				</tr>
 
 
-				<c:forEach items="${sessionScope.bsnllist}" var="bsnlUser">
+				<c:forEach items="${requestScope.bsnllist}" var="bsnlUser">
 					<tr>
 						<td>${bsnlUser.getPlanName()}</td>
 						<td>${bsnlUser.getPrice()}</td>

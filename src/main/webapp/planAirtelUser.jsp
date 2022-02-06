@@ -68,7 +68,7 @@ if(error!=null){
 				</tr>
 
 
-				<c:forEach items="${sessionScope.airtellist}" var="airtelUser">
+				<c:forEach items="${requestScope.airtellist}" var="airtelUser">
 					<tr>
 						<td>${airtelUser.getPlanName()}</td>
 						<td>${airtelUser.getPrice()}</td>

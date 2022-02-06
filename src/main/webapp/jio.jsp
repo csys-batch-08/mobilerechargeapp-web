@@ -31,7 +31,7 @@
 	</h1>
 
 
-	<table>
+	<table style="width:100%;">
 	
 <tr>
 			<th><strong>PLANID</strong></th>
@@ -41,7 +41,7 @@
 			<th><strong>BENEFITS</strong></th>
 			<th><strong>OPERATOR</strong></th>
 </tr>
-			<c:forEach items="${sessionScope.jiolist}" var="jioUserList">
+			<c:forEach items="${requestScope.jiolist}" var="jioUserList">
 
 				<tr>
 					

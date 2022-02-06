@@ -14,9 +14,7 @@ import com.mobilerechargeapp.daoimpl.VodafoneDAOImpl;
 
 import com.mobilerechargeapp.model.VodafoneUser;
 
-/**
- * Servlet implementation class ShowVodafoneController
- */
+
 @WebServlet("/planVodafoneUser")
 public class ShowVodafoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +27,7 @@ public class ShowVodafoneController extends HttpServlet {
 	   VodafoneDAOImpl vodafoneDao=new VodafoneDAOImpl();
 		List<VodafoneUser>vodafoneUserList=vodafoneDao.showuserViplan();
 		HttpSession session=request.getSession();
-		session.setAttribute("Vodafonelist",vodafoneUserList);
+		request.setAttribute("Vodafonelist",vodafoneUserList);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("planVodafoneUser.jsp");
 		requestDispatcher.forward(request, response);
 		

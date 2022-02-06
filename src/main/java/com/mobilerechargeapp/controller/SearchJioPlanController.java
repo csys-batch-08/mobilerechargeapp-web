@@ -27,9 +27,9 @@ public class SearchJioPlanController extends HttpServlet {
 		
 	String plan=request.getParameter("jioplan");
 		JioDAOImpl jioDao=new JioDAOImpl();
-		List<JioUser> ShowPlan=jioDao.showJioplan(plan);
+		List<JioUser> showPlan=jioDao.showJioplan(plan);
 		HttpSession session=request.getSession();
-		session.setAttribute("jioplan",ShowPlan);	
+		request.setAttribute("jioplan",showPlan);	
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("searchJioPlan.jsp");
 		requestDispatcher.forward(request, response);
 	}

@@ -30,7 +30,8 @@
  <h1>AIRTEL NETWORK</h1>
 
 
-<table style="width: 100%">
+	<table style="width:100%;">
+
 		<tr>
 
 			<td><strong>PLANID</strong></td>
@@ -40,7 +41,7 @@
 			<td><strong>BENEFITS</strong></td>
 			<td><strong>OPERATOR</strong></td>
  </tr>
-			<c:forEach items="${sessionScope.airtellist}" var="airtelUser">
+			<c:forEach items="${requestScope.airtellist}" var="airtelUser">
 
 				<tr>
                     <td>${airtelUser.getAirtelId()}</td>

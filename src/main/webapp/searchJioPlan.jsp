@@ -22,40 +22,6 @@
 			<a href="ContactUs.jsp">ContactUs</a> <a href="index.jsp">Logout</a>
 		</div>
 		</form>
-	<%-- </form>
-	<table style="width: 100%">
-		<tr>
-
-			<td><strong>PLANNAME</strong></td>
-			<td><strong>PRICE</strong></td>
-			<td><strong>VALIDITY</strong></td>
-			<td><strong>BENEFITS</strong></td>
-			<td><strong>OPERATOR</strong></td>
-
-
-		</tr>
-		<%List<JioUser> user=(List<JioUser>)session.getAttribute("list"); 
-		  for(int i=0;i<user.size();i++)
-		  {
-			  JioUser jioSearch=user.get(i); 
-		%>
-
-
-
-		<tr>
-			<td><%= jioSearch.getPlanName() %></td>
-			<td><%= jioSearch.getPrice() %></td>
-			<td><%= jioSearch.getValidity() %></td>
-			<td><%= jioSearch.getBenfits() %></td>
-			<td><%= jioSearch.getOperator().getOperatorname() %></td>
-			<td class="links"><a
-				href="recharge.jsp?planName=<%=jioSearch.getPlanName() %>&price=<%= jioSearch.getPrice() %>
-&operator=<%= jioSearch.getOperator().getOperatorname() %>"><button>Recharge</a>
-				</button></td>
-		</tr>
-
-		<%}%>
-	</table> --%>
 	
 	
 	<form>

@@ -28,7 +28,8 @@
 	</h1>
 
 
-	<table style="width: 100%">
+		<table style="width:100%;">
+
 		<tr>
 
 			<td><strong>PLANID</strong></td>
@@ -38,7 +39,7 @@
 			<td><strong>BENEFITS</strong></td>
 			<td><strong>OPERATOR</strong></td>
 		</tr>
-		<c:forEach items="${sessionScope.bsnllist}" var="bsnlUser">
+		<c:forEach items="${requestScope.bsnllist}" var="bsnlUser">
 
 			<tr>
 

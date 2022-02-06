@@ -23,10 +23,11 @@ public class ShowJioController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session=request.getSession();
 		JioDAOImpl jioDao=new JioDAOImpl();
 		List<JioUser>jioUserList=jioDao.showUserJioplan();
-		HttpSession session=request.getSession();
-		session.setAttribute("jiolist",jioUserList);
+		
+		request.setAttribute("jiolist",jioUserList);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("planJioUser.jsp");
 		requestDispatcher.forward(request, response);
 	}

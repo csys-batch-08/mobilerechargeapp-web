@@ -31,7 +31,8 @@
 
 
 
-<table style="width: 100%">
+	<table style="width:100%;">
+
 		<tr>
 
 			<td><strong>PLANID</strong></td>
@@ -41,7 +42,7 @@
 			<td><strong>BENEFITS</strong></td>
 			<td><strong>OPERATOR</strong></td>
 
-			<c:forEach items="${sessionScope.vodafonelist}" var="vodafoneUser">
+			<c:forEach items="${requestScope.vodafonelist}" var="vodafoneUser">
 
 				<tr>
 					

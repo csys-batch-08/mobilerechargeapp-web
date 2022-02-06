@@ -261,19 +261,48 @@ public class UserDAOImpl implements UserDao {
 		}
 		return listObject;
 	}
-	public boolean forgetPasssword(String emailid, String password) {
+	
+	public String emailValid( String emailid)
+ {
+	String email=null;
+		ResultSet resultSet = null;
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			connection =connectionClass.getConnection();
+			String query = "select Email_id from userlogin where Email_id =?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1,emailid);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+			 email=resultSet.getString(1);
+			}
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		} 
+		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
+		return email;
+
+	}
+	
+	
+	public int forgetPasssword(String emailid, String password) {
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
-		boolean flag = false;
 		String query="update userlogin set password=? where Email_id=?";
 		PreparedStatement preparedStatement=null;
 		ResultSet resultSet=null;
-		
+	int passwords=0;
 		try {
 			preparedStatement=connection.prepareStatement(query);
-			preparedStatement.setString(1,emailid );
-			preparedStatement.setString(2,password) ;
-			flag=preparedStatement.executeUpdate()>0;
+			preparedStatement.setString(1,password );
+			preparedStatement.setString(2,emailid) ;
+			passwords=preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 		
 			e.printStackTrace();
@@ -282,6 +311,6 @@ public class UserDAOImpl implements UserDao {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 
-		return flag;
+		return passwords;
 	}
 }

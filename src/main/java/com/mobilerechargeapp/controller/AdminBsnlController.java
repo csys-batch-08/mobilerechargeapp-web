@@ -29,7 +29,9 @@ public class AdminBsnlController extends HttpServlet {
 	   BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
 		BsnlUser bsnlUser=new BsnlUser();
 		List<BsnlUser>bsnlUserList=bsnlDao.showBsnlplan();
-		session.setAttribute("bsnllist",bsnlUserList);
+		int findbsnlId=bsnlDao.findbsnlId(bsnlUser.getPlanName(), bsnlUser.getPrice());
+		session.setAttribute("findbsnlId", findbsnlId);
+		request.setAttribute("bsnllist",bsnlUserList);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("bsnl.jsp");
 		requestDispatcher.forward(request, response);
 	}

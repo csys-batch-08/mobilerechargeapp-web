@@ -10,6 +10,7 @@ tr:nth-child(even) {background-color: #f2f2f2;} */
 table {
 	background: cornflowerblue;
 	padding: 10px;
+	width: 100%;
 }
 
 table, tr, td {

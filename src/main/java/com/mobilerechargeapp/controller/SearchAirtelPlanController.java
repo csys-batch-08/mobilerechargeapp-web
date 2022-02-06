@@ -29,9 +29,9 @@ public class SearchAirtelPlanController extends HttpServlet {
 		
 		String plan=request.getParameter("airtelplan");
 		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
-		List<AirtelUser> ShowPlan=airtelDao.showAirtelplan(plan);
+		List<AirtelUser> showPlan=airtelDao.showAirtelplan(plan);
 		HttpSession session=request.getSession();
-		session.setAttribute("airtelplan",ShowPlan);	
+		session.setAttribute("airtelplan",showPlan);	
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("searchAirtelPlan.jsp");
 		requestDispatcher.forward(request, response);
 		

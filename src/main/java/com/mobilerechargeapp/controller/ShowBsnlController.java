@@ -29,7 +29,7 @@ public class ShowBsnlController extends HttpServlet {
 	    BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
 		List<BsnlUser>bsnlUserList=bsnlDao.showuserBsnlplan();
 		HttpSession session=request.getSession();
-		session.setAttribute("bsnllist",bsnlUserList);
+		request.setAttribute("bsnllist",bsnlUserList);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("planBsnlUser.jsp");
 		requestDispatcher.forward(request, response);
 	}

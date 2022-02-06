@@ -21,5 +21,17 @@ public class ErrorFound extends Exception {
 		return "Mobile Number is Already Used";
 		
 	}
+	static final String FORGOTPASSWORD = "*Two password  must same";
+	public String forgetPassword() {
+		return FORGOTPASSWORD ;
+		
+	}
+	static final String EMAIL = "this mail not register";
+
+	public String emailValidate() {
+
+		return EMAIL ;
+
+	}
 	
 }

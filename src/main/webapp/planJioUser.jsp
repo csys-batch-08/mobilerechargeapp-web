@@ -69,7 +69,7 @@ if(error!=null){
 				</tr>
 				
 
-					<c:forEach items="${sessionScope.jiolist}" var="jioUser">
+					<c:forEach items="${requestScope.jiolist}" var="jioUser">
 					<tr>
 						<td>${jioUser.getPlanName()}</td>
 						<td>${jioUser.getPrice()}</td>
