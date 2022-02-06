@@ -27,16 +27,14 @@ public class ShowBsnlController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	    BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
-		List<BsnlUser>BsnlUserList=bsnlDao.showBsnlplan();
+		List<BsnlUser>bsnlUserList=bsnlDao.showuserBsnlplan();
 		HttpSession session=request.getSession();
-		session.setAttribute("bsnllist",BsnlUserList);
+		session.setAttribute("bsnllist",bsnlUserList);
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("planBsnlUser.jsp");
 		requestDispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	
 
 }

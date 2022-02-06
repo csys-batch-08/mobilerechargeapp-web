@@ -89,7 +89,7 @@ public class AirtelDAOImpl implements AirtelDao {
 		boolean flag = false;
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
-//		String deleteQuerey = "delete from Airtel_plans where airtelplan_id=?";
+
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		String status = null;
@@ -104,7 +104,7 @@ public class AirtelDAOImpl implements AirtelDao {
 			if (status != null && status.equalsIgnoreCase("active")) {
 				deleteQuery = "update Airtel_plans set status='inactive'where airtelplan_id=?";
 			} else {
-				deleteQuery = "update Airtel_plans set status='active' where airtelplan_id=?";
+				deleteQuery = "update Airtel_plans set status='Active' where airtelplan_id=?";
 			}
 			preparedStatement = connection.prepareStatement(deleteQuery);
 			preparedStatement.setInt(1, airtelplanId);
@@ -120,7 +120,7 @@ public class AirtelDAOImpl implements AirtelDao {
 
 	public List<AirtelUser> showAirtelplan() {
 		AirtelUser airtel = null;
-		List<AirtelUser> airtelList = new ArrayList<AirtelUser>();
+		List<AirtelUser> airtelList = new ArrayList<>();
 		String showQuery = "select airtelplan_id,plan_name,price,validity,benefits,operator_id,status from Airtel_plans";
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
@@ -136,7 +136,7 @@ public class AirtelDAOImpl implements AirtelDao {
 				airtel = new AirtelUser(resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4),
 						resultSet.getString(5), operator);
 				airtel.setAirtelId(resultSet.getInt(1));
-				airtel.setStatus(resultSet.getString("status"));
+				airtel.setStatus(resultSet.getString(7));
 				airtelList.add(airtel);
 			}
 		} catch (SQLException e) {
@@ -150,7 +150,7 @@ public class AirtelDAOImpl implements AirtelDao {
 
 	public List<AirtelUser> showAirtelplan(String search) {
 		AirtelUser airtel = null;
-		List<AirtelUser> AirtelList = new ArrayList<AirtelUser>();
+		List<AirtelUser> airtelList = new ArrayList<>();
 		String showQuery = "select airtelplan_id,plan_name,price,validity,benefits,operator_id from Airtel_plans where plan_name like '"
 				+ search + "%' or price like '" + search + "%'";
 		ConnectionClass connectionClass = new ConnectionClass();
@@ -166,7 +166,7 @@ public class AirtelDAOImpl implements AirtelDao {
 				Operator operator = operatordao.findOperator1(resultSet.getInt(6));
 				airtel = new AirtelUser(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3),
 						resultSet.getString(4), resultSet.getString(5), operator);
-				AirtelList.add(airtel);
+				airtelList.add(airtel);
 			}
 		} catch (SQLException e) {
 
@@ -174,7 +174,7 @@ public class AirtelDAOImpl implements AirtelDao {
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
-		return AirtelList;
+		return airtelList;
 	}
 
 	public int findairtelId(String planName, Double price) {
@@ -183,14 +183,14 @@ public class AirtelDAOImpl implements AirtelDao {
 		Connection connection = connectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		int airtelplanId = 0;
+		 int airtelplanId1 = 0; 
 		try {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, planName);
 			preparedStatement.setDouble(2, price);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				airtelplanId = resultSet.getInt(1);
+				airtelplanId1 = resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
 
@@ -199,7 +199,7 @@ public class AirtelDAOImpl implements AirtelDao {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 
-		return airtelplanId;
+		return airtelplanId1;
 
 	}
 
@@ -208,13 +208,12 @@ public class AirtelDAOImpl implements AirtelDao {
 		Connection connection = connectionClass.getConnection();
 		AirtelDAOImpl airtelDao = new AirtelDAOImpl();
 		int validity = 0;
-//		String Query = "select airtelplan_id,plan_name,price,validity,benefits,operator_id from Airtel_plans where airtelplan_id=" + id;
-		String Query = "select airtelplan_id,plan_name,price,validity,benefits,operator_id from Airtel_plans where airtelplan_id=?";
+		String query = "select airtelplan_id,plan_name,price,validity,benefits,operator_id from Airtel_plans where airtelplan_id=?";
 		ResultSet resultSet = null;
 		PreparedStatement preparedStatement = null;
 		AirtelUser plan = null;
 		try {
-			preparedStatement = connection.prepareStatement(Query);
+			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
@@ -235,26 +234,32 @@ public class AirtelDAOImpl implements AirtelDao {
 
 	public List<AirtelUser> searchAirtelplan(String plan) {
 		AirtelUser airtel = null;
-		List<AirtelUser> AirtelList = new ArrayList<AirtelUser>();
-		String showQuery = "select airtelplan_id,plan_name,price,validity,benefits,operator_id from Airtel_plans where upper (PLAN_NAME)like'"
-				+ plan.toUpperCase() + "%'";
-		ConnectionClass conclass = new ConnectionClass();
-		Connection con = conclass.getConnection();
+		List<AirtelUser> airtelList = new ArrayList<>();
+		String showQuery = "select airtelplan_id,plan_name,price,validity,benefits,operator_id,status from Airtel_plans where upper (PLAN_NAME)like'"
+				+ plan.toUpperCase() + "%' and status='Active'";
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = connectionClass.getConnection();
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
 		try {
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(showQuery);
+		preparedStatement=connection.prepareStatement(showQuery);
+			resultSet = preparedStatement.executeQuery(showQuery);
 			OperatorDAOImpl operatordao = new OperatorDAOImpl();
-			while (rs.next()) {
-				Operator operator = operatordao.findOperator1(rs.getInt(6));
-				airtel = new AirtelUser(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4),
-						rs.getString(5), operator);
-				AirtelList.add(airtel);
+			while (resultSet.next()) {
+				Operator operator = operatordao.findOperator1(resultSet.getInt(6));
+				airtel = new AirtelUser(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4),
+						resultSet.getString(5), operator);
+				airtel.setStatus(resultSet.getString("status"));
+				airtelList.add(airtel);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-		return AirtelList;
+		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
+		return airtelList;
 	}
 
 	public int findAirtelvalidity(AirtelUser airtelUser) {
@@ -262,13 +267,13 @@ public class AirtelDAOImpl implements AirtelDao {
 		Connection connection = connectionClass.getConnection();
 		AirtelDAOImpl airtelDAOImpl = new AirtelDAOImpl();
 		int validity = 0;
-		int AirtelUserId = airtelDAOImpl.findairtelId(airtelUser.getPlanName(), airtelUser.getPrice());
-		String Query = "select validity from airtel_plans where airtelplan_id=?" + AirtelUserId;
+		int airtelUserId = airtelDAOImpl.findairtelId(airtelUser.getPlanName(), airtelUser.getPrice());
+		String query = "select validity from airtel_plans where airtelplan_id=?" + airtelUserId;
 		ResultSet resultSet = null;
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = connection.prepareStatement(Query);
-			preparedStatement.setInt(1, AirtelUserId);
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, airtelUserId);
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
@@ -286,7 +291,7 @@ public class AirtelDAOImpl implements AirtelDao {
 
 	public List<AirtelUser> showUserAirtelplan() {
 		AirtelUser airtel = null;
-		List<AirtelUser> airtelList = new ArrayList<AirtelUser>();
+		List<AirtelUser> airtelList = new ArrayList<>();
 		String showQuery = "select airtelplan_id,plan_name,price,validity,benefits,operator_id,status from Airtel_plans where status='Active'";
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();

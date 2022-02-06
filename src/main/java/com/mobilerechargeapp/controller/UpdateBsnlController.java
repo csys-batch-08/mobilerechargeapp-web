@@ -33,8 +33,8 @@ public class UpdateBsnlController extends HttpServlet {
 		BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
 		BsnlUser bsnlUser=new BsnlUser();
 		boolean b=bsnlDao.updateBsnl(planname, price, validity, benefits, bsnlId);
-		if(b==true) {
-			response.sendRedirect("bsnl.jsp");
+		if(b) {
+			response.sendRedirect("Bsnl");
 		}
 	
 

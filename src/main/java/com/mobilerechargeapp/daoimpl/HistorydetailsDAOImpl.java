@@ -49,7 +49,7 @@ public class HistorydetailsDAOImpl implements HistorydetailsDao {
            }
        public List<HistoryDetails> showHistoryDetails()
        {
-    	   List<HistoryDetails> historyList=new ArrayList<HistoryDetails>();
+    	   List<HistoryDetails> historyList=new ArrayList<>();
     	   String query="select history_id,user_id,operator_id,mobile_number,plan_id,Recharge_date,Payment  from history_details";
     	   Connection con=ConnectionClass.getConnection();
     	   try
@@ -75,17 +75,15 @@ public class HistorydetailsDAOImpl implements HistorydetailsDao {
 	public List<HistoryDetails> findUserHistory(User user)
 	{
 		UserDAOImpl userDao=new UserDAOImpl();
-		List<HistoryDetails> userHistoryList=new ArrayList<HistoryDetails>();
+		List<HistoryDetails> userHistoryList=new ArrayList<>();
 		
 		List<HistoryDetails> historyList=showHistoryDetails();
 		int userId=userDao.findUserId(user);
-		System.out.println(userId);
 		for(int i=0;i<historyList.size();i++)
 		{
 			if(historyList.get(i).getUserId()==userId)
 			{
 				userHistoryList.add(historyList.get(i));
-				System.out.println(historyList);
 			}
 			
 		}
@@ -99,15 +97,17 @@ public class HistorydetailsDAOImpl implements HistorydetailsDao {
 		UserDAOImpl userDao=new UserDAOImpl();
 		List<HistoryDetails> userHistoryList=new ArrayList<HistoryDetails>();
 		String query="select history_id,user_id,operator_id,mobile_number,plan_id,Recharge_date,Payment from history_details";
-		Connection con=ConnectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
  	   try
  	   {
- 	   Statement stmt=con.createStatement();
- 	   ResultSet rs=stmt.executeQuery(query);
- 	   while(rs.next())
+ 		   preparedStatement=connection.prepareStatement(query);
+ 		   resultSet=preparedStatement.executeQuery();
+ 	   while(resultSet.next())
 	
  	  {
-		   HistoryDetails his=new HistoryDetails(rs.getInt(2),rs.getInt(3), rs.getLong(4), rs.getInt(5), rs.getDate(6), rs.getDouble(7));
+		   HistoryDetails his=new HistoryDetails(resultSet.getInt(2),resultSet.getInt(3), resultSet.getLong(4), resultSet.getInt(5), resultSet.getDate(6), resultSet.getDouble(7));
 		   userHistoryList.add(his);
 	   }
 	   
@@ -116,6 +116,9 @@ public class HistorydetailsDAOImpl implements HistorydetailsDao {
 	   {
 		   e.printStackTrace();
 	   }
+ 	  finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
 	   return userHistoryList;
 	   
    }

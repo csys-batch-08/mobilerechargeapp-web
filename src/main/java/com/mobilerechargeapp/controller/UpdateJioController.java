@@ -34,7 +34,7 @@ public class UpdateJioController extends HttpServlet {
 		JioUser jioUser=new JioUser();
 		JioDAOImpl jioDao=new 	JioDAOImpl();
 		boolean b=jioDao.updateJio(planname, price, validity, benefits, jioplanId);
-		if(b==true) {
+		if(b) {
 			response.sendRedirect("jio");
 		}
 		

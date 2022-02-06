@@ -38,7 +38,7 @@ public class AddVodafoneController extends HttpServlet {
 		VodafoneDAOImpl vodafoneDao=new VodafoneDAOImpl();
 		boolean b=vodafoneDao.vodafoneNetwork(vodafoneUser);
 		if(b) {
-			response.sendRedirect("vodafone.jsp");
+			response.sendRedirect("vodadone");
 		}
 		else {
 			response.sendRedirect("invalid");

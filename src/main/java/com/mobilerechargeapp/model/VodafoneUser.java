@@ -9,7 +9,7 @@ public class VodafoneUser {
 	private  String validity;
 	private String benfits;
 	private Operator operator;
-	
+	private String status;
 	
 	
 	public int getVodafoneId() {
@@ -48,9 +48,16 @@ public class VodafoneUser {
 	public void setOperator(Operator operator) {
 		this.operator = operator;
 	}
+	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public VodafoneUser() {
-		super();
-		// TODO Auto-generated constructor stub
+		super();	
 	}
 	public VodafoneUser(String planName, double price, String validity, String benfits, Operator operator) {
 		super();

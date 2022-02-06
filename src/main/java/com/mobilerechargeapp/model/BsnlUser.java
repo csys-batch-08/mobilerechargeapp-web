@@ -9,7 +9,7 @@ public class BsnlUser {
 	private  String validity;
 	private String benfits;
 	private Operator operator;
-	
+	private String status;
 	
 	
 	public int getBsnlId() {
@@ -47,6 +47,13 @@ public class BsnlUser {
 	}
 	public void setOperator(Operator operator) {
 		this.operator = operator;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public BsnlUser() {
 		super();

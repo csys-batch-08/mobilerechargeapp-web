@@ -31,7 +31,7 @@ public class DeleteBsnlController extends HttpServlet {
 		if(b) {
 			List<BsnlUser>bsnlUserList=bsnlDao.showBsnlplan();
 			session.setAttribute("bsnllist",bsnlUserList);
-			response.sendRedirect("bsnl.jsp");
+			response.sendRedirect("Bsnl");
 			
 	}
 	}

@@ -37,8 +37,8 @@ public class AddAirtelController extends HttpServlet {
 		AirtelUser airtelUser=new AirtelUser(planname,price,validity,benefits,operator);
 		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
 		boolean b=airtelDao.insertAirtelnet(airtelUser);
-		if(b==false) {
-			response.sendRedirect("airtel.jsp");
+		if(b) {
+			response.sendRedirect("Airtel");
 		}
 	
 	}

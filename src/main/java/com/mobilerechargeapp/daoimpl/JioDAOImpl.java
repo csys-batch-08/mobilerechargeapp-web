@@ -76,7 +76,6 @@ public class JioDAOImpl implements JioDao {
 
 	public boolean deleteJio(int jioplanId) {
 		String query = "select status from jio_plans  where jioplan_id=?";
-
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
 		boolean flag = false;

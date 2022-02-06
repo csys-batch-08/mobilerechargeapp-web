@@ -8,13 +8,18 @@ public class ErrorFound extends Exception {
 		return "Invalid username and password";
 		
 	}
+
 	public String getMessage1()
 	{
-		return "insufficient balance";
+		return "Insufficient balance";
 		
 	}
 	public String getMessage2() {
-		return "EmailId is Already Used";
+		return "EmailId  is Already Used";
+	}
+	public String getMessage3() {
+		return "Mobile Number is Already Used";
+		
 	}
 	
 }

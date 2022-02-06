@@ -51,8 +51,9 @@
 					<td>${vodafoneUser.getValidity()}</td>
 					<td>${vodafoneUser.getBenfits()}</td>
 					<td>${vodafoneUser.getOperator().getOperatorname()}</td>
-					<td><a href="DeletevodafoneController?vodfoneId=${vodafoneUser.getVodafoneId()}">Delete</a></td>
-					<td><a href="updateVodafone.jsp">Edit</a>
+					<td>${vodafoneUser.getStatus()}</td>
+					<td><a href="vodafoneDelete.jsp?vodfoneId=${vodafoneUser.getVodafoneId()}&planName=${vodafoneUser.getPlanName()}&price=${vodafoneUser.getPrice()}&validity=${vodafoneUser.getValidity()}&benefits=${vodafoneUser.getBenfits()}&operator=${vodafoneUser.getOperator().getOperatorname()}">Edit</a></td>
+					<td><a href="updateVodafone.jsp">Update</a>
 				</tr>
 			</c:forEach>
 	</table>

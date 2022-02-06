@@ -31,12 +31,12 @@ public class UpdateAirtelController extends HttpServlet {
 		String validity=request.getParameter("validity");
 		String benefits=request.getParameter("benefits");
 		int airtelplanId =Integer.parseInt(request.getParameter("airtelplanId"));
-		Connection connection=ConnectionClass.getConnection();
+		
 		AirtelUser airtelUser=new 	AirtelUser();
 		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
 		boolean b=airtelDao.updateAirtel(planname, price, validity, benefits, airtelplanId);
-		if(b==true) {
-			response.sendRedirect("airtel.jsp");
+		if(b) {
+			response.sendRedirect("Airtel");
 		}
     
 

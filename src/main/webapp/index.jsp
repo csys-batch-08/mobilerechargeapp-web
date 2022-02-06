@@ -7,6 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>LoginPage</title>
 <link rel="stylesheet" type="text/css" href="assets/css/index.css"> 
+<link rel="stylesheet" type="text/css" href="sweetalert.css">
 </head>
 <body>
 <div>
@@ -18,7 +19,7 @@
 		<h1 style="font-style: italic;">Login</h1>
 
 
-		<label for="Email">Email-id</label>
+		<label for="Email">EmailId</label>
 		 <input type="email" name="email"
 			id="Email" title="must follow the email format" autofocus required
 			pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+"><br> <span></span>
@@ -34,10 +35,28 @@
         <c:remove var="invalid" scope="session" />
         </c:if> 
 
-       <button>LOGIN</button>
+       <button onclick="validiateUser;">LOGIN</button>
        <a href="forgetPassword.jsp">ForgetPassword?</a>
        <a href="register.jsp">SignUp?</a> 
+       <script src="sweetalert.min.js"></script>
+       
+       <script type="text/javascript">
+       function validiateUser()
+       {
+    	   var emailId="mani99@gmail.com";
+    	   var passwords="143@mani";
+    	   var EmailId=doucument.getElementById('emailId').value;
+    	   var Password=doucument.getElementById('passwords').value;
+    	   if((EmailId==emailId)&&(Password==passwords)){
+    		   swal("Good job!", "You clicked the button!", "success");
+    	   }
+    	   else{
+    		   swal("Good job!", "email id wrong ", "error");
 
+    	   }
+       }
+       </script>
+      
 	</Form>
 </div>
 </body>

@@ -30,17 +30,11 @@ public class UpdateVodafoneController extends HttpServlet {
 		VodafoneUser vodafone = new VodafoneUser();
 		VodafoneDAOImpl vodafoneDao=new VodafoneDAOImpl();
 		boolean b=vodafoneDao.updateVodafone(planname, price, validity, benefits, vodafoneplanid);
-		if(b==true) {
-			response.sendRedirect("vodafone.jsp");
+		if(b) {
+			response.sendRedirect("vodadone");
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	
 
 }

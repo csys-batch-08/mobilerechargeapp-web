@@ -26,26 +26,37 @@ public class VodafoneDAOImpl implements VodafoneDao {
 		String insertQueries = "insert into vodafone_plans(plan_name,price,validity,benefits,operator_id)values(?,?,?,?,?)";
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		int opId=0;
 		try {
+			preparedStatement= connection.prepareStatement(subQueries);
+			preparedStatement.setString(1, vodafone.getOperator().getOperatorname());
+			resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				opId = resultSet.getInt(1);
+			}
+		}
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		try {
+			
 			preparedStatement = connection.prepareStatement(insertQueries);
 			preparedStatement.setString(1, vodafone.getPlanName());
 			preparedStatement.setDouble(2, vodafone.getPrice());
 			preparedStatement.setString(3, vodafone.getValidity());
 			preparedStatement.setString(4, vodafone.getBenfits());
-            preparedStatement= connection.prepareStatement(subQueries);
-			preparedStatement.setString(1, vodafone.getOperator().getOperatorname());
-			resultSet = preparedStatement.executeQuery();
-			int opId = 0;
-			if (resultSet.next()) {
-				opId = resultSet.getInt(1);
-			}
 			preparedStatement.setInt(5, opId);
+            
+			
 			flag = preparedStatement.executeUpdate() > 0;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionClass.close(connection, preparedStatement, resultSet);
+			ConnectionClass.close(connection,preparedStatement,resultSet);
 		}
 		return flag;
 	}
@@ -70,7 +81,7 @@ public class VodafoneDAOImpl implements VodafoneDao {
 			flag = preparedStatement.executeUpdate() > 0;
 
 		} catch (SQLException e) {
-			System.out.println("updated Query will incorrect");
+			
 			e.printStackTrace();
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
@@ -80,17 +91,29 @@ public class VodafoneDAOImpl implements VodafoneDao {
 	}
 
 	public boolean deleteVodafone(int vodafoneId) {
-
+		String query = "select status from vodafone_plans where vodafoneplan_id =?";
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
-		String deleteQuery = "delete vodafone_plans where vodafoneplan_id =?";
 		boolean flag = false;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		String status = null;
+		String deleteQuery = null;
 		try {
-			preparedStatement = connection.prepareStatement(deleteQuery);
+			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, vodafoneId);
-			flag = preparedStatement.executeUpdate() > 0;
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				 status = resultSet.getString(1);
+			}
+			if (status != null && status.equalsIgnoreCase("Active")) {
+				deleteQuery = "update vodafone_plans set status='inactive' where vodafoneplan_id =?";
+			} else {
+				deleteQuery = "update vodafone_plans set status='Active' where vodafoneplan_id =?";
+			}
+			preparedStatement=connection.prepareStatement(deleteQuery);
+			preparedStatement.setInt(1, vodafoneId);
+			flag=preparedStatement.executeUpdate()>0;
 
 		} catch (SQLException e) {
 
@@ -130,8 +153,8 @@ public class VodafoneDAOImpl implements VodafoneDao {
 
 	public List<VodafoneUser> showViplan() {
 		VodafoneUser vodafone = new VodafoneUser();
-		List<VodafoneUser> vodafoneList = new ArrayList<VodafoneUser>();
-		String showQuery = "select vodafoneplan_id,plan_name,price,validity,benefits,operator_id from vodafone_plans";
+		List<VodafoneUser> vodafoneList = new ArrayList<>();
+		String showQuery = "select vodafoneplan_id,plan_name,price,validity,benefits,operator_id,status from vodafone_plans";
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
@@ -145,6 +168,7 @@ public class VodafoneDAOImpl implements VodafoneDao {
 				vodafone = new VodafoneUser(resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4),
 						resultSet.getString(5), operator);
 				vodafone.setVodafoneId(resultSet.getInt(1));
+				vodafone.setStatus(resultSet.getString("status"));
 				vodafoneList.add(vodafone);
 			}
 		} catch (SQLException e) {
@@ -158,9 +182,9 @@ public class VodafoneDAOImpl implements VodafoneDao {
 
 	public List<VodafoneUser> showViplan(String search) {
 		VodafoneUser vodafone = new VodafoneUser();
-		List<VodafoneUser> vodafoneList = new ArrayList<VodafoneUser>();
+		List<VodafoneUser> vodafoneList = new ArrayList<>();
 		String showQuery = "select vodafoneplan_id,plan_name,price,validity,benefits,operator_id from vodafone_plans where plan_name like '"
-				+ search + "%' or price like '" + search + "%'";
+				+ search + "%' or price like '" + search + "%' and status='Active'";
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
@@ -173,6 +197,8 @@ public class VodafoneDAOImpl implements VodafoneDao {
 				Operator operator = operatordao.findOperator1(resultSet.getInt(6));
 				vodafone = new VodafoneUser(resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4),
 						resultSet.getString(5), operator);
+				vodafone.setVodafoneId(resultSet.getInt(1));
+				vodafone.setStatus(resultSet.getString("status"));
 				vodafoneList.add(vodafone);
 			}
 		} catch (SQLException e) {
@@ -189,14 +215,12 @@ public class VodafoneDAOImpl implements VodafoneDao {
 		Connection connection = connectionClass.getConnection();
 		VodafoneDAOImpl vodafoneDao = new VodafoneDAOImpl();
 		int validity = 0;
-		// int JioUserId = jioDao.findjioId(jioUser.getPlanName(), jioUser.getPrice());
-//		String Query = "select vodafoneplan_id,plan_name,price,validity,benefits,operator_id from vodafone_plans where vodafoneplan_id=" + id;
-		String Query = "select vodafoneplan_id,plan_name,price,validity,benefits,operator_id from vodafone_plans where vodafoneplan_id=?";
+	String query = "select vodafoneplan_id,plan_name,price,validity,benefits,operator_id from vodafone_plans where vodafoneplan_id=?";
 		ResultSet resultSet = null;
 		PreparedStatement preparedStatement = null;
 		VodafoneUser plan = null;
 		try {
-			preparedStatement = connection.prepareStatement(Query);
+			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
@@ -204,6 +228,7 @@ public class VodafoneDAOImpl implements VodafoneDao {
 				Operator operator = operDao.findOperator(resultSet.getInt(6));
 				plan = new VodafoneUser(resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4),
 						resultSet.getString(5), operator);
+			
 			}
 		} catch (SQLException e) {
 
@@ -241,6 +266,35 @@ public class VodafoneDAOImpl implements VodafoneDao {
 		}
 		return validity;
 
+	}
+	
+	public List<VodafoneUser> showuserViplan() {
+		VodafoneUser vodafone = new VodafoneUser();
+		List<VodafoneUser> vodafoneList = new ArrayList<>();
+		String showQuery = "select vodafoneplan_id,plan_name,price,validity,benefits,operator_id,status from vodafone_plans  where status='Active'";
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = connectionClass.getConnection();
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			preparedStatement = connection.prepareStatement(showQuery);
+			resultSet = preparedStatement.executeQuery();
+			OperatorDAOImpl operatordao = new OperatorDAOImpl();
+			while (resultSet.next()) {
+				Operator operator = operatordao.findOperator1(resultSet.getInt(6));
+				vodafone = new VodafoneUser(resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4),
+						resultSet.getString(5), operator);
+				vodafone.setVodafoneId(resultSet.getInt(1));
+				vodafone.setStatus(resultSet.getString("status"));
+				vodafoneList.add(vodafone);
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
+		return vodafoneList;
 	}
 
 }

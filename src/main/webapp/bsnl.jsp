@@ -48,9 +48,10 @@
 				<td>${bsnlUser.getValidity()}</td>
 				<td>${bsnlUser.getBenfits()}</td>
 				<td>${bsnlUser.getOperator().getOperatorname()}</td>
+				<td>${bsnlUser.getStatus()}</td>
 				<td><a
-					href="DeletebsnlController?bsnlId=${bsnlUser.getBsnlId()}">Delete</a></td>
-				<td><a href="updateBsnl.jsp">Edit</a>
+					href="bsnlDelete.jsp?bsnlId=${bsnlUser.getBsnlId()}&planName=${bsnlUser.getPlanName()}&price=${bsnlUser.getPrice()}&validity=${bsnlUser.getValidity()}&benefits=${bsnlUser.getBenfits()}&operator=${bsnlUser.getOperator().getOperatorname()}">Edit</a></td>
+				<td><a href="updateBsnl.jsp">Update</a>
 			</tr>
 		</c:forEach>
 	</table>

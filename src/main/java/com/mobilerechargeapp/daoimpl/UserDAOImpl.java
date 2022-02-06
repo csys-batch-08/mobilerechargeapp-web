@@ -24,7 +24,6 @@ public class UserDAOImpl implements UserDao {
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = connection.prepareStatement(subQue);
-			// System.out.println(user.getOperator().getOperatorname());
 			preparedStatement.setString(1, user.getOperator().getOperatorname());
 			String insertQuery = "insert into userlogin (user_name,Email_id,phone_number,password,operator_Id) values(?,?,?,?,?)";
 
@@ -37,7 +36,6 @@ public class UserDAOImpl implements UserDao {
 
 			preparedStatement.setInt(5, user.getOperator().getOperatorId1());
 
-//			System.out.println(user.getOperator().getOperatorname());
 			flag = preparedStatement.executeUpdate() > 0;
 
 		} catch (SQLException e) {
@@ -81,18 +79,16 @@ public class UserDAOImpl implements UserDao {
 	}
 
 	public int findUserId(User user) {
-//		String findId = "select user_id from userlogin where Email_id='" + user.getEmailid() + "'";
-		String findId = "select user_id from userlogin where Email_id=?";
+		String findId = "select user_id from userlogin where Email_id='" + user.getEmailid() + "'";
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
 		int id = 0;
 		try {
-			preparedStatement = connection.prepareStatement(findId);
-			preparedStatement.setString(1, user.getEmailid());
-			resultSet = preparedStatement.executeQuery();
+			preparedStatement=connection.prepareStatement(findId);
 
+			resultSet=preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				id = resultSet.getInt(1);
 
@@ -101,7 +97,6 @@ public class UserDAOImpl implements UserDao {
 
 			e.printStackTrace();
 		}
-
 		finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
@@ -110,7 +105,7 @@ public class UserDAOImpl implements UserDao {
 	}
 
 	public User findUser(String emailId) {
-		String Query = "select user_id,user_name,Email_id,phone_number,password,wallet,operator_id from userlogin where Email_id=?";
+		String query = "select user_id,user_name,Email_id,phone_number,password,wallet,operator_id from userlogin where Email_id=?";
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
 		User user = null;
@@ -118,7 +113,7 @@ public class UserDAOImpl implements UserDao {
 		ResultSet resultSet = null;
 		OperatorDAOImpl operatordao = new OperatorDAOImpl();
 		try {
-			preparedStatement = connection.prepareStatement(Query);
+			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, emailId);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
@@ -139,14 +134,14 @@ public class UserDAOImpl implements UserDao {
 	public int updateuserWallet(User user) {
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
-		String Query = "update userlogin set wallet=? where Email_id=?";
+		String query = "update userlogin set wallet=? where Email_id=?";
 
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		int i = 0;
 		try {
 
-			preparedStatement = connection.prepareStatement(Query);
+			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setDouble(1, user.getWallet());
 
 			preparedStatement.setString(2, user.getEmailid());
@@ -169,7 +164,7 @@ public class UserDAOImpl implements UserDao {
 	public boolean rechargeWalletupdate(double planPrice, User user) {
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
-		String Query = "update userlogin set wallet=? where Email_id=?";
+		String query = "update userlogin set wallet=? where Email_id=?";
 		String getWalletquery = "select wallet from userlogin where Email_id=?";
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -182,7 +177,7 @@ public class UserDAOImpl implements UserDao {
 			if (resultSet.next()) {
 				wallet = resultSet.getDouble(1);
 			}
-			preparedStatement = connection.prepareStatement(Query);
+			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setDouble(1, wallet - planPrice);
 
 			preparedStatement.setString(2, user.getEmailid());
@@ -203,7 +198,7 @@ public class UserDAOImpl implements UserDao {
 	public User findUser(int userId) {
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
-		String Query = "select user_id,user_name,Email_id,phone_number,password,wallet,operator_id from userlogin where user_id=?"
+		String query = "select user_id,user_name,Email_id,phone_number,password,wallet,operator_id from userlogin where user_id=?"
 				+ userId;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -212,7 +207,7 @@ public class UserDAOImpl implements UserDao {
 		OperatorDAOImpl operatordao = new OperatorDAOImpl();
 
 		try {
-			preparedStatement = connection.prepareStatement(Query);
+			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, userId);
 			resultSet = preparedStatement.executeQuery();
 
@@ -232,8 +227,8 @@ public class UserDAOImpl implements UserDao {
 	}
 
 	public List<Object> history(int userId) {
-		ConnectionClass conclass = new ConnectionClass();
-		Connection con = conclass.getConnection();
+		ConnectionClass connectionClass = new ConnectionClass();
+		Connection connection = connectionClass.getConnection();
 
 		String joinQuery = "select o.operator_name,h.mobile_number,h.plan_id,h.Recharge_date,h.Payment from operator_details o join history_details h on o.operator_id=h.operator_id where h.user_id=?";
 		ResultSet resultSet = null;
@@ -242,12 +237,12 @@ public class UserDAOImpl implements UserDao {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			preparedStatement = con.prepareStatement(joinQuery);
+			preparedStatement = connection.prepareStatement(joinQuery);
 			preparedStatement.setInt(1, userId);
 			resultSet = preparedStatement.executeQuery();
-			listObject = new ArrayList<Object>();
+			listObject = new ArrayList<>();
 			while (resultSet.next()) {
-				list = new ArrayList<Object>();
+				list = new ArrayList<>();
 
 				list.add(resultSet.getString("operator_name"));
 				list.add(resultSet.getLong("mobile_number"));
@@ -261,10 +256,12 @@ public class UserDAOImpl implements UserDao {
 
 			e.printStackTrace();
 		}
-
+		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
 		return listObject;
 	}
-	public boolean forgetPasssword(String Emailid, String password) {
+	public boolean forgetPasssword(String emailid, String password) {
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();
 		boolean flag = false;
@@ -274,14 +271,16 @@ public class UserDAOImpl implements UserDao {
 		
 		try {
 			preparedStatement=connection.prepareStatement(query);
-			preparedStatement.setString(1,Emailid );
+			preparedStatement.setString(1,emailid );
 			preparedStatement.setString(2,password) ;
 			flag=preparedStatement.executeUpdate()>0;
 		} catch (SQLException e) {
 		
 			e.printStackTrace();
 		}
-		
+		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
 
 		return flag;
 	}

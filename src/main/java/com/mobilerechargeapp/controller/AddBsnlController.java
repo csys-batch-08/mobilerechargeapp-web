@@ -33,7 +33,7 @@ public class AddBsnlController extends HttpServlet {
 		BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
 		boolean b=bsnlDao.insertBsnlnetwork(bsnlUser);
 		if(b) {
-			response.sendRedirect("bsnl.jsp");
+			response.sendRedirect("Bsnl");
 		}
 	
 	}

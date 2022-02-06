@@ -24,7 +24,7 @@ public class DeleteAirtelController extends HttpServlet {
   
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-HttpSession session=request.getSession();
+          HttpSession session=request.getSession();
 		int airtelId=Integer.parseInt(request.getParameter("airtelId"));
 		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
         boolean b=airtelDao.deleteAirtel(airtelId);

@@ -60,6 +60,7 @@ public class UserController extends HttpServlet {
 		{
 			HttpSession session=request.getSession();
 			session.setAttribute("email",e.getMessage2());
+//		   session.setAttribute(phonenumber,e.getMessage3());
 			response.sendRedirect("register.jsp");
 		}
 	
