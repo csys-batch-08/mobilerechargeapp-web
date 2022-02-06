@@ -111,7 +111,7 @@ public class JioDAOImpl implements JioDao {
 
 	public List<JioUser> showJioplan() {
 		JioUser jio = null;
-		List<JioUser> jioList = new ArrayList<JioUser>();
+		List<JioUser> jioList = new ArrayList<>();
 		String showQuery = "select jioplan_id,plan_name,price,validity,benefits,operator_id,status from jio_plans";
 		ConnectionClass connectionClass = new ConnectionClass();
 		Connection connection = connectionClass.getConnection();

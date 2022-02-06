@@ -49,24 +49,7 @@ public class ConnectionClass {
 		}
 	}
 
-	public static void close(Connection connection, ResultSet resultSet,PreparedStatement preparedStatement)
-			 {
-		try {
-			if (resultSet != null) {
-				resultSet.close();
-			}
-			if (preparedStatement != null) {
-				preparedStatement.close();
-			}
-			
-			if (connection != null) {
-				connection.close();
-			}
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-	}
-
+	
 	
 	
 }
