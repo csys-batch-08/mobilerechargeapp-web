@@ -45,9 +45,11 @@
 						<td>${bsnlUser.getValidity()}</td>
 						<td>${bsnlUser.getBenfits()}</td>
 						<td>${bsnlUser.getOperator().getOperatorname()}</td>
-						<td class="links"><a
-							href="RechargeBsnlController?planName=${bsnlUser.getPlanName()}&price=${bsnlUser.getPrice()}&operator=${bsnlUser.getOperator().getOperatorname()}"><button>RECHARGE</a>
-							</button></td>
+						<td class="links">
+						<a
+							href="RechargeBsnlController?planName=${bsnlUser.getPlanName()}&price=${bsnlUser.getPrice()}&operator=${bsnlUser.getOperator().getOperatorname()}">
+							<button>RECHARGE</button></a>
+							</td>
 					</tr>
 				</c:forEach>
 

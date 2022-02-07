@@ -28,20 +28,7 @@
 
 
 
-	<!-- <div class="searchbar">
-<form action="SearchVodafoneController">
-<label for="plan"></label>
-<input type="text" name="Viplan" id="plan">
-<input type="submit" value="search">
-</div>
 
-</form>
-
-	<div class="header">
-		<a href="wallet.jsp">wallet</a> <a href="history.jsp">RechargeHistory</a>
-		<a href="aboutus.jsp">AboutUs</a> <a href="contectus.jsp">ContectUs</a>
-		<a href="index.jsp">Logout</a>
-	</div> -->
 
 	<nav>
 		<ul>
@@ -69,7 +56,7 @@
 
 	<form>
 		<div>
-			<table style="width: 100%">
+			<table aria-describedby="Planvodafone" style="width: 100%">
 
 				<tr>
 

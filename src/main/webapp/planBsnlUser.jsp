@@ -42,17 +42,17 @@
         <c:remove var="balanceBsnl" scope="session" />
         </c:if> 
 </div>
-	<form>
-		<div>
-			<table style="width: 100%">
+	
+		
+			<table aria-describedby="PlanAirtel" style="width: 100%">
 
 				<tr>
 
-					<td><strong>PLANNAME</strong></td>
-					<td><strong>PRICE</strong></td>
-					<td><strong>VALIDITY</strong></td>
-					<td><strong>BENEFITS</strong></td>
-					<td><strong>OPERATOR</strong></td>
+					<th scope="col"><strong>PLANNAME</strong></th>
+					<th scope="col"><strong>PRICE</strong></th>
+					<th scope="col"><strong>VALIDITY</strong></th>
+					<th scope="col"><strong>BENEFITS</strong></th>
+					<th scope="col"><strong>OPERATOR</strong></th>
 
 				</tr>
 
@@ -65,14 +65,14 @@
 						<td>${bsnlUser.getBenfits()}</td>
 						<td>${bsnlUser.getOperator().getOperatorname()}</td>
 						<td class="links"><a
-							href="RechargeBsnlController?planName=${bsnlUser.getPlanName()}&price=${bsnlUser.getPrice()}&operator=${bsnlUser.getOperator().getOperatorname()}"><button>RECHARGE</a>
-							</button></td>
+							href="RechargeBsnlController?planName=${bsnlUser.getPlanName()}&price=${bsnlUser.getPrice()}&operator=${bsnlUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a>
+						</td>
 					</tr>
 				</c:forEach>
 
 			</table>
-		</div>
-	</form>
+	
+	
 
 
 </body>
