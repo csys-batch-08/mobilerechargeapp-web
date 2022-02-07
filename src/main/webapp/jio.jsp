@@ -13,9 +13,12 @@
 <link rel="stylesheet" type="text/css" href="assets/css/planAdmin.css"> 
 
 </head>
-<c:if test="${add!=null }">
-        <h3>JIO PLAN ADDED SUCESSFULLY</h3>
-        </c:if>
+
+
+     <%--  <c:if test="${add!=null }">
+        <h3=elementToFadeInAndOut>${add}</h3>
+        <c:remove var="add" scope="session" />
+        </c:if>  --%>
 
 <body style="text-align: center;">
 	<div class="header">

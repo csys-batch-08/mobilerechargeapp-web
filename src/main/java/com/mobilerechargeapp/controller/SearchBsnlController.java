@@ -16,23 +16,21 @@ import com.mobilerechargeapp.daoimpl.JioDAOImpl;
 import com.mobilerechargeapp.model.BsnlUser;
 import com.mobilerechargeapp.model.JioUser;
 
-
 @WebServlet("/SearchBsnlController")
 public class SearchBsnlController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	 @Override
-	 protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		String plan=request.getParameter("bsnlplan");
-		BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
-		List<BsnlUser> ShowPlan=bsnlDao.showBsnlplan(plan);
-		HttpSession session=request.getSession();
-		session.setAttribute("bsnlplan",ShowPlan);	
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("searchBsnlPlan.jsp");
+
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String plan = request.getParameter("bsnlplan");
+		BsnlDAOImpl bsnlDao = new BsnlDAOImpl();
+		List<BsnlUser> showPlan = bsnlDao.showBsnlplan(plan);
+		HttpSession session = request.getSession();
+		request.setAttribute("bsnlplan", showPlan);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchBsnlPlan.jsp");
 		requestDispatcher.forward(request, response);
-			
-		
 
 	}
 

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
     
 <!DOCTYPE html>
 <html lang="en">
@@ -44,6 +46,10 @@
 <input type="number" name="jioplanId" id="jioplanid">
 </div><br><br>
  <button> UPDATE</button>
+    <c:if test="${jioplanId!=null }">
+        <h3>${jioplanId}</h3>
+        <c:remove var="jioplanId" scope="session" />
+        </c:if> 
  
 </form>
 </body>

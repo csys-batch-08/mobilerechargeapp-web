@@ -18,23 +18,22 @@ import com.mobilerechargeapp.util.ConnectionClass;
 @WebServlet("/deleteplan")
 public class DeleteJioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session=request.getSession();
-		int jioId=Integer.parseInt(request.getParameter("jioId"));
-		JioDAOImpl jioDao=new JioDAOImpl();
-        boolean b=jioDao.deleteJio(jioId);
-        if(b) {
-        	List<JioUser>jioUserList=jioDao.showJioplan();
-        	request.setAttribute("jiolist",jioUserList);
-        	response.sendRedirect("jio");
-        	
-        }
-		
-	}
 
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		int jioId = Integer.parseInt(request.getParameter("jioId"));
+		JioDAOImpl jioDao = new JioDAOImpl();
+		boolean b = jioDao.deleteJio(jioId);
+		if (b) {
+			List<JioUser> jioUserList = jioDao.showJioplan();
+			request.setAttribute("jiolist", jioUserList);
+			response.sendRedirect("jio");
+
+		}
+
+	}
 
 }

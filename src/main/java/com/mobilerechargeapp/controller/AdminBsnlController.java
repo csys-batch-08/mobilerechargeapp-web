@@ -14,25 +14,22 @@ import javax.servlet.http.HttpSession;
 import com.mobilerechargeapp.daoimpl.BsnlDAOImpl;
 import com.mobilerechargeapp.model.BsnlUser;
 
-
-
-
 @WebServlet("/Bsnl")
 public class AdminBsnlController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession session=request.getSession();
-	   BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
-		BsnlUser bsnlUser=new BsnlUser();
-		List<BsnlUser>bsnlUserList=bsnlDao.showBsnlplan();
-		int findbsnlId=bsnlDao.findbsnlId(bsnlUser.getPlanName(), bsnlUser.getPrice());
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		BsnlDAOImpl bsnlDao = new BsnlDAOImpl();
+		BsnlUser bsnlUser = new BsnlUser();
+		List<BsnlUser> bsnlUserList = bsnlDao.showBsnlplan();
+		int findbsnlId = bsnlDao.findbsnlId(bsnlUser.getPlanName(), bsnlUser.getPrice());
 		session.setAttribute("findbsnlId", findbsnlId);
-		request.setAttribute("bsnllist",bsnlUserList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("bsnl.jsp");
+		request.setAttribute("bsnllist", bsnlUserList);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("bsnl.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

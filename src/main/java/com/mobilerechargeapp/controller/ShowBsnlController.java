@@ -15,26 +15,20 @@ import com.mobilerechargeapp.daoimpl.BsnlDAOImpl;
 
 import com.mobilerechargeapp.model.BsnlUser;
 
-
-
 @WebServlet("/planBsnlUser")
 public class ShowBsnlController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-	
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-	    BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
-		List<BsnlUser>bsnlUserList=bsnlDao.showuserBsnlplan();
-		HttpSession session=request.getSession();
-		request.setAttribute("bsnllist",bsnlUserList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("planBsnlUser.jsp");
+		BsnlDAOImpl bsnlDao = new BsnlDAOImpl();
+		List<BsnlUser> bsnlUserList = bsnlDao.showuserBsnlplan();
+		HttpSession session = request.getSession();
+		request.setAttribute("bsnllist", bsnlUserList);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("planBsnlUser.jsp");
 		requestDispatcher.forward(request, response);
 	}
-
-	
-	
 
 }

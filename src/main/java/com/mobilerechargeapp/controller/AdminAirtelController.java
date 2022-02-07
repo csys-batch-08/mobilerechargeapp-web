@@ -15,26 +15,23 @@ import com.mobilerechargeapp.daoimpl.AirtelDAOImpl;
 
 import com.mobilerechargeapp.model.AirtelUser;
 
-
-
 @WebServlet("/Airtel")
 public class AdminAirtelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession session=request.getSession();
-        AirtelDAOImpl airtelDao=new AirtelDAOImpl();
-		AirtelUser airtelUser=new AirtelUser();
-		List<AirtelUser>airtelUserList=airtelDao.showAirtelplan();
-		int findairtelId=airtelDao.findairtelId(airtelUser.getPlanName(),airtelUser.getPrice());
-		session.setAttribute("findairtelId",findairtelId);
-		request.setAttribute("airtellist",airtelUserList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("airtel.jsp");
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		AirtelDAOImpl airtelDao = new AirtelDAOImpl();
+		AirtelUser airtelUser = new AirtelUser();
+		List<AirtelUser> airtelUserList = airtelDao.showAirtelplan();
+		int findairtelId = airtelDao.findairtelId(airtelUser.getPlanName(), airtelUser.getPrice());
+		session.setAttribute("findairtelId", findairtelId);
+		request.setAttribute("airtellist", airtelUserList);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("airtel.jsp");
 		requestDispatcher.forward(request, response);
 	}
-
-	
 
 }

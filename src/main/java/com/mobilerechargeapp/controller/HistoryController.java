@@ -16,48 +16,40 @@ import com.mobilerechargeapp.daoimpl.HistorydetailsDAOImpl;
 import com.mobilerechargeapp.model.HistoryDetails;
 import com.mobilerechargeapp.model.User;
 
-
 @WebServlet("/HistorydetailsController")
 public class HistoryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("CurrentUser");
-		SimpleDateFormat sdf=new SimpleDateFormat();
-		int userId=Integer.parseInt(request.getParameter("userId"));
-		long mobileNumber=Long.parseLong(request.getParameter("mobilenumber"));
-		int operatorId=Integer.parseInt(request.getParameter("operatorId"));
-		int planId=Integer.parseInt(request.getParameter("planId"));
-		Date  rechargeDate1 = new Date();
-        Date rechargeDate=null;
+		SimpleDateFormat sdf = new SimpleDateFormat();
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		long mobileNumber = Long.parseLong(request.getParameter("mobilenumber"));
+		int operatorId = Integer.parseInt(request.getParameter("operatorId"));
+		int planId = Integer.parseInt(request.getParameter("planId"));
+		Date rechargeDate1 = new Date();
+		Date rechargeDate = null;
 		try {
 			rechargeDate = sdf.parse(request.getParameter("Date"));
 		} catch (ParseException e) {
-			
+
 			e.printStackTrace();
 		}
-		double amount=Double.parseDouble(request.getParameter("wallet"));
-		
-	
-		HistoryDetails historyDetails = new HistoryDetails(userId, operatorId, mobileNumber, planId,
-				rechargeDate, amount);
+		double amount = Double.parseDouble(request.getParameter("wallet"));
+
+		HistoryDetails historyDetails = new HistoryDetails(userId, operatorId, mobileNumber, planId, rechargeDate,
+				amount);
 		HistorydetailsDAOImpl historyDao = new HistorydetailsDAOImpl();
 		boolean b = historyDao.insertDetails(historyDetails);
-		
-		
-	
-		if(b == true) {
+
+		if (b == true) {
 			response.sendRedirect("operator.jsp");
 		}
-	
-				
-		
-		
-	}
 
-	
+	}
 
 }

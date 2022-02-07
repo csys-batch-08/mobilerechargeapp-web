@@ -12,57 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mobilerechargeapp.daoimpl.AirtelDAOImpl;
-import com.mobilerechargeapp.daoimpl.JioDAOImpl;
 import com.mobilerechargeapp.daoimpl.VodafoneDAOImpl;
-import com.mobilerechargeapp.model.JioUser;
-import com.mobilerechargeapp.model.VodafoneUser;
 
+import com.mobilerechargeapp.model.VodafoneUser;
 
 @WebServlet("/SearchVodafoneController")
 public class SearchVodafoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
-//String plan=request.getParameter("Viplan");
-//		
-//VodafoneDAOImpl vodafoneDao=new VodafoneDAOImpl();
-//List<VodafoneUser>ShowPlan=vodafoneDao.showViplan(plan);
-//		
-////		List<VodafoneUser> list=new ArrayList<VodafoneUser>();
-//		for(int i=0;i<ShowPlan.size();i++)
-//		{
-//			VodafoneUser user=ShowPlan.get(i);
-//		if(user.getPlanName().equalsIgnoreCase(plan))
-//		{
-//			ShowPlan.add(user);
-//		}
-//		
-//		//Double amount=Double.parseDouble(plan);
-//		//String s=String.valueOf(amount);
-//		else if(String.valueOf(user.getPrice()).equalsIgnoreCase(plan))
-//		{
-//			ShowPlan.add(user);
-//		}
-//		
-//		
-//		
-//		}
-//		HttpSession session=request.getSession();
-//		session.setAttribute("list", ShowPlan);
-//		response.sendRedirect("searchVodafonePlan.jsp");
-//		
-		String plan=request.getParameter("Viplan");
-		VodafoneDAOImpl vodafoneDao=new VodafoneDAOImpl();
-		List<VodafoneUser>ShowPlan=vodafoneDao.showViplan(plan);
-		HttpSession session=request.getSession();
-		session.setAttribute("Viplan",ShowPlan);	
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("searchVodafonePlan.jsp");
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String plan = request.getParameter("Viplan");
+		VodafoneDAOImpl vodafoneDao = new VodafoneDAOImpl();
+		List<VodafoneUser> showPlan = vodafoneDao.showViplan(plan);
+		HttpSession session = request.getSession();
+		request.setAttribute("Viplan", showPlan);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchVodafonePlan.jsp");
 		requestDispatcher.forward(request, response);
-			
+
 	}
 
 }

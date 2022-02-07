@@ -15,26 +15,21 @@ import com.mobilerechargeapp.daoimpl.AirtelDAOImpl;
 
 import com.mobilerechargeapp.model.AirtelUser;
 
-
-
 @WebServlet("/planAirtelUser")
 public class ShowAirtelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
-    
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
-		List<AirtelUser>airtelUserList=airtelDao.showUserAirtelplan();
-		HttpSession session=request.getSession();
-		request.setAttribute("airtellist",airtelUserList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("planAirtelUser.jsp");
+		AirtelDAOImpl airtelDao = new AirtelDAOImpl();
+		List<AirtelUser> airtelUserList = airtelDao.showUserAirtelplan();
+		HttpSession session = request.getSession();
+		request.setAttribute("airtellist", airtelUserList);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("planAirtelUser.jsp");
 		requestDispatcher.forward(request, response);
-	
-	}
 
-	
+	}
 
 }

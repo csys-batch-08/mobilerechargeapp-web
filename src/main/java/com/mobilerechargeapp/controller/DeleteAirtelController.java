@@ -17,27 +17,25 @@ import com.mobilerechargeapp.daoimpl.JioDAOImpl;
 import com.mobilerechargeapp.model.AirtelUser;
 import com.mobilerechargeapp.util.ConnectionClass;
 
-
 @WebServlet("/DeleteairtelController")
 public class DeleteAirtelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-          HttpSession session=request.getSession();
-		int airtelId=Integer.parseInt(request.getParameter("airtelId"));
-		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
-        boolean b=airtelDao.deleteAirtel(airtelId);
-        if(b) {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		int airtelId = Integer.parseInt(request.getParameter("airtelId"));
+		AirtelDAOImpl airtelDao = new AirtelDAOImpl();
+		boolean b = airtelDao.deleteAirtel(airtelId);
+		if (b) {
 
-    		List<AirtelUser>airtelUserList=airtelDao.showAirtelplan();
-    		request.setAttribute("airtellist",airtelUserList);
-			 response.sendRedirect("airtel.jsp"); 
-        	
-			
-        }
-		
+			List<AirtelUser> airtelUserList = airtelDao.showAirtelplan();
+			request.setAttribute("airtellist", airtelUserList);
+			response.sendRedirect("airtel.jsp");
+
+		}
+
 	}
-
 
 }

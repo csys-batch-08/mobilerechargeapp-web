@@ -21,27 +21,24 @@ import com.mobilerechargeapp.util.ConnectionClass;
 @WebServlet("/UpdateairtelController")
 public class UpdateAirtelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String planname=request.getParameter("planname");
-		Double  price=Double.parseDouble(request.getParameter("price"));
-		String validity=request.getParameter("validity");
-		String benefits=request.getParameter("benefits");
-		int airtelplanId =Integer.parseInt(request.getParameter("airtelplanId"));
-		
-		AirtelUser airtelUser=new 	AirtelUser();
-		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
-		boolean b=airtelDao.updateAirtel(planname, price, validity, benefits, airtelplanId);
-		if(b) {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String planname = request.getParameter("planname");
+		Double price = Double.parseDouble(request.getParameter("price"));
+		String validity = request.getParameter("validity");
+		String benefits = request.getParameter("benefits");
+		int airtelplanId = Integer.parseInt(request.getParameter("airtelplanId"));
+
+		AirtelUser airtelUser = new AirtelUser();
+		AirtelDAOImpl airtelDao = new AirtelDAOImpl();
+		boolean b = airtelDao.updateAirtel(planname, price, validity, benefits, airtelplanId);
+		if (b) {
 			response.sendRedirect("Airtel");
 		}
-    
 
-		
-		
 	}
 
 }

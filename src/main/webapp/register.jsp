@@ -30,14 +30,18 @@
 				 or more character may include (&@#$_)" required><br>
 		<label for="Operatorname">OperatorName</label> <input type="text"
 			name="operatorName" id="Operatorname" required><br>
-		         <c:if test="${email!=null }">
-			     <h2>${email}</h2>
-			     <c:remove var="email" scope="session" />
-		         </c:if>
+		         
 		<div class="formBtn">
 			<input type="submit" value="SignIn">
 		</div>
-
+		<c:if test="${email!=null }">
+			     <h2>${email}</h2>
+			     <c:remove var="email" scope="session" />
+		         </c:if>
+      <c:if test="${phonenumber!=null }">
+			     <h2>${phonenumber}</h2>
+			     <c:remove var="phonenumber" scope="session" />
+		         </c:if>
 
 	</form>
 

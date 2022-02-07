@@ -17,38 +17,6 @@
 </head>
 <body>
 
-	<%
-	String error = (String) session.getAttribute("balance");
-	if (error != null) {
-	%>
-	<h1><%=error%></h1>
-	<%
-	session.removeAttribute("balance");
-	%>
-	<%
-	}
-	%>
-
-
-
-
-
-
-
-	<!-- <div class="searchbar">
-<form action="SearchBsnlController">
-<label for="plan"></label>
-<input type="text" name="bsnlplan" id="plan">
-<input type="submit" value="search">
-</div>
-
-</form>
-
-	<div class="header">
-		<a href="Operator.jsp">Home</a> <a href="wallet.jsp">wallet</a> <a
-			href="history.jsp">RechargeHistory</a> <a href="aboutus.jsp">AboutUs</a>
-		<a href="contectus.jsp">ContectUs</a> <a href="index.jsp">Logout</a>
-	</div> -->
 	<nav>
 		<ul>
 			<div class="header">
@@ -68,9 +36,12 @@
 			</li>
 		</ul>
 	</nav>
-
-
-
+<div style="text-align:center;">
+<c:if test="${balanceBsnl!=null }">
+        <h2>${balanceBsnl}</h2>
+        <c:remove var="balanceBsnl" scope="session" />
+        </c:if> 
+</div>
 	<form>
 		<div>
 			<table style="width: 100%">

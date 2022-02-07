@@ -37,7 +37,7 @@ public class RechargeJioController extends HttpServlet {
 			}
 		} catch (ErrorFound e) {
 			session.setAttribute("balancejio", e.getMessage1());
-			response.sendRedirect("planJioUser.jsp");
+			response.sendRedirect("planJioUser");
 		}
 
 	}

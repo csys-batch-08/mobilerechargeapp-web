@@ -41,19 +41,22 @@ public class UserDAOImpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionClass.close(connection, preparedStatement, null);
+		}
 
 		return flag;
 
 	}
 
 	public User validiateUser(String Emailid, String password) {
-		String Query = "select user_id,user_name,Email_id,phone_number,password,wallet,operator_id from userlogin where Email_id=? and password=?";
+		String query = "select user_id,user_name,Email_id,phone_number,password,wallet,operator_id from userlogin where Email_id=? and password=?";
 		Connection connection = ConnectionClass.getConnection();
 		User user = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
-			preparedStatement = connection.prepareStatement(Query);
+			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, Emailid);
 			preparedStatement.setString(2, password);
 			resultSet = preparedStatement.executeQuery();

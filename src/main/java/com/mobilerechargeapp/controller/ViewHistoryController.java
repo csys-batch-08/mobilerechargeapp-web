@@ -15,23 +15,21 @@ import com.mobilerechargeapp.Dao.UserDao;
 import com.mobilerechargeapp.daoimpl.UserDAOImpl;
 import com.mobilerechargeapp.model.User;
 
-
 @WebServlet("/ViewHistoryController")
 public class ViewHistoryController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
-
-  
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  HttpSession session=request.getSession();
-	  User user=(User)session.getAttribute("CurrentUser");
-	  UserDao userDao=new UserDAOImpl();
-      List<Object> list= userDao.history(user.getUserId());
-      System.out.println(user.getUserId());
-      session.setAttribute("List", list);
-	  RequestDispatcher requestDispatcher=request.getRequestDispatcher("history.jsp");
-	  requestDispatcher.forward(request, response);
-		
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("CurrentUser");
+		UserDao userDao = new UserDAOImpl();
+		List<Object> list = userDao.history(user.getUserId());
+		session.setAttribute("List", list);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("history.jsp");
+		requestDispatcher.forward(request, response);
+
 	}
 
 }

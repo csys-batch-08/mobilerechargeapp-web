@@ -30,16 +30,14 @@
 			name="password" id="PASSWORD" pattern="[a-zA-Z0-9&@#$_]{8,15}"
 			title="8
 				 or more character may include (&@#$_)" required>
-         <c:if test="${invalid!=null }">
-        <h3>${invalid}</h3>
-        <c:remove var="invalid" scope="session" />
-        </c:if> 
-
        <button >LOGIN</button>
        <a href="forgetPassword.jsp">ForgetPassword?</a>
        <a href="register.jsp">SignUp?</a> 
     
-      
+      <c:if test="${invalid!=null }">
+        <h3>${invalid}</h3>
+        <c:remove var="invalid" scope="session" />
+        </c:if> 
 	</Form>
 </div>
 </body>

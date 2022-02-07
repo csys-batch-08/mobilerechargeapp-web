@@ -24,8 +24,7 @@ import com.mobilerechargeapp.model.Operator;
 import com.mobilerechargeapp.model.User;
 
 @WebServlet("/RechargeController")
-public class RechargeController extends HttpServlet
-{
+public class RechargeController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)

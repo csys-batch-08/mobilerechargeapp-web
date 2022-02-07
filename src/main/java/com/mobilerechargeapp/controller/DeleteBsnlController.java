@@ -16,25 +16,23 @@ import com.mobilerechargeapp.daoimpl.JioDAOImpl;
 import com.mobilerechargeapp.model.BsnlUser;
 import com.mobilerechargeapp.util.ConnectionClass;
 
-
 @WebServlet("/DeletebsnlController")
 public class DeleteBsnlController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    HttpSession session=request.getSession();  
-		int bsnlId=Integer.parseInt(request.getParameter("bsnlId"));
-		BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
-		boolean b=bsnlDao.deleteBsnl(bsnlId);
-		if(b) {
-			List<BsnlUser>bsnlUserList=bsnlDao.showBsnlplan();
-			request.setAttribute("bsnllist",bsnlUserList);
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		int bsnlId = Integer.parseInt(request.getParameter("bsnlId"));
+		BsnlDAOImpl bsnlDao = new BsnlDAOImpl();
+		boolean b = bsnlDao.deleteBsnl(bsnlId);
+		if (b) {
+			List<BsnlUser> bsnlUserList = bsnlDao.showBsnlplan();
+			request.setAttribute("bsnllist", bsnlUserList);
 			response.sendRedirect("Bsnl");
-			
+
+		}
 	}
-	}
-	
 
 }

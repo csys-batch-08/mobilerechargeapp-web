@@ -107,3 +107,15 @@ button {
 	background: white;
 	color: black;
 }
+.elementToFadeInAndOut {
+    -webkit-animation: fadeinout 0.5s linear forwards;
+    animation: fadeinout 5s linear forwards;
+}
+@-webkit-keyframes fadeinout {
+  30%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+@keyframes fadeinout {
+  70%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}

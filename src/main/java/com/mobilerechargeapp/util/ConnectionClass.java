@@ -11,12 +11,12 @@ public class ConnectionClass {
 	public static Connection getConnection() 
 	{
 		
-		Connection con=null;
+		Connection connection=null;
 		
 			try {
 				Class.forName("oracle.jdbc.OracleDriver");
                 String url="jdbc:oracle:thin:@localhost:1521:xe";
-			   con = DriverManager.getConnection(url,"system","oracle");
+			   connection = DriverManager.getConnection(url,"system","oracle");
 			} 
 			catch (ClassNotFoundException e) 
 			{
@@ -27,7 +27,7 @@ public class ConnectionClass {
 				e.getMessage();
 			
 			}
-			return con;
+			return connection;
 			 
 		
 }
