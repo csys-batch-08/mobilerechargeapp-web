@@ -58,19 +58,19 @@
 <div align="center">
  
 <div class="singleCard">
-<a href="planJioUser"><b>Jio</b></a>
+<a href="planJioUser"><strong>Jio</strong></a>
 <img src="assets/images/jiologo.jpg">
 </div>
 	<div class="singleCard">
-	<a href="planAirtelUser"><b>Airtel</b></a>
+	<a href="planAirtelUser"><strong>Airtel</strong></a>
 	<img src="assets/images/airtel logo.png">
 	</div>
 	<div class="singleCard">
-	<a href="planVodafoneUser"><b>vodafone</b></a>
+	<a href="planVodafoneUser"><strong>vodafone</strong></a>
 	<img src="assets/images/VI-Logo-PNG.jpg">
 	</div>
 	<div class="singleCard">
-	<a href="planBsnlUser"><b>Bsnl</b></a>
+	<a href="planBsnlUser"><strong>Bsnl</strong></a>
 	<img src="assets/images/BSNL logo.png">
 	</div>
 </div>

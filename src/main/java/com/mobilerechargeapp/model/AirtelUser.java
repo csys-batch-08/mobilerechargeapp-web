@@ -1,8 +1,9 @@
 package com.mobilerechargeapp.model;
 
+
 import java.util.Objects;
 
-public class AirtelUser {
+public class AirtelUser{
 	private int airtelId;
 	private String planName;
 	private double price;

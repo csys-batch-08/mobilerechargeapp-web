@@ -19,29 +19,19 @@ import com.mobilerechargeapp.util.ConnectionClass;
 public class BsnlDAOImpl implements BsnlDao {
 	public boolean insertBsnlnetwork(BsnlUser bsnl) {
 		boolean flag = false;
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		String insertQuery = "insert into bsnl_plans(plan_name,price,validity,benefits,operator_id)values(?,?,?,?,?)";
-		String subQuery = "select operator_id,operator_name from operator_details where operator_name=?";
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
+	int operatorId=	bsnlDao.operatorName(bsnl.getOperator().getOperatorname());
 		try {
 			preparedStatement = connection.prepareStatement(insertQuery);
 			preparedStatement.setString(1, bsnl.getPlanName());
 			preparedStatement.setDouble(2, bsnl.getPrice());
 			preparedStatement.setString(3, bsnl.getValidity());
 			preparedStatement.setString(4, bsnl.getBenfits());
-
-			PreparedStatement preparedStatement2 = connection.prepareStatement(subQuery);
-
-			preparedStatement2.setString(1, bsnl.getOperator().getOperatorname());
-
-			resultSet = preparedStatement2.executeQuery();
-			int opId = 0;
-			if (resultSet.next()) {
-				opId = resultSet.getInt(1);
-			}
-			preparedStatement.setInt(5, opId);
+			preparedStatement.setInt(5,operatorId );
 			flag = preparedStatement.executeUpdate() > 0;
 
 		} catch (SQLException e) {
@@ -53,10 +43,37 @@ public class BsnlDAOImpl implements BsnlDao {
 		return flag;
 
 	}
+	
+	public int operatorName(String opertorName) {
+		Connection connection=ConnectionClass.getConnection();
+		String subQuery = "select operator_id,operator_name from operator_details where operator_name=?";
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int opId = 0;
+		try {
+			preparedStatement = connection.prepareStatement(subQuery);
+			preparedStatement.setString(1,opertorName);
+			resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			opId = resultSet.getInt(1);
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
+		return opId;
+		
+	}
+	
+	
+	
+	
+	
 
 	public boolean updateBsnl(String planName, Double price, String validity, String benefits, int bsnlId) {
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		boolean flag = false;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -83,8 +100,7 @@ public class BsnlDAOImpl implements BsnlDao {
 	public boolean deleteBsnl(int bsnlId) {
 		String query = "select status from bsnl_plans  where bsnlplan_id=?";
 		boolean flag = false;
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		String deleteQuery = null;
@@ -115,8 +131,7 @@ public class BsnlDAOImpl implements BsnlDao {
 
 	public int findbsnlId(String planName, Double price) {
 		String query = "select bsnlplan_id from BSNL_plans where plan_name=? and price=?";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		int bsnlId = 0;
@@ -142,8 +157,7 @@ public class BsnlDAOImpl implements BsnlDao {
 		BsnlUser bsnl = new BsnlUser();
 		List<BsnlUser> bsnlList = new ArrayList<>();
 		String showQuery = "select bsnlplan_id,plan_name,price,validity,benefits,operator_id,status from BSNL_plans ";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
@@ -172,8 +186,7 @@ public class BsnlDAOImpl implements BsnlDao {
 		List<BsnlUser> bsnlList = new ArrayList<>();
 		String showQuery = "select bsnlplan_id,plan_name,price,validity,benefits,operator_id from BSNL_plans where plan_name like '"
 				+ search + "%' or price like '" + search + "%' and status='Active'";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
@@ -196,8 +209,7 @@ public class BsnlDAOImpl implements BsnlDao {
 	}
 
 	public BsnlUser findPlan(int id) {
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		BsnlDAOImpl bsnlDao = new BsnlDAOImpl();
 		int validity = 0;
 		// int JioUserId = jioDao.findjioId(jioUser.getPlanName(), jioUser.getPrice());
@@ -229,10 +241,8 @@ public class BsnlDAOImpl implements BsnlDao {
 	}
 
 	public int findBsnlvalidity(BsnlUser bsnlUser) {
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		BsnlDAOImpl bsnlDAOImpl = new BsnlDAOImpl();
-
 		int validity = 0;
 		int bsnlUserId = bsnlDAOImpl.findbsnlId(bsnlUser.getPlanName(), bsnlUser.getPrice());
 		String query = "select validity from  BSNL_plans where bsnlplan_id=?" + bsnlUserId;
@@ -259,8 +269,7 @@ public class BsnlDAOImpl implements BsnlDao {
 		BsnlUser bsnl = new BsnlUser();
 		List<BsnlUser> bsnlList = new ArrayList<>();
 		String showQuery = "select bsnlplan_id,plan_name,price,validity,benefits,operator_id,status from BSNL_plans where status='Active'";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {

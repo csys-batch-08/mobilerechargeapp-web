@@ -1,8 +1,9 @@
 package com.mobilerechargeapp.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Admin {
+public class Admin implements Serializable {
     private String adminEmailId;
     private String password;
 	public String getAdminEmailId() {

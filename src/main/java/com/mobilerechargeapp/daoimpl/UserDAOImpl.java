@@ -18,8 +18,7 @@ public class UserDAOImpl implements UserDao {
 
 	public boolean insertUser(User user) {
 		boolean flag = false;
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		String subQue = "select operator_id,operator_name from operator_details where operator_name=?";
 		PreparedStatement preparedStatement = null;
 		try {
@@ -83,8 +82,7 @@ public class UserDAOImpl implements UserDao {
 
 	public int findUserId(User user) {
 		String findId = "select user_id from userlogin where Email_id='" + user.getEmailid() + "'";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement=null;
 		ResultSet resultSet=null;
 		int id = 0;
@@ -109,8 +107,7 @@ public class UserDAOImpl implements UserDao {
 
 	public User findUser(String emailId) {
 		String query = "select user_id,user_name,Email_id,phone_number,password,wallet,operator_id from userlogin where Email_id=?";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		User user = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -135,11 +132,9 @@ public class UserDAOImpl implements UserDao {
 	}
 
 	public int updateuserWallet(User user) {
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		String query = "update userlogin set wallet=? where Email_id=?";
-
-		PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		int i = 0;
 		try {
@@ -165,8 +160,7 @@ public class UserDAOImpl implements UserDao {
 	}
 
 	public boolean rechargeWalletupdate(double planPrice, User user) {
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		String query = "update userlogin set wallet=? where Email_id=?";
 		String getWalletquery = "select wallet from userlogin where Email_id=?";
 		PreparedStatement preparedStatement = null;
@@ -199,8 +193,7 @@ public class UserDAOImpl implements UserDao {
 	}
 
 	public User findUser(int userId) {
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		String query = "select user_id,user_name,Email_id,phone_number,password,wallet,operator_id from userlogin where user_id=?"
 				+ userId;
 		PreparedStatement preparedStatement = null;
@@ -230,9 +223,7 @@ public class UserDAOImpl implements UserDao {
 	}
 
 	public List<Object> history(int userId) {
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
-
+		Connection connection=ConnectionClass.getConnection();
 		String joinQuery = "select o.operator_name,h.mobile_number,h.plan_id,h.Recharge_date,h.Payment from operator_details o join history_details h on o.operator_id=h.operator_id where h.user_id=?";
 		ResultSet resultSet = null;
 		List<Object> list = null;
@@ -269,11 +260,9 @@ public class UserDAOImpl implements UserDao {
  {
 	String email=null;
 		ResultSet resultSet = null;
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+		Connection connection=ConnectionClass.getConnection();
+	   PreparedStatement preparedStatement = null;
 		try {
-			connection =connectionClass.getConnection();
 			String query = "select Email_id from userlogin where Email_id =?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1,emailid);
@@ -295,8 +284,7 @@ public class UserDAOImpl implements UserDao {
 	
 	
 	public int forgetPasssword(String emailid, String password) {
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		String query="update userlogin set password=? where Email_id=?";
 		PreparedStatement preparedStatement=null;
 		ResultSet resultSet=null;

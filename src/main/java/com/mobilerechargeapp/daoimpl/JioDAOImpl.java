@@ -16,30 +16,23 @@ import com.mobilerechargeapp.util.ConnectionClass;
 
 public class JioDAOImpl implements JioDao {
 
+	
 	public boolean insertJionet(JioUser jio) {
 		boolean flag = false;
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		String insertQuery = "insert into jio_plans(plan_name,price,validity,benefits,operator_id)values(?,?,?,?,?)";
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		JioDAOImpl jioDao=new JioDAOImpl();
+	int operatorId=jioDao.operatorName(jio.getOperator().getOperatorname());
 		try {
-			String subQuery = "select operator_id,operator_name from operator_details where operator_name=?";
-			preparedStatement = connection.prepareStatement(subQuery);
-			preparedStatement.setString(1, jio.getOperator().getOperatorname());
-			resultSet = preparedStatement.executeQuery();
-			int opId = 0;
-			if (resultSet.next()) {
-				opId = resultSet.getInt(1);
-			}
 			preparedStatement = connection.prepareStatement(insertQuery);
 			preparedStatement.setString(1, jio.getPlanName());
 			preparedStatement.setDouble(2, jio.getPrice());
 			preparedStatement.setString(3, jio.getValidity());
 			preparedStatement.setString(4, jio.getBenfits());
-			preparedStatement.setInt(5, opId);
+			preparedStatement.setInt(5, operatorId);
 			flag = preparedStatement.executeUpdate() > 0;
-
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -48,11 +41,41 @@ public class JioDAOImpl implements JioDao {
 		}
 		return flag;
 	}
+	
+
+	
+	public int operatorName(String opertorName) {
+		Connection connection=ConnectionClass.getConnection();
+		String subQuery = "select operator_id,operator_name from operator_details where operator_name=?";
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int opId = 0;
+		try {
+			preparedStatement = connection.prepareStatement(subQuery);
+			preparedStatement.setString(1,opertorName);
+			resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			opId = resultSet.getInt(1);
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
+		return opId;
+		
+	}
+	
+	
+	
+	
+	
+	
 
 	public boolean updateJio(String planName1, Double price1, String validity1, String benefits1, int jioplanId) {
 		String updateQuery = "update jio_plans set plan_name=?,price=?,validity=?,benefits=? where jioplan_id=?";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		boolean flag = false;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -76,8 +99,7 @@ public class JioDAOImpl implements JioDao {
 
 	public boolean deleteJio(int jioplanId) {
 		String query = "select status from jio_plans  where jioplan_id=?";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		boolean flag = false;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -113,8 +135,7 @@ public class JioDAOImpl implements JioDao {
 		JioUser jio = null;
 		List<JioUser> jioList = new ArrayList<>();
 		String showQuery = "select jioplan_id,plan_name,price,validity,benefits,operator_id,status from jio_plans";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
@@ -146,22 +167,25 @@ public class JioDAOImpl implements JioDao {
 
 	public int findjioId(String planName, Double price) {
 		String query = "select jioplan_id from jio_plans where plan_name=? and price=?";
-		ConnectionClass conclass = new ConnectionClass();
-		Connection con = conclass.getConnection();
-		PreparedStatement pstmt;
+		Connection connection=ConnectionClass.getConnection();
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
 		int jioplanId = 0;
 		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, planName);
-			pstmt.setDouble(2, price);
-			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
-				jioplanId = rs.getInt(1);
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, planName);
+			preparedStatement.setDouble(2, price);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				jioplanId = resultSet.getInt(1);
 				return jioplanId;
 			}
 		} catch (SQLException e) {
-			System.out.println("invalid_id");
+			
 			e.printStackTrace();
+		}
+		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 
 		return jioplanId;
@@ -169,18 +193,17 @@ public class JioDAOImpl implements JioDao {
 	}
 
 	public int findJiovalidity(JioUser jioUser) {
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		JioDAOImpl jioDao = new JioDAOImpl();
 		int validity = 0;
-		int JioUserId = jioDao.findjioId(jioUser.getPlanName(), jioUser.getPrice());
+		int jioUserId = jioDao.findjioId(jioUser.getPlanName(), jioUser.getPrice());
 //		String Query = "select validity from jio_plans where jioplan_id=" + JioUserId;
-		String Query = "select validity from jio_plans where jioplan_id=?" + JioUserId;
+		String query = "select validity from jio_plans where jioplan_id=?" + jioUserId;
 		ResultSet resultSet = null;
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = connection.prepareStatement(Query);
-			preparedStatement.setInt(1, JioUserId);
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, jioUserId);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				validity = resultSet.getInt(1);
@@ -197,10 +220,9 @@ public class JioDAOImpl implements JioDao {
 
 	public List<JioUser> showJioplan1() {
 		JioUser jio = null;
-		List<JioUser> jioList = new ArrayList<JioUser>();
+		List<JioUser> jioList = new ArrayList<>();
 		String showQuery = "select jioplan_id,plan_name,price,validity,benefits,operator_id from jio_plans order by price asc ";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
@@ -217,25 +239,26 @@ public class JioDAOImpl implements JioDao {
 				jioList.add(jio);
 			}
 		} catch (SQLException e) {
-			System.out.println("invalid");
+		
 			e.printStackTrace();
 		}
+		 finally {
+				ConnectionClass.close(connection, preparedStatement, resultSet);
+			}
 		return jioList;
 	}
 
 	public JioUser findPlan(int id) {
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		JioDAOImpl jioDao = new JioDAOImpl();
 		int validity = 0;
-		// int JioUserId = jioDao.findjioId(jioUser.getPlanName(), jioUser.getPrice());
 //		String Query = "select jioplan_id,plan_name,price,validity,benefits,operator_id from jio_plans where jioplan_id=" + id;
-		String Query = "select jioplan_id,plan_name,price,validity,benefits,operator_id from jio_plans where jioplan_id=?";
+		String query = "select jioplan_id,plan_name,price,validity,benefits,operator_id from jio_plans where jioplan_id=?";
 		ResultSet resultSet = null;
 		PreparedStatement preparedStatement = null;
 		JioUser plan = null;
 		try {
-			preparedStatement = connection.prepareStatement(Query);
+			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
@@ -256,11 +279,10 @@ public class JioDAOImpl implements JioDao {
 
 	public List<JioUser> showJioplan(String search) {
 		JioUser jio = null;
-		List<JioUser> jioList = new ArrayList<JioUser>();
+		List<JioUser> jioList = new ArrayList<>();
 		String showQuery = "select jioplan_id,plan_name,price,validity,benefits,operator_id,status from jio_plans where plan_name like '"
 				+ search + "%' or price like '" + search + "%' and status='Active'";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
@@ -287,10 +309,9 @@ public class JioDAOImpl implements JioDao {
 
 	public List<JioUser> showUserJioplan() {
 		JioUser jio = null;
-		List<JioUser> jioList = new ArrayList<JioUser>();
+		List<JioUser> jioList = new ArrayList<>();
 		String showQuery = "select jioplan_id,plan_name,price,validity,benefits,operator_id,status from jio_plans where status='Active'";
-		ConnectionClass connectionClass = new ConnectionClass();
-		Connection connection = connectionClass.getConnection();
+		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
@@ -318,6 +339,6 @@ public class JioDAOImpl implements JioDao {
 		}
 		return jioList;
 	}
-	
+
 
 }

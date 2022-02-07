@@ -19,9 +19,7 @@ import com.mobilerechargeapp.util.ConnectionClass;
 public class HistorydetailsDAOImpl implements HistorydetailsDao {
        public boolean insertDetails(HistoryDetails historyDetails) {
     	   boolean flag=false;
-   		ConnectionClass connectionClass = new ConnectionClass();
-   		Connection connection = connectionClass.getConnection();
-   		
+    		Connection connection=ConnectionClass.getConnection();
   		String insertQuery="insert into  history_details (user_id,mobile_number,operator_id,plan_id,Recharge_date,Payment)values(?,?,?,?,?,?)";
   		PreparedStatement preparedStatement=null;
   		ResultSet resultSet=null;
@@ -51,14 +49,16 @@ public class HistorydetailsDAOImpl implements HistorydetailsDao {
        {
     	   List<HistoryDetails> historyList=new ArrayList<>();
     	   String query="select history_id,user_id,operator_id,mobile_number,plan_id,Recharge_date,Payment  from history_details";
-    	   Connection con=ConnectionClass.getConnection();
+    	   Connection connection=ConnectionClass.getConnection();
+    	   PreparedStatement preparedStatement=null;
+    	   ResultSet resultSet=null;
     	   try
     	   {
-    	   Statement stmt=con.createStatement();
-    	   ResultSet rs=stmt.executeQuery(query);
-    	   while(rs.next())
+    		preparedStatement=connection.prepareStatement(query);
+    	  resultSet=preparedStatement.executeQuery();
+    	   while(resultSet.next())
     	   {
-    		   HistoryDetails his=new HistoryDetails(rs.getInt(2),rs.getInt(3), rs.getLong(4), rs.getInt(5), rs.getDate(6), rs.getDouble(7));
+    		   HistoryDetails his=new HistoryDetails(resultSet.getInt(2),resultSet.getInt(3), resultSet.getLong(4), resultSet.getInt(5), resultSet.getDate(6), resultSet.getDouble(7));
     		   historyList.add(his);
     	   }
     	   
@@ -67,6 +67,10 @@ public class HistorydetailsDAOImpl implements HistorydetailsDao {
     	   {
     		   e.printStackTrace();
     	   }
+    	   finally {
+   			ConnectionClass.close(connection, preparedStatement, resultSet);
+   		}
+
     	   
     	   return historyList;
     	   
@@ -95,7 +99,7 @@ public class HistorydetailsDAOImpl implements HistorydetailsDao {
 	public List<HistoryDetails> findUserHis(User user)
 	{
 		UserDAOImpl userDao=new UserDAOImpl();
-		List<HistoryDetails> userHistoryList=new ArrayList<HistoryDetails>();
+		List<HistoryDetails> userHistoryList=new ArrayList<>();
 		String query="select history_id,user_id,operator_id,mobile_number,plan_id,Recharge_date,Payment from history_details";
 		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement=null;
