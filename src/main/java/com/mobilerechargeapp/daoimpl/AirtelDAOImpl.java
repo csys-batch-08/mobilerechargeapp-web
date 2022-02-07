@@ -143,6 +143,7 @@ public class AirtelDAOImpl implements AirtelDao {
 		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(showQuery);
+			
 			resultSet = preparedStatement.executeQuery();
 			OperatorDAOImpl operatordao = new OperatorDAOImpl();
 			while (resultSet.next()) {
@@ -166,14 +167,16 @@ public class AirtelDAOImpl implements AirtelDao {
 	public List<AirtelUser> showAirtelplan(String search) {
 		AirtelUser airtel = null;
 		List<AirtelUser> airtelList = new ArrayList<>();
-		String showQuery = "select airtelplan_id,plan_name,price,validity,benefits,operator_id from Airtel_plans where plan_name like '"
-				+ search + "%' or price like '" + search + "%'";
+		String showQuery = "select airtelplan_id ,plan_name,price,validity,benefits,operator_id,status from  Airtel_plans where status='Active' and plan_name like ? or price like ?";
+
 	   Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
 		try {
 			preparedStatement = connection.prepareStatement(showQuery);
+			preparedStatement.setString(1, "%" + search.toLowerCase() + "%");
+			preparedStatement.setString(2, "%" + search.toLowerCase() + "%");
 			resultSet = preparedStatement.executeQuery();
 			OperatorDAOImpl operatordao = new OperatorDAOImpl();
 			while (resultSet.next()) {

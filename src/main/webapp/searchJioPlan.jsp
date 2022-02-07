@@ -39,7 +39,7 @@
 				</tr>
 				
 
-					<c:forEach items="${sessionScope.jioplan}" var="jioUser">
+					<c:forEach items="${requestScope.jioplan}" var="jioUser">
 					<tr>
 						<td>${jioUser.getPlanName()}</td>
 						<td>${jioUser.getPrice()}</td>

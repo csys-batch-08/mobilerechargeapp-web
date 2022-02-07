@@ -44,7 +44,7 @@
 </div>
 	
 		
-			<table aria-describedby="PlanAirtel" style="width: 100%">
+			<table aria-describedby="PlanBsnl" style="width: 100%">
 
 				<tr>
 

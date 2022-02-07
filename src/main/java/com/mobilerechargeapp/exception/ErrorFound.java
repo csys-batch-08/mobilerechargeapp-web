@@ -57,9 +57,10 @@ public class ErrorFound extends Exception {
 		
 	}
 	
-	/*
-	 * static final String ADMINPASSWORD="Paaword is Invalid"; public String
-	 * adminpassword() { return ADMINPASSWORD; }
-	 */
+	static final String AIRTELID="*Enter the Valid Network";
+	public String airtelId() {
+		return AIRTELID ;
+		
+	}
 	
 }

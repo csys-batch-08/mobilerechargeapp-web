@@ -35,7 +35,7 @@
 				</tr>
 				
 
-					<c:forEach items="${sessionScope.airtelplan}" var="airtelUser">
+					<c:forEach items="${requestScope.airtelplan}" var="airtelUser">
 					<tr>
 						<td>${airtelUser.getPlanName()}</td>
 						<td>${airtelUser.getPrice()}</td>

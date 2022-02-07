@@ -280,19 +280,14 @@ public class JioDAOImpl implements JioDao {
 	public List<JioUser> showJioplan(String search) {
 		JioUser jio = null;
 		List<JioUser> jioList = new ArrayList<>();
-		String showQuery = "select jioplan_id,plan_name,price,validity,benefits,operator_id,status from jio_plans where plan_name like '"
-				+ search + "%' or price like '" + search + "%' and status='Active' ";
-		
-//		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date,status from Product where Brand_name like'%"
-//				+ search + "%' or Brand_type like'%" + search + "%' or Brand_size like'%" + search
-//				+ "%' or color like'%" + search + "%' and status='available' ";
-
-
+		String showQuery = "select jioplan_id,plan_name,price,validity,benefits,operator_id,status from jio_plans where status='Active' and plan_name like ? or price like ?";
 		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(showQuery);
+			preparedStatement.setString(1, "%" + search.toLowerCase() + "%");
+			preparedStatement.setString(2, "%" + search.toLowerCase() + "%");
 			resultSet = preparedStatement.executeQuery();
 			OperatorDAOImpl operatordao = new OperatorDAOImpl();
 

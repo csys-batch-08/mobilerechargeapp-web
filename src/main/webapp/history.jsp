@@ -16,18 +16,11 @@
 <title>UserHistoryDetails</title>
 <link rel="stylesheet" type="text/css" href="assets/css/history.css"> 
 
-<!-- <script src=
-"https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
-  </script> -->
+
 </head>
 <body >
 
-<!--   <script>
-    swal("RECHARGE","IS","SUCCESFULLY", {
-      button: "I am new button",
- 
-    });
-  </script> -->
+
 <div class="header">
 <a href="operator.jsp">Home</a>
 <a href="wallet.jsp">wallet</a>
@@ -48,14 +41,14 @@
 	
 	
 
-	<table style="width:100%">
+	<table aria-describedby="UserHistory" style="width:100%">
 		<tr>
 			
-			<td><strong>OPERATOR NAME</strong></td>
-			<td><strong>PLAN ID</strong></td>
-			<td><strong>RECHARGE DATE</strong></td>
-			<td><strong>PAYMENT</strong></td>
-			<td><strong>MOBILE NUMBER</strong></td>
+			<th><strong>OPERATOR NAME</strong></th>
+			<th><strong>PLAN ID</strong></th>
+			<th><strong>RECHARGE DATE</strong></th>
+			<th><strong>PAYMENT</strong></th>
+			<th><strong>MOBILE NUMBER</strong></th>
 		</tr>
 	<c:forEach items="${sessionScope.List}" var="list">
 		<tr>
