@@ -184,13 +184,15 @@ public class BsnlDAOImpl implements BsnlDao {
 	public List<BsnlUser> showBsnlplan(String search) {
 		BsnlUser bsnl = new BsnlUser();
 		List<BsnlUser> bsnlList = new ArrayList<>();
-		String showQuery = "select bsnlplan_id,plan_name,price,validity,benefits,operator_id from BSNL_plans where plan_name like '"
-				+ search + "%' or price like '" + search + "%' and status='Active'";
+		String showQuery = "select bsnlplan_id ,plan_name,price,validity,benefits,operator_id,status from BSNL_plans where status='Active' and plan_name like ? or price like ?";
+
 		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(showQuery);
+			preparedStatement.setString(1, "%" + search.toLowerCase() + "%");
+			preparedStatement.setString(2, "%" + search.toLowerCase() + "%");
 			resultSet = preparedStatement.executeQuery();
 			OperatorDAOImpl operatordao = new OperatorDAOImpl();
 			while (resultSet.next()) {

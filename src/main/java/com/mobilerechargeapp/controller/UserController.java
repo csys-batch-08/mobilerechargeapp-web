@@ -36,10 +36,6 @@ public class UserController extends HttpServlet {
 		OperatorDAOImpl operatorDao = new OperatorDAOImpl();
 		Operator operator = operatorDao.findOperator(operatorName);
 		Connection con = ConnectionClass.getConnection();
-
-		PrintWriter pw = response.getWriter();
-		pw.write(username);
-		pw.write(email);
 		User user = new User(username, email, phonenumber, password, operator);
 
 		UserDAOImpl userDao = new UserDAOImpl();
