@@ -18,10 +18,6 @@
 			<a href="ContactUs.jsp">contactUs</a> <a href="index.jsp">Logout</a>
 		</div>
 	</form>
-	
-	
-	<form>
-		<div>
 			<table aria-describedby="searchJioplan" style="width: 100%">
 
 				<tr>
@@ -43,14 +39,13 @@
 						<td>${airtelUser.getBenfits()}</td>
 						<td>${airtelUser.getOperator().getOperatorname()}</td>
 					
-						<td class="links"><a href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</a></button></td>
+						<td class="links"><a href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a></td>
 						
 				</tr>
 				</c:forEach>
 
 			</table>
-		</div>
-	</form>
+
 	
 	
 	
