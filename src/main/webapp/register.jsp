@@ -25,7 +25,7 @@
 			name="phonenumber" id="Mobilenumber" pattern="[6-9]{1}[0-9]{9}"
 			title="Phone number with 7-9 and remaing 9 digit with 0-9" required><br>
 		<label for="PASSWORD">Password:</label> <input type="password"
-			name="password" id="Password" pattern="[a-zA-Z0-9&@#$_]{8,15}"
+			name="password" aria-label="password" pattern="[a-zA-Z0-9&@#$_]{8,15}"
 			title="8
 				 or more character may include (&@#$_)" required><br>
 		<label for="Operatorname">OperatorName</label> <input type="text"

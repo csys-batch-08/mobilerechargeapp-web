@@ -44,7 +44,7 @@ if(error!=null){
 			</div>
 			<li class="search-icon">
 				<form action="SearchAirtelPlanController">
-					<input type="search" name="airtelplan" id="plan"> <label
+					<input type="search" name="airtelplan" aria-label="airtelplan"> <label
 						class="icon"> <span class="fas fa-search"></span>
 					</label>
 				</form>

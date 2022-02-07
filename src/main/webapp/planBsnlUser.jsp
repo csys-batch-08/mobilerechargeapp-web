@@ -29,7 +29,7 @@
 			</div>
 			<li class="search-icon">
 				<form action="SearchBsnlController">
-					<input type="search" name="bsnlplan" id="plan"> <label
+					<input type="search" name="bsnlplan" aria-label="bsnlplan"> <label
 						class="icon"> <span class="fas fa-search"></span>
 					</label>
 				</form>

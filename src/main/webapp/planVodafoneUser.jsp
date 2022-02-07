@@ -42,7 +42,7 @@
 			</div>
 			<li class="search-icon">
 				<form action="SearchVodafoneController">
-					<input type="search" name="Viplan" id="plan"> <label
+					<input type="search" name="Viplan" aria-label="Viplan"> <label
 						class="icon"> <span class="fas fa-search"></span>
 					</label>
 				</form>
