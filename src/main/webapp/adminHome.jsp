@@ -24,16 +24,16 @@
 		
 
 		<div class="singleCard">
-			<a href="jio">JIO</a> <img src="assets/images/jiologo.jpg">
+			<a href="jio">JIO</a> <img src="assets/images/jiologo.jpg" alt="Some textual description of jio.jpg">
 		</div>
 		<div class="singleCard">
-			<a href="Airtel">AIRTEL</a> <img src="assets/images/airtel logo.png">
+			<a href="Airtel">AIRTEL</a> <img src="assets/images/airtel logo.png"alt="Some textual description of airtel.png">
 		</div>
 		<div class="singleCard">
-			<a href="vodadone">VODAFONE</a> <img src="assets/images/VI-Logo-PNG.jpg">
+			<a href="vodadone">VODAFONE</a> <img src="assets/images/VI-Logo-PNG.jpg"alt="Some textual description of vodafone.jpg">
 		</div>
 		<div class="singleCard">
-			<a href="Bsnl">BSNL</a> <img src="assets/images/BSNL logo.png">
+			<a href="Bsnl">BSNL</a> <img src="assets/images/BSNL logo.png"alt="Some textual description of bsnl.png">
 		</div>
 	</div>
 </body>

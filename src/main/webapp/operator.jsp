@@ -44,7 +44,6 @@
  <h3>AvailableBalance:<%=Amount %></h3>
  <%} %> --%>
  <div>
-<!--   <h1 style="text-align:center">SELECT YOUR NETWORK</h1> -->
   </div>
 <div class="header">
 <a href="operator.jsp">Home</a>
@@ -59,19 +58,19 @@
  
 <div class="singleCard">
 <a href="planJioUser"><strong>Jio</strong></a>
-<img src="assets/images/jiologo.jpg">
+<img src="assets/images/jiologo.jpg"alt="Some textual description of jio.jpg">
 </div>
 	<div class="singleCard">
 	<a href="planAirtelUser"><strong>Airtel</strong></a>
-	<img src="assets/images/airtel logo.png">
+	<img src="assets/images/airtel logo.png"alt="Some textual description of airtel.png">
 	</div>
 	<div class="singleCard">
 	<a href="planVodafoneUser"><strong>vodafone</strong></a>
-	<img src="assets/images/VI-Logo-PNG.jpg">
+	<img src="assets/images/VI-Logo-PNG.jpg"alt="Some textual description of vodafone.jpg">
 	</div>
 	<div class="singleCard">
 	<a href="planBsnlUser"><strong>Bsnl</strong></a>
-	<img src="assets/images/BSNL logo.png">
+	<img src="assets/images/BSNL logo.png" alt="Some textual description of bsnl.jpg">
 	</div>
 </div>
 

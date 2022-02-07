@@ -13,24 +13,24 @@
 	crossorigin="anonymous"></script>
 <title>ShowAirtelPlan</title>
 
-<link rel="stylesheet" type="text/css" href="assets/css/plan.css"> 
+<link rel="stylesheet" type="text/css" href="assets/css/plan.css">
 </head>
 
 <body>
 
-<%-- 
+	<%-- 
 	<%String error=(String)session.getAttribute("balance");
 if(error!=null){
 %>
 	<h1><%=error %></h1>
 	<%session.removeAttribute("balance"); %>
 	<%} %> --%>
-	 <c:if test="${balanceAirtel!=null }">
-        <h2>${balanceAirtel}</h2>
-        <c:remove var="balanceAirtel" scope="session" />
-        </c:if> 
-        
-	
+	<c:if test="${balanceAirtel!=null }">
+		<h2>${balanceAirtel}</h2>
+		<c:remove var="balanceAirtel" scope="session" />
+	</c:if>
+
+
 
 	<nav>
 		<ul>
@@ -54,34 +54,34 @@ if(error!=null){
 
 
 
-		
-			<table aria-describedby="PlanAirtel" style=width:100%;>
 
-				<tr>
+	<table aria-describedby="PlanAirtel" style="width: 100%;">
 
-					<th scope="col"><strong>PLANNAME</strong></th>
-					<th scope="col"><strong>PRICE</strong></th>
-					<th scope="col"><strong>VALIDITY</strong></th>
-					<th scope="col"><strong>BENEFITS</strong></th>
-					<th scope="col"><strong>OPERATOR</strong></th>
+		<tr>
 
-				</tr>
+			<th scope="col"><strong>PLANNAME</strong></th>
+			<th scope="col"><strong>PRICE</strong></th>
+			<th scope="col"><strong>VALIDITY</strong></th>
+			<th scope="col"><strong>BENEFITS</strong></th>
+			<th scope="col"><strong>OPERATOR</strong></th>
+
+		</tr>
 
 
-				<c:forEach items="${requestScope.airtellist}" var="airtelUser">
-					<tr>
-						<td>${airtelUser.getPlanName()}</td>
-						<td>${airtelUser.getPrice()}</td>
-						<td>${airtelUser.getValidity()}</td>
-						<td>${airtelUser.getBenfits()}</td>
-						<td>${airtelUser.getOperator().getOperatorname()}</td>
-						<td class="links"><a
-							href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a></td>
-					</tr>
-				</c:forEach>
+		<c:forEach items="${requestScope.airtellist}" var="airtelUser">
+			<tr>
+				<td>${airtelUser.getPlanName()}</td>
+				<td>${airtelUser.getPrice()}</td>
+				<td>${airtelUser.getValidity()}</td>
+				<td>${airtelUser.getBenfits()}</td>
+				<td>${airtelUser.getOperator().getOperatorname()}</td>
+				<td class="links"><a
+					href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a></td>
+			</tr>
+		</c:forEach>
 
-			</table>
-	
+	</table>
+
 
 
 </body>
