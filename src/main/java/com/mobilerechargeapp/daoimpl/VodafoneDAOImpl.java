@@ -188,13 +188,14 @@ public class VodafoneDAOImpl implements VodafoneDao {
 	public List<VodafoneUser> showViplan(String search) {
 		VodafoneUser vodafone = new VodafoneUser();
 		List<VodafoneUser> vodafoneList = new ArrayList<>();
-		String showQuery = "select vodafoneplan_id,plan_name,price,validity,benefits,operator_id from vodafone_plans where plan_name like '"
-				+ search + "%' or price like '" + search + "%' and status='Active'";
-		Connection connection=ConnectionClass.getConnection();
+		String showQuery = "select vodafoneplan_id,plan_name,price,validity,benefits,operator_id,status from vodafone_plans where status='Active' and plan_name like ? or price like ?";
+        Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(showQuery);
+			preparedStatement.setString(1, "%" + search.toLowerCase() + "%");
+			preparedStatement.setString(2, "%" + search.toLowerCase() + "%");
 			resultSet = preparedStatement.executeQuery();
 			OperatorDAOImpl operatordao = new OperatorDAOImpl();
 			while (resultSet.next()) {

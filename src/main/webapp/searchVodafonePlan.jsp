@@ -32,7 +32,7 @@
 		</tr>
 
 
-		<c:forEach items="${sessionScope.Vodafonelist}" var="vodafoneUser">
+		<c:forEach items="${requestScope.Vodafonelist}" var="vodafoneUser">
 			<tr>
 				<td>${vodafoneUser.getPlanName()}</td>
 				<td>${vodafoneUser.getPrice()}</td>

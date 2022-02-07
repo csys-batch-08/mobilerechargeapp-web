@@ -13,16 +13,19 @@ public class OperatorDAOImpl implements OperatorDao {
 	public Operator findOperator(String name) {
 		Operator operator = null;
 		Connection connection = ConnectionClass.getConnection();
-		String query = "select operator_id,operator_name from operator_details where operator_name='" + name + "'";
+//		String query = "select operator_id,operator_name from operator_details where operator_name='" + name + "'";
+		String query = "select operator_id,operator_name from operator_details where operator_name=?";
+
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(query);
-//			Statement stmt = connection.createStatement();
+			preparedStatement.setString(1, name);
 			resultSet = preparedStatement.executeQuery();
-			if (resultSet.next()) {
+			while(resultSet.next()) {
 				operator = new Operator(resultSet.getInt(1), resultSet.getString(2));
-
+//              operator=resultSet.getString(1);
+	
 			}
 		} catch (SQLException e) {
 

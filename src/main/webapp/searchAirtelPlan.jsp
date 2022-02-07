@@ -8,7 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>SelectAirtelPlan</title>
-<link rel="stylesheet" type="text/css" href="assets/css/search.css"> 
+<link rel="stylesheet" type="text/css" href="assets/css/search.css">
 </head>
 <body>
 	<form>
@@ -18,37 +18,38 @@
 			<a href="ContactUs.jsp">contactUs</a> <a href="index.jsp">Logout</a>
 		</div>
 	</form>
-			<table aria-describedby="searchJioplan" style="width: 100%">
+	<table aria-describedby="searchJioplan" style="width: 100%">
 
-				<tr>
+		<tr>
 
-					<th><strong>PLANNAME</strong></th>
-					<th><strong>PRICE</strong></th>
-					<th><strong>VALIDITY</strong></th>
-					<th><strong>BENEFITS</strong></th>
-					<th><strong>OPERATOR</strong></th>
-					
-				</tr>
-				
+			<th><strong>PLANNAME</strong></th>
+			<th><strong>PRICE</strong></th>
+			<th><strong>VALIDITY</strong></th>
+			<th><strong>BENEFITS</strong></th>
+			<th><strong>OPERATOR</strong></th>
 
-					<c:forEach items="${requestScope.airtelplan}" var="airtelUser">
-					<tr>
-						<td>${airtelUser.getPlanName()}</td>
-						<td>${airtelUser.getPrice()}</td>
-						<td>${airtelUser.getValidity()}</td>
-						<td>${airtelUser.getBenfits()}</td>
-						<td>${airtelUser.getOperator().getOperatorname()}</td>
-					
-						<td class="links"><a href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a></td>
-						
-				</tr>
-				</c:forEach>
+		</tr>
 
-			</table>
 
-	
-	
-	
+		<c:forEach items="${requestScope.airtelplan}" var="airtelUser">
+			<tr>
+				<td>${airtelUser.getPlanName()}</td>
+				<td>${airtelUser.getPrice()}</td>
+				<td>${airtelUser.getValidity()}</td>
+				<td>${airtelUser.getBenfits()}</td>
+				<td>${airtelUser.getOperator().getOperatorname()}</td>
+
+				<td class="links"><a
+					href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a></td>
+
+			</tr>
+		</c:forEach>
+
+	</table>
+
+
+
+
 </body>
 </html>
 
