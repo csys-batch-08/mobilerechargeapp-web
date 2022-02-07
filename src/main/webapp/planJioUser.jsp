@@ -54,8 +54,7 @@ if(error!=null){
 	</nav>
 
 	
-	<form>
-		<div>
+	
 			<table aria-describedby="PlanJio" style="width: 100%">
 
 				<tr>
@@ -77,13 +76,13 @@ if(error!=null){
 						<td>${jioUser.getBenfits()}</td>
 						<td>${jioUser.getOperator().getOperatorname()}</td>
 					
-						<td class="links"><a href="RechargeJioController?planName=${jioUser.getPlanName()}&price=${jioUser.getPrice()}&operator=${jioUser.getOperator().getOperatorname()}"><button>RECHARGE</a></button></td>
+						<td class="links"><a href="RechargeJioController?planName=${jioUser.getPlanName()}&price=${jioUser.getPrice()}&operator=${jioUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a></td>
 						
 				</tr>
 				</c:forEach>
 
 			</table>
-		</div>
-	</form>
+		
+
 </body>
 </html>

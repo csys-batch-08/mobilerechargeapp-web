@@ -50,12 +50,6 @@
 		</ul>
 	</nav>
 
-
-
-
-
-	<form>
-		<div>
 			<table aria-describedby="Planvodafone" style="width: 100%">
 
 				<tr>
@@ -77,14 +71,13 @@
 						<td>${vodafoneUser.getBenfits()}</td>
 						<td>${vodafoneUser.getOperator().getOperatorname()}</td>
 						<td class="links"><a
-							href="RechargeVodafonecontroller?planName=${vodafoneUser.getPlanName()}&price=${vodafoneUser.getPrice()}&operator=${vodafoneUser.getOperator().getOperatorname()}"><button>RECHARGE</a>
-						</button></td>
+							href="RechargeVodafonecontroller?planName=${vodafoneUser.getPlanName()}&price=${vodafoneUser.getPrice()}&operator=${vodafoneUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a>
+						</td>
 					</tr>
 				</c:forEach>
 
 			</table>
-		</div>
-	</form>
+	
 
 </body>
 </html>
