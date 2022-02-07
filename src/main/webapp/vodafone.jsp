@@ -31,16 +31,16 @@
 
 
 
-	<table style="width:100%;">
+	<table aria-describedby="AdminPlanVodafone" style="width:100%;">
 
 		<tr>
 
-			<td><strong>PLANID</strong></td>
-			<td><strong>PLANNAME</strong></td>
-			<td><strong>PRICE</strong></td>
-			<td><strong>VALIDITY</strong></td>
-			<td><strong>BENEFITS</strong></td>
-			<td><strong>OPERATOR</strong></td>
+			<th><strong>PLANID</strong></th>
+			<th><strong>PLANNAME</strong></th>
+			<th><strong>PRICE</strong></th>
+			<th><strong>VALIDITY</strong></th>
+			<th><strong>BENEFITS</strong></th>
+			<th><strong>OPERATOR</strong></th>
 
 			<c:forEach items="${requestScope.vodafonelist}" var="vodafoneUser">
 

@@ -22,15 +22,15 @@
 	
 	<form>
 		<div>
-			<table style="width: 100%">
+			<table aria-describedby="searchJioplan" style="width: 100%">
 
 				<tr>
 
-					<td><strong>PLANNAME</strong></td>
-					<td><strong>PRICE</strong></td>
-					<td><strong>VALIDITY</strong></td>
-					<td><strong>BENEFITS</strong></td>
-					<td><strong>OPERATOR</strong></td>
+					<th><strong>PLANNAME</strong></th>
+					<th><strong>PRICE</strong></th>
+					<th><strong>VALIDITY</strong></th>
+					<th><strong>BENEFITS</strong></th>
+					<th><strong>OPERATOR</strong></th>
 					
 				</tr>
 				
@@ -56,35 +56,4 @@
 	
 </body>
 </html>
-<%-- <table style="width: 100%">
-		<tr>
 
-			<td><strong>PLANNAME</strong></td>
-			<td><strong>PRICE</strong></td>
-			<td><strong>VALIDITY</strong></td>
-			<td><strong>BENEFITS</strong></td>
-			<td><strong>OPERATOR</strong></td>
-
-
-		</tr>
-		<%
-		List<AirtelUser> airtelUser = (List<AirtelUser>) session.getAttribute("list");
-		for (int i = 0; i < airtelUser.size(); i++) {
-			AirtelUser airtelSearch = airtelUser.get(i);
-		%>
-
-		<tr>
-			<td><%=airtelSearch.getPlanName()%></td>
-			<td><%=airtelSearch.getPrice()%></td>
-			<td><%=airtelSearch.getValidity()%></td>
-			<td><%=airtelSearch.getBenfits()%></td>
-			<td><%=airtelSearch.getOperator().getOperatorname()%></td>
-			<td class="links"><a
-				href="recharge.jsp?planName=<%=airtelSearch.getPlanName()%>&price=<%=airtelSearch.getPrice()%>
-&operator=<%=airtelSearch.getOperator().getOperatorname()%>"><button>Recharge</a>
-		</tr>
-
-		<%
-		}
-		%>
-	</table> --%>

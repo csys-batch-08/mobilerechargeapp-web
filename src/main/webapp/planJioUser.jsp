@@ -60,11 +60,11 @@ if(error!=null){
 
 				<tr>
 
-					<td><strong>PLANNAME</strong></td>
-					<td><strong>PRICE</strong></td>
-					<td><strong>VALIDITY</strong></td>
-					<td><strong>BENEFITS</strong></td>
-					<td><strong>OPERATOR</strong></td>
+					<th scope="col"><strong>PLANNAME</strong></th>
+					<th scope="col"><strong>PRICE</strong></th>
+					<th scope="col"><strong>VALIDITY</strong></th>
+					<th scope="col"><strong>BENEFITS</strong></th>
+					<th scope="col"><strong>OPERATOR</strong></th>
 					
 				</tr>
 				

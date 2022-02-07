@@ -25,15 +25,15 @@
 	
 		<form>
 		<div>
-			<table style="width: 100%">
+			<table aria-describedby="searchBsnlplan"style="width: 100%">
 
 				<tr>
 
-					<td><strong>PLANNAME</strong></td>
-					<td><strong>PRICE</strong></td>
-					<td><strong>VALIDITY</strong></td>
-					<td><strong>BENEFITS</strong></td>
-					<td><strong>OPERATOR</strong></td>
+					<th><strong>PLANNAME</strong></th>
+					<th><strong>PRICE</strong></th>
+					<th><strong>VALIDITY</strong></th>
+					<th><strong>BENEFITS</strong></th>
+					<th><strong>OPERATOR</strong></th>
 
 				</tr>
 
@@ -58,35 +58,4 @@
 	</form>
 </body>
 </html>
-<%-- 	<form>
-		<table style="width: 100%">
-			<tr>
 
-				<td><strong>PLANNAME</strong></td>
-				<td><strong>PRICE</strong></td>
-				<td><strong>VALIDITY</strong></td>
-				<td><strong>BENEFITS</strong></td>
-				<td><strong>OPERATOR</strong></td>
-				<%
-				List<BsnlUser> user = (List<BsnlUser>) session.getAttribute("list");
-
-				for (int i = 0; i < user.size(); i++) {
-					BsnlUser bsnlUser = user.get(i);
-				%>
-			
-			<tr>
-				<td><%=bsnlUser.getPlanName()%></td>
-				<td><%=bsnlUser.getPrice()%></td>
-				<td><%=bsnlUser.getValidity()%></td>
-				<td><%=bsnlUser.getBenfits()%></td>
-				<td><%=bsnlUser.getOperator().getOperatorname()%></td>
-				<td class="links"><a
-					href="recharge.jsp?planName=<%=bsnlUser.getPlanName()%>&price=<%=bsnlUser.getPrice()%>
-&operator=<%=bsnlUser.getOperator().getOperatorname()%>"><button>Recharge</a></button></td>
-			</tr>
-			<%
-			}
-			%>
-
-		</table>
-	</form> --%>

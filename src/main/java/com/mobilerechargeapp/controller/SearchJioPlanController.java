@@ -29,7 +29,7 @@ public class SearchJioPlanController extends HttpServlet {
 		List<JioUser> showPlan = jioDao.showJioplan(plan);
 		HttpSession session = request.getSession();
 		request.setAttribute("jioplan", showPlan);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchJioPlan.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("planJioUser");
 		requestDispatcher.forward(request, response);
 	}
 

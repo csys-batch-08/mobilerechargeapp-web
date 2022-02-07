@@ -34,7 +34,7 @@
 	</h1>
 
 
-	<table style="width:100%;">
+	<table aria-describedby="AdminPlanJio" style="width:100%;">
 	
 <tr>
 			<th><strong>PLANID</strong></th>

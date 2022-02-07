@@ -281,7 +281,13 @@ public class JioDAOImpl implements JioDao {
 		JioUser jio = null;
 		List<JioUser> jioList = new ArrayList<>();
 		String showQuery = "select jioplan_id,plan_name,price,validity,benefits,operator_id,status from jio_plans where plan_name like '"
-				+ search + "%' or price like '" + search + "%' and status='Active'";
+				+ search + "%' or price like '" + search + "%' and status='Active' ";
+		
+//		String showQuery = "select products_id,Brand_name,Brand_type,Brand_size,color,prices,manufacture_date,status from Product where Brand_name like'%"
+//				+ search + "%' or Brand_type like'%" + search + "%' or Brand_size like'%" + search
+//				+ "%' or color like'%" + search + "%' and status='available' ";
+
+
 		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
