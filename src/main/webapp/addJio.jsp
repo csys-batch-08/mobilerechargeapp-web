@@ -22,7 +22,7 @@
 <form action="AddJioController" class="form">
   <h1 style="font-style: italic;">ADD PLAN </h1>
 <label for="PlanName"><strong>PlanName</strong></label>
-<input type="text" name="planname" id="planName" required><br><br>
+<input type="text" name="planname" aria-label="planname" required><br><br>
 <label for="Price"><strong>PlanAmount</strong></label>
 <input type="text" name="price" id="Price" pattern="[0-9]+" title="invalid price,Amount should be in Positive value"><br><br>
 <label for="Validity"><strong>Validity</strong></label>
