@@ -137,17 +137,17 @@ a{
 
 			
 					<input type="email" name="email"
-			id="Email" title="must follow the email format" autofocus required
+			 aria-label="email" title="must follow the email format" autofocus required
 			pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+"><br> <span></span>
 
 		
-					<input type="password" id="PASSWORD" name="PASSWORD" required
+					<input type="password" name="PASSWORD" aria-label="PASSWORD" required
 						placeholder="Enter the Password"
 						pattern="[0-9A-Za-Z@#$%&*_?/]{8,15}"
 						title=" mininum 8characters may includes @#$%&*_?/ " /><br />
 					<br />
 
-					<input type="password" id="CONFIRM" name="CONFIRM" required
+					<input type="password" name="CONFIRM" aria-label="CONFIRM" required
 						placeholder="Enter the Confirm Password"
 						pattern="[0-9A-Za-Z@#$%&*_?/]{8,15}"
 						title=" mininum 8characters may includes @#$%&*_?/ " /><br />

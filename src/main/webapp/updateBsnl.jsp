@@ -38,7 +38,7 @@
 </div><br><br>
 <div>
 <label for="Bsnlplanid"><strong>planId</strong></label>
-<input type="number" name="bsnlplanid" id="Bsnlid">
+<input type="number" name="bsnlplanid" aria-label="bsnlplanid">
 </div>
 <button>UPDATE</button>
 </form>
