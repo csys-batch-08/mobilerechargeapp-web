@@ -14,59 +14,49 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>UserHistoryDetails</title>
-<link rel="stylesheet" type="text/css" href="assets/css/history.css"> 
+<link rel="stylesheet" type="text/css" href="assets/css/history.css">
 
 
 </head>
-<body >
+<body>
 
 
-<div class="header">
-<a href="operator.jsp">Home</a>
-<a href="wallet.jsp">wallet</a>
-<a href="history.jsp">RechargeHistory</a>
-<a href="aboutus.jsp">AboutUs</a>
-<a href="ContactUs.jsp">ContactUs</a>
-
-<a href="index.jsp">Logout</a>
-</div>
+	<div class="header">
+		<a href="operator.jsp">Home</a> <a href="wallet.jsp">wallet</a> <a
+			href="history.jsp">RechargeHistory</a> <a href="aboutus.jsp">AboutUs</a>
+		<a href="ContactUs.jsp">ContactUs</a> <a href="index.jsp">Logout</a>
+	</div>
 
 
 
 	<h1>HISTORY DETAILS</h1>
 
-	 
-	
-	
-	
-	
-
-	<table aria-describedby="UserHistory" style="width:100%">
+	<table aria-describedby="UserHistory" style="width: 100%">
 		<tr>
-			
+
 			<th><strong>OPERATOR NAME</strong></th>
 			<th><strong>PLAN ID</strong></th>
 			<th><strong>RECHARGE DATE</strong></th>
 			<th><strong>PAYMENT</strong></th>
 			<th><strong>MOBILE NUMBER</strong></th>
 		</tr>
-	<c:forEach items="${sessionScope.List}" var="list">
-		<tr>
-			<td>${list.get(0)} </td>
-			<td>${list.get(1)}</td>
-			<%-- <td><fmt:parseDate value="${list.get(2)}" pattern="yyyy-MM-dd" var="macthDate" type="date"/>   
-                 <fmt:formatDate pattern="dd/MM/yyyy" value="${macthDate}"/></td> --%>
-			 <td>${list.get(2)}</td>
-			 <td><fmt:parseDate value="${list.get(3)}" pattern="yyyy-MM-dd" var="macthDate" type="date"/>   
-                 <fmt:formatDate pattern="dd/MM/yyyy" value="${macthDate}"/></td> 
-		<%-- 	<td>${list.get(3)} </td> --%>
-			<td>${list.get(4)} </td>
-	
-		</tr>
+		<c:forEach items="${sessionScope.List}" var="list">
+			<tr>
+				<td>${list.get(0)}</td>
+				<td>${list.get(1)}</td>
+			
+				<td>${list.get(2)}</td>
+				<td><fmt:parseDate value="${list.get(3)}" pattern="yyyy-MM-dd"
+						var="macthDate" type="date" /> <fmt:formatDate
+						pattern="dd/MM/yyyy" value="${macthDate}" /></td>
+				<%-- 	<td>${list.get(3)} </td> --%>
+				<td>${list.get(4)}</td>
+
+			</tr>
 		</c:forEach>
 	</table>
- 
-<%-- <div >
+
+	<%-- <div >
 <c:forEach items="${sessionScope.List}" var="list">
 <ul class="singleCard">
 

@@ -54,7 +54,7 @@ if(error!=null){
 
 
 
-		<div>
+		
 			<table aria-describedby="PlanAirtel" style=width:100%;>
 
 				<tr>
@@ -76,13 +76,12 @@ if(error!=null){
 						<td>${airtelUser.getBenfits()}</td>
 						<td>${airtelUser.getOperator().getOperatorname()}</td>
 						<td class="links"><a
-							href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</a></button>
-						</td>
+							href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a></td>
 					</tr>
 				</c:forEach>
 
 			</table>
-		</div>
+	
 
 
 </body>

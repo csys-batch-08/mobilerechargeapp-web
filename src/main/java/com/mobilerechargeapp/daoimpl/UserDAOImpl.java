@@ -224,7 +224,8 @@ public class UserDAOImpl implements UserDao {
 
 	public List<Object> history(int userId) {
 		Connection connection=ConnectionClass.getConnection();
-		String joinQuery = "select o.operator_name,h.mobile_number,h.plan_id,h.Recharge_date,h.Payment from operator_details o join history_details h on o.operator_id=h.operator_id where h.user_id=?";
+		String joinQuery = "select o.operator_name,h.mobile_number,h.plan_id,h.Recharge_date,h.Payment from "
+				+ "operator_details o join history_details h on o.operator_id=h.operator_id where h.user_id=?";
 		ResultSet resultSet = null;
 		List<Object> list = null;
 		List<Object> listObject = null;
