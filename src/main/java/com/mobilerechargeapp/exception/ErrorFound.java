@@ -62,5 +62,13 @@ public class ErrorFound extends Exception {
 		return AIRTELID ;
 		
 	}
+	static final String VODAFONEID="*Enter the Valid Network";
+	public String vodafoneId(){
+		return VODAFONEID;
+	}
+	static final String BSNLID="*Enter the Valid Network";
+	public String bsnlId() {
+		return BSNLID;
+	}
 	
 }

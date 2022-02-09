@@ -216,7 +216,6 @@ public class JioDAOImpl implements JioDao {
 		JioDAOImpl jioDao = new JioDAOImpl();
 		int validity = 0;
 		int jioUserId = jioDao.findjioId(jioUser.getPlanName(), jioUser.getPrice());
-//		String Query = "select validity from jio_plans where jioplan_id=" + JioUserId;
 		String query = "select validity from jio_plans where jioplan_id=?" + jioUserId;
 		ResultSet resultSet = null;
 		PreparedStatement preparedStatement = null;
@@ -271,7 +270,6 @@ public class JioDAOImpl implements JioDao {
 		Connection connection=ConnectionClass.getConnection();
 		JioDAOImpl jioDao = new JioDAOImpl();
 		int validity = 0;
-//		String Query = "select jioplan_id,plan_name,price,validity,benefits,operator_id from jio_plans where jioplan_id=" + id;
 		String query = "select jioplan_id,plan_name,price,validity,benefits,operator_id from jio_plans where jioplan_id=?";
 		ResultSet resultSet = null;
 		PreparedStatement preparedStatement = null;

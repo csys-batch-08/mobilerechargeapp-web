@@ -25,7 +25,6 @@ public class UpdateJioController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String planname = request.getParameter("planname");
 		Double price = Double.parseDouble(request.getParameter("price"));

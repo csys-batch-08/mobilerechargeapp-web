@@ -9,7 +9,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>bsnlShowPlan</title>
-<link rel="stylesheet" type="text/css" href="assets/css/planAdmin.css"> 
+<link rel="stylesheet" type="text/css" href="assets/css/planAdmin.css">
 </head>
 <body>
 <body style="text-align: center;">
@@ -17,21 +17,12 @@
 		<a href="adminHome.jsp">ADMIN</a> <a href="addJio.jsp"> JIO </a> <a
 			href="addAirtel.jsp">AIRTEL</a> <a href="addVodafone.jsp">VODAFONE</a>
 		<a href="addBsnl.jsp">BSNL</a> <a href="index.jsp">LOGOUT</a>
-
 	</div>
-
-
-
-
 	<h1>
 		<strong>BSNL NETWORK</strong>
 	</h1>
-
-
-		<table aria-describedby="AdminPlanBsnl" style="width:100%;">
-
+	<table aria-describedby="AdminPlanBsnl" style="width: 100%;">
 		<tr>
-
 			<th><strong>PLANID</strong></th>
 			<th><strong>PLANNAME</strong></th>
 			<th><strong>PRICE</strong></th>
@@ -40,9 +31,7 @@
 			<th><strong>OPERATOR</strong></th>
 		</tr>
 		<c:forEach items="${requestScope.bsnllist}" var="bsnlUser">
-
 			<tr>
-
 				<td>${bsnlUser.getBsnlId()}</td>
 				<td>${bsnlUser.getPlanName()}</td>
 				<td>${bsnlUser.getPrice()}</td>
@@ -56,9 +45,5 @@
 			</tr>
 		</c:forEach>
 	</table>
-
-
-
-
 </body>
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +18,6 @@
 		<a href="adminHome.jsp">ADMIN</a> <a href="addJio.jsp"> JIO </a> <a
 			href="addAirtel.jsp">AIRTEL</a> <a href="addVodafone.jsp">VODAFONE</a>
 		<a href="addBsnl.jsp">BSNL</a> <a href="index.jsp">LOGOUT</a>
-
 	</div>
 <form action="updatebsnlController" method="get">
 <h1>Update Plan</h1>
@@ -41,6 +42,10 @@
 <input type="number" name="bsnlplanid" aria-label="bsnlplanid">
 </div>
 <button>UPDATE</button>
+<c:if test="${bsnlId!=null }">
+			<h3>${bsnlId}</h3>
+			<c:remove var="bsnlId" scope="session" />
+		</c:if>
 </form>
 </body>
 </html>

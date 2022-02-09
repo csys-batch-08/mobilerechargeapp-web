@@ -1,6 +1,8 @@
 package com.mobilerechargeapp.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mobilerechargeapp.daoimpl.VodafoneDAOImpl;
+import com.mobilerechargeapp.exception.ErrorFound;
 import com.mobilerechargeapp.model.VodafoneUser;
 
 
@@ -28,8 +31,20 @@ public class UpdateVodafoneController extends HttpServlet {
 		VodafoneUser vodafone = new VodafoneUser();
 		VodafoneDAOImpl vodafoneDao = new VodafoneDAOImpl();
 		boolean b = vodafoneDao.updateVodafone(planname, price, validity, benefits, vodafoneplanid);
+		try {
 		if (b) {
 			response.sendRedirect("vodadone");
+		} else {
+			throw new ErrorFound();
+		}
+	} catch (ErrorFound e) {
+		request.setAttribute("vodafoneplanid", e.vodafoneId());
+		try {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("updateVodafone.jsp");
+			dispatcher.forward(request, response);
+		} catch (ServletException | IOException e1) {
+			e1.printStackTrace();
+		}
 		}
 	}
 
