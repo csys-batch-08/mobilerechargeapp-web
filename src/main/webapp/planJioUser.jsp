@@ -6,13 +6,17 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="assets/css/plan.css"> 
 <script src="https://kit.fontawesome.com/a076d05399.js"
 	crossorigin="anonymous"></script>
 
+	
+<head>
+<meta charset="ISO-8859-1">
+
+
 <title>ShowplanJio</title>
-<link rel="stylesheet" type="text/css" href="assets/css/plan.css"> 
+
 
 <body>
 

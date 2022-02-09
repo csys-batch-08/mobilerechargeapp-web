@@ -1,8 +1,9 @@
 package com.mobilerechargeapp.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class VodafoneUser {
+public class VodafoneUser implements Serializable {
 	private int vodafoneId;
 	private String planName;
 	private double price;

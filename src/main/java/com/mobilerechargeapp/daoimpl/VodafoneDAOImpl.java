@@ -99,20 +99,14 @@ public class VodafoneDAOImpl implements VodafoneDao {
 	}
 
 	public boolean deleteVodafone(int vodafoneId) {
-		String query = "select status from vodafone_plans where vodafoneplan_id =?";
 		Connection connection=ConnectionClass.getConnection();
 		boolean flag = false;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		String status = null;
 		String deleteQuery = null;
+		VodafoneDAOImpl vodafoneDao=new VodafoneDAOImpl();
+	    String status=vodafoneDao.getStatus(vodafoneId);
 		try {
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, vodafoneId);
-			resultSet = preparedStatement.executeQuery();
-			while(resultSet.next()) {
-				 status = resultSet.getString(1);
-			}
 			if (status != null && status.equalsIgnoreCase("Active")) {
 				deleteQuery = "update vodafone_plans set status='inactive' where vodafoneplan_id =?";
 			} else {
@@ -131,6 +125,31 @@ public class VodafoneDAOImpl implements VodafoneDao {
 		return flag;
 
 	}
+	
+	public String getStatus(int vodafoneId) {
+		String query = "select status from vodafone_plans where vodafoneplan_id =?";
+		Connection connection=ConnectionClass.getConnection();
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String status=null;
+		try {
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, vodafoneId);
+            resultSet = preparedStatement.executeQuery();
+        	while (resultSet.next()) {
+				status = resultSet.getString(1);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
+		return status;
+	}
+	
+	
 
 	public int findvodafoneId(String planName, Double price) {
 		String query = "select vodafoneplan_id from vodafone_plans where plan_name=? and price=?";

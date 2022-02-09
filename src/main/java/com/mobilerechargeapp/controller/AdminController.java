@@ -2,6 +2,7 @@ package com.mobilerechargeapp.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,10 +39,15 @@ public class AdminController extends HttpServlet {
 			}
 
 			else if (user != null) {
+				try {
 				HttpSession session = request.getSession();
 				session.setAttribute("CurrentUser", user);
 				session.setAttribute("amount", user.getWallet());
 				response.sendRedirect("ShowValidityController");
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
 			} else {
 				throw new ErrorFound();
 			}

@@ -55,7 +55,7 @@
 					<td>${jioUserList.getBenfits()}</td>
 					<td>${jioUserList.getOperator().getOperatorname()}</td>
 					<td>${jioUserList.getStatus()}</td>
-					<td><a href="jioDelete.jsp?jioId=${jioUserList.getJioId()}&planName=${jioUserList.getPlanName()}&price=${jioUserList.getPrice()}&validity=${jioUserList.getValidity()}&benefits=${jioUserList.getBenfits()}&operator=${jioUserList.getOperator().getOperatorname()}">Delete</a></td>
+					<td><a href="jioDelete.jsp?jioId=${jioUserList.getJioId()}&planName=${jioUserList.getPlanName()}&price=${jioUserList.getPrice()}&validity=${jioUserList.getValidity()}&benefits=${jioUserList.getBenfits()}&operator=${jioUserList.getOperator().getOperatorname()}"><button>Delete</button></a></td>
 					<td><a href="updateJio.jsp">Edit</a>
 					
 				</tr>

@@ -98,20 +98,14 @@ public class AirtelDAOImpl implements AirtelDao {
 	}
 
 	public boolean deleteAirtel(int airtelplanId) {
-		String query = "select status from Airtel_plans  where airtelplan_id=?";
 		boolean flag = false;
 		Connection connection = ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		String status = null;
 		String deleteQuery = null;
+		AirtelDAOImpl airtelDao=new AirtelDAOImpl();
+		String status=airtelDao.getStatus(airtelplanId);
 		try {
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, airtelplanId);
-			resultSet = preparedStatement.executeQuery();
-			while (resultSet.next()) {
-				status = resultSet.getString(1);
-			}
 			if (status != null && status.equalsIgnoreCase("active")) {
 				deleteQuery = "update Airtel_plans set status='inactive'where airtelplan_id=?";
 			} else {
@@ -128,6 +122,31 @@ public class AirtelDAOImpl implements AirtelDao {
 		return flag;
 
 	}
+	
+	public String getStatus(int airtelplanId) {
+		String query = "select status from Airtel_plans  where airtelplan_id=?";
+		Connection connection=ConnectionClass.getConnection();
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String status=null;
+		try {
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, airtelplanId);
+            resultSet = preparedStatement.executeQuery();
+        	while (resultSet.next()) {
+				status = resultSet.getString(1);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
+		return status;
+	}
+	
+	
 
 	public List<AirtelUser> showAirtelplan() {
 		AirtelUser airtel = null;

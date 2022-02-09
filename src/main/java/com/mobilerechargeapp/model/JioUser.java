@@ -1,8 +1,9 @@
 package com.mobilerechargeapp.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class JioUser {
+public class JioUser implements Serializable {
 	private int jioId;
 	private String planName;
 	private double price;

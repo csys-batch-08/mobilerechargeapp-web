@@ -98,21 +98,15 @@ public class BsnlDAOImpl implements BsnlDao {
 	}
 
 	public boolean deleteBsnl(int bsnlId) {
-		String query = "select status from bsnl_plans  where bsnlplan_id=?";
 		boolean flag = false;
 		Connection connection=ConnectionClass.getConnection();
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		String deleteQuery = null;
-		String status = null;
+		BsnlDAOImpl bsnlDao=new BsnlDAOImpl();
+		String status = bsnlDao.getStatus(bsnlId);
 		try {
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, bsnlId);
-			resultSet = preparedStatement.executeQuery();
-			while (resultSet.next()) {
-				status = resultSet.getString(1);
-			}
-			if (status != null && status.equalsIgnoreCase("Active")) {
+               if (status != null && status.equalsIgnoreCase("Active")) {
 				deleteQuery = "update bsnl_plans set status='inactive' where bsnlplan_id=?";
 			} else {
 				deleteQuery = "update bsnl_plans set status='Active' where bsnlplan_id=?";
@@ -129,6 +123,31 @@ public class BsnlDAOImpl implements BsnlDao {
 		return flag;
 	}
 
+	public String getStatus(int bsnlId) {
+		String query = "select status from bsnl_plans where bsnlplan_id=?";
+		Connection connection=ConnectionClass.getConnection();
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String status=null;
+		try {
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1,bsnlId);
+            resultSet = preparedStatement.executeQuery();
+        	while (resultSet.next()) {
+				status = resultSet.getString(1);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
+		return status;
+	}
+	
+	
+	
 	public int findbsnlId(String planName, Double price) {
 		String query = "select bsnlplan_id from BSNL_plans where plan_name=? and price=?";
 		Connection connection=ConnectionClass.getConnection();

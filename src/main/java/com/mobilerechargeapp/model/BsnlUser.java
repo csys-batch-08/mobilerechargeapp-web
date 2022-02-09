@@ -1,8 +1,9 @@
 package com.mobilerechargeapp.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class BsnlUser {
+public class BsnlUser implements Serializable {
     private int bsnlId;
 	private String planName;
 	private double price;

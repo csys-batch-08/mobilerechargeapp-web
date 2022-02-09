@@ -1,16 +1,17 @@
 package com.mobilerechargeapp.model;
 
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class AirtelUser{
+public class AirtelUser implements Serializable{
 	private int airtelId;
 	private String planName;
 	private double price;
 	private  String validity;
 	private String benfits;
 	private Operator operator;
-	private String Status;
+	private String status;
 	
 	
 	
@@ -52,10 +53,10 @@ public class AirtelUser{
 		this.operator = operator;
 	}
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
 	}
 	public AirtelUser() {
 		super();

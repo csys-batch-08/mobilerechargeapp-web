@@ -1,9 +1,10 @@
 package com.mobilerechargeapp.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class HistoryDetails {
+public class HistoryDetails implements Serializable {
 	
 	private int userId;
 	private int operatorId;

@@ -98,23 +98,16 @@ public class JioDAOImpl implements JioDao {
 	}
 
 	public boolean deleteJio(int jioplanId) {
-		String query = "select status from jio_plans  where jioplan_id=?";
+		
 		Connection connection=ConnectionClass.getConnection();
 		boolean flag = false;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		String status = null;
 		String deleteQuery = null;
+		JioDAOImpl jioDao=new JioDAOImpl();
+		String status=jioDao.getStatus(jioplanId);
 		try {
-			preparedStatement = connection.prepareStatement(query);
-
-			preparedStatement.setInt(1, jioplanId);
-
-			resultSet = preparedStatement.executeQuery();
-			while (resultSet.next()) {
-				status = resultSet.getString(1);
-			}
-			if (status != null && status.equalsIgnoreCase("active")) {
+            if (status != null && status.equalsIgnoreCase("active")) {
 				deleteQuery = "update jio_plans set status='inactive' where jioplan_id=?";
 			} else {
 				deleteQuery = "update jio_plans set status='Active' where jioplan_id=?";
@@ -130,6 +123,32 @@ public class JioDAOImpl implements JioDao {
 		}
 		return flag;
 	}
+	
+	public String getStatus(int jioplanId) {
+		String query = "select status from jio_plans  where jioplan_id=?";
+		Connection connection=ConnectionClass.getConnection();
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String status=null;
+		try {
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, jioplanId);
+            resultSet = preparedStatement.executeQuery();
+        	while (resultSet.next()) {
+				status = resultSet.getString(1);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionClass.close(connection, preparedStatement, resultSet);
+		}
+		return status;
+	}
+	
+	
+	
 
 	public List<JioUser> showJioplan() {
 		JioUser jio = null;
