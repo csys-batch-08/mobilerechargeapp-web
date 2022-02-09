@@ -37,3 +37,4 @@
 5. User can Recharge Mobile Number
 6. User can view Remaining Recharge Validity Days
 7. User can Select Operator plans
+8.Forget Password
