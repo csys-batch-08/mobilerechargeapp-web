@@ -11,7 +11,6 @@
 <title>selectBsnlplan</title>
 <link rel="stylesheet" type="text/css" href="assets/css/search.css">
 </head>
-
 <body>
 	<form>
 		<div class="header">

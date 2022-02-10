@@ -18,7 +18,6 @@
 			<a href="contactUs.jsp">ContactUs</a> <a href="index.jsp">Logout</a>
 		</div>
 	</form>
-
 	<table aria-describedby="searchVodafoneplan" style="width: 100%">
 		<tr>
 			<th><strong>PLANNAME</strong></th>

@@ -12,7 +12,6 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"
 	crossorigin="anonymous"></script>
 <title>ShowPlanVodafone</title>
-
 <link rel="stylesheet" type="text/css" href="assets/css/plan.css">
 </head>
 <body>

@@ -11,19 +11,16 @@
 <meta charset="ISO-8859-1">
 <title>JioNetwork</title>
 <link rel="stylesheet" type="text/css" href="assets/css/planAdmin.css">
-
 </head>
 <%--  <c:if test="${add!=null }">
         <h3=elementToFadeInAndOut>${add}</h3>
         <c:remove var="add" scope="session" />
         </c:if>  --%>
-
 <body style="text-align: center;">
 	<div class="header">
 		<a href="adminHome.jsp">ADMIN</a> <a href="addJio.jsp"> JIO </a> <a
 			href="addAirtel.jsp">AIRTEL</a> <a href="addVodafone.jsp">VODAFONE</a>
 		<a href="addBsnl.jsp">BSNL</a> <a href="index.jsp">LOGOUT</a>
-
 	</div>
 	<h1>
 		<strong>JIO NETWORK</strong>
@@ -52,10 +49,5 @@
 			</tr>
 		</c:forEach>
 	</table>
-
-
-
-
-
 </body>
 </html>

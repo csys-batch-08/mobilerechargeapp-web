@@ -15,8 +15,6 @@
 <meta charset="ISO-8859-1">
 <title>UserHistoryDetails</title>
 <link rel="stylesheet" type="text/css" href="assets/css/history.css">
-
-
 </head>
 <body>
 	<div class="header">
@@ -42,7 +40,6 @@
 						var="macthDate" type="date" /> <fmt:formatDate
 						pattern="dd/MM/yyyy" value="${macthDate}" /></td>
 				<td>${list.get(4)}</td>
-
 			</tr>
 		</c:forEach>
 	</table>

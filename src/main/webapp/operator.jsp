@@ -36,13 +36,6 @@
 	<c:if test="${amount!=null }">
 		<h3>AvailableBalance:${amount}</h3>
 	</c:if>
-
-
-	<%--  <%Double Amount=(Double)session.getAttribute("amount");
- if(Amount!=null){
- %>
- <h3>AvailableBalance:<%=Amount %></h3>
- <%} %> --%>
 	<div></div>
 	<div class="header">
 		<a href="operator.jsp">Home</a> <a href="wallet.jsp">wallet</a> <a
@@ -73,7 +66,7 @@
 		</div>
 	</div>
 	<c:if test="${validity!=null }">
-		<h1>${validity}daysremainingvalidity only</h1>
+		<h1>${validity}daysremainingvalidityonly</h1>
 	</c:if>
 </body>
 </html>

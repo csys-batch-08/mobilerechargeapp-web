@@ -8,7 +8,6 @@
 <link rel="stylesheet" type="text/css" href="assets/css/add.css">
 </head>
 <body style="text-align: center;">
-
 	<div class="header">
 		<a href="adminHome.jsp">ADMIN</a> <a href="addJio.jsp"> JIO </a> <a
 			href="addAirtel.jsp">AIRTEL</a> <a href="addVodafone.jsp">VODAFONE</a>

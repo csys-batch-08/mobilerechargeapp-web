@@ -8,11 +8,9 @@
 <title>UserRegister</title>
 
 <link rel="stylesheet" type="text/css" href="assets/css/register.css">
-
 </head>
 <body>
 	<form action="UserController" style="text-align: center" method="post">
-
 		<h1 style="font-style: italic;">Register Login</h1>
 		<label for="Username">UserName:</label> <input type="text"
 			name="username" id="Username"> <label for="Email">Email-id:</label>
@@ -29,7 +27,6 @@
 				 or more character may include (&@#$_)" required><br>
 		<label for="Operatorname">OperatorName</label> <input type="text"
 			name="operatorName" id="Operatorname" required><br>
-
 		<div class="formBtn">
 			<input type="submit" value="SignIn">
 		</div>

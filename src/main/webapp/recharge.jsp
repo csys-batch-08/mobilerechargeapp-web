@@ -15,8 +15,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>RechargeyourNumber</title>
-<link rel="stylesheet" type="text/css" href="assets/css/recharge.css"> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/recharge.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 <body>
 	<div class="header">
@@ -29,25 +30,13 @@
 		<label for="MobileNumber"><strong>MOBILE NUMBER</strong></label> <input
 			type="text" name="mobileNumber" id="MobileNumber"
 			pattern="[7-9]{1}[0-9]{9}"
-			title="Phone number with 7-9 and remaing 9 digit with 0-9" required><br>		
+			title="Phone number with 7-9 and remaing 9 digit with 0-9" required><br>
 		<div class="formBtn">
-
-	<input type="submit" value="Recharge"> 
+			<input type="submit" value="Recharge">
 		</div>
-		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
-		</script>
-		<script type="text/javascript">
-		document.getElementsById('recharge')
-		.addEventListener('click',function(){
-			toastr.success("Your Number Is Recharge Is Succesfully")
-			
-		})
-		</script> -->
 	</form>
 </body>
 </html>
 
 
 
-	

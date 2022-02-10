@@ -9,22 +9,10 @@
 <link rel="stylesheet" type="text/css" href="assets/css/plan.css">
 <script src="https://kit.fontawesome.com/a076d05399.js"
 	crossorigin="anonymous"></script>
-
-
 <head>
 <meta charset="ISO-8859-1">
-
-
 <title>ShowplanJio</title>
 <body>
-
-
-	<%-- <%String error=(String)session.getAttribute("balance");
-if(error!=null){
-%>
-	<h1><%=error %></h1>
-	<%session.removeAttribute("balance"); %>
-	<%} %> --%>
 	<%-- <c:set var = "balanceinfo" scope = "session" value = "${balance}"/>
 <c:if test="${not empty balanceinfo}">
 			<h2><c:out value="${balanceinfo}" /></h2>
@@ -34,7 +22,6 @@ if(error!=null){
 		<h2>${balancejio}</h2>
 		<c:remove var="balancejio" scope="session" />
 	</c:if>
-
 	<nav>
 		<ul>
 			<div class="header">
