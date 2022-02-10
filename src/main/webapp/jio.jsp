@@ -10,12 +10,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>JioNetwork</title>
-<link rel="stylesheet" type="text/css" href="assets/css/planAdmin.css"> 
+<link rel="stylesheet" type="text/css" href="assets/css/planAdmin.css">
 
 </head>
-
-
-     <%--  <c:if test="${add!=null }">
+<%--  <c:if test="${add!=null }">
         <h3=elementToFadeInAndOut>${add}</h3>
         <c:remove var="add" scope="session" />
         </c:if>  --%>
@@ -27,39 +25,32 @@
 		<a href="addBsnl.jsp">BSNL</a> <a href="index.jsp">LOGOUT</a>
 
 	</div>
-
-
 	<h1>
 		<strong>JIO NETWORK</strong>
 	</h1>
-
-
-	<table aria-describedby="AdminPlanJio" style="width:100%;">
-	
-<tr>
+	<table aria-describedby="AdminPlanJio" style="width: 100%;">
+		<tr>
 			<th><strong>PLANID</strong></th>
 			<th><strong>PLANNAME</strong></th>
 			<th><strong>PRICE</strong></th>
 			<th><strong>VALIDITY</strong></th>
 			<th><strong>BENEFITS</strong></th>
 			<th><strong>OPERATOR</strong></th>
-</tr>
-			<c:forEach items="${requestScope.jiolist}" var="jioUserList">
-
-				<tr>
-					
-                     <td>${jioUserList.getJioId()}</td>
-					<td>${jioUserList.getPlanName()}</td>
-					<td>${jioUserList.getPrice()}</td>
-					<td>${jioUserList.getValidity()}</td>
-					<td>${jioUserList.getBenfits()}</td>
-					<td>${jioUserList.getOperator().getOperatorname()}</td>
-					<td>${jioUserList.getStatus()}</td>
-					<td><a href="jioDelete.jsp?jioId=${jioUserList.getJioId()}&planName=${jioUserList.getPlanName()}&price=${jioUserList.getPrice()}&validity=${jioUserList.getValidity()}&benefits=${jioUserList.getBenfits()}&operator=${jioUserList.getOperator().getOperatorname()}"><button>Delete</button></a></td>
-					<td><a href="updateJio.jsp">Edit</a>
-					
-				</tr>
-			</c:forEach>
+		</tr>
+		<c:forEach items="${requestScope.jiolist}" var="jioUserList">
+			<tr>
+				<td>${jioUserList.getJioId()}</td>
+				<td>${jioUserList.getPlanName()}</td>
+				<td>${jioUserList.getPrice()}</td>
+				<td>${jioUserList.getValidity()}</td>
+				<td>${jioUserList.getBenfits()}</td>
+				<td>${jioUserList.getOperator().getOperatorname()}</td>
+				<td>${jioUserList.getStatus()}</td>
+				<td><a
+					href="jioDelete.jsp?jioId=${jioUserList.getJioId()}&planName=${jioUserList.getPlanName()}&price=${jioUserList.getPrice()}&validity=${jioUserList.getValidity()}&benefits=${jioUserList.getBenfits()}&operator=${jioUserList.getOperator().getOperatorname()}"><button>Delete</button></a></td>
+				<td><a href="updateJio.jsp">Edit</a>
+			</tr>
+		</c:forEach>
 	</table>
 
 

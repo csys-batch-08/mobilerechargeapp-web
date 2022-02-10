@@ -19,19 +19,14 @@
 		</div>
 	</form>
 
-	<table aria-describedby="searchVodafoneplan"style="width: 100%">
-
+	<table aria-describedby="searchVodafoneplan" style="width: 100%">
 		<tr>
-
 			<th><strong>PLANNAME</strong></th>
 			<th><strong>PRICE</strong></th>
 			<th><strong>VALIDITY</strong></th>
 			<th><strong>BENEFITS</strong></th>
 			<th><strong>OPERATOR</strong></th>
-
 		</tr>
-
-
 		<c:forEach items="${requestScope.Vodafonelist}" var="vodafoneUser">
 			<tr>
 				<td>${vodafoneUser.getPlanName()}</td>
@@ -41,13 +36,9 @@
 				<td>${vodafoneUser.getOperator().getOperatorname()}</td>
 				<td class="links"><a
 					href="RechargeVodafonecontroller?planName=${vodafoneUser.getPlanName()}&price=${vodafoneUser.getPrice()}&operator=${vodafoneUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a>
-					</td>
+				</td>
 			</tr>
 		</c:forEach>
-
 	</table>
-
-
-
 </body>
 </html>

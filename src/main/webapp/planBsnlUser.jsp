@@ -12,11 +12,9 @@
 	crossorigin="anonymous"></script>
 
 <title>selectBsnlPlans</title>
-<link rel="stylesheet" type="text/css" href="assets/css/plan.css"> 
-
+<link rel="stylesheet" type="text/css" href="assets/css/plan.css">
 </head>
 <body>
-
 	<nav>
 		<ul>
 			<div class="header">
@@ -29,51 +27,39 @@
 			</div>
 			<li class="search-icon">
 				<form action="SearchBsnlController">
-					<input type="search" name="bsnlplan" aria-label="bsnlplan"> <label
-						class="icon"> <span class="fas fa-search"></span>
+					<input type="search" name="bsnlplan" aria-label="bsnlplan">
+					<label class="icon"> <span class="fas fa-search"></span>
 					</label>
 				</form>
 			</li>
 		</ul>
 	</nav>
-<div style="text-align:center;">
-<c:if test="${balanceBsnl!=null }">
-        <h2>${balanceBsnl}</h2>
-        <c:remove var="balanceBsnl" scope="session" />
-        </c:if> 
-</div>
-	
-		
-			<table aria-describedby="PlanBsnl" style="width: 100%">
-
-				<tr>
-
-					<th scope="col"><strong>PLANNAME</strong></th>
-					<th scope="col"><strong>PRICE</strong></th>
-					<th scope="col"><strong>VALIDITY</strong></th>
-					<th scope="col"><strong>BENEFITS</strong></th>
-					<th scope="col"><strong>OPERATOR</strong></th>
-
-				</tr>
-
-
-				<c:forEach items="${requestScope.bsnllist}" var="bsnlUser">
-					<tr>
-						<td>${bsnlUser.getPlanName()}</td>
-						<td>${bsnlUser.getPrice()}</td>
-						<td>${bsnlUser.getValidity()}</td>
-						<td>${bsnlUser.getBenfits()}</td>
-						<td>${bsnlUser.getOperator().getOperatorname()}</td>
-						<td class="links"><a
-							href="RechargeBsnlController?planName=${bsnlUser.getPlanName()}&price=${bsnlUser.getPrice()}&operator=${bsnlUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a>
-						</td>
-					</tr>
-				</c:forEach>
-
-			</table>
-	
-	
-
-
+	<div style="text-align: center;">
+		<c:if test="${balanceBsnl!=null }">
+			<h2>${balanceBsnl}</h2>
+			<c:remove var="balanceBsnl" scope="session" />
+		</c:if>
+	</div>
+	<table aria-describedby="PlanBsnl" style="width: 100%">
+		<tr>
+			<th scope="col"><strong>PLANNAME</strong></th>
+			<th scope="col"><strong>PRICE</strong></th>
+			<th scope="col"><strong>VALIDITY</strong></th>
+			<th scope="col"><strong>BENEFITS</strong></th>
+			<th scope="col"><strong>OPERATOR</strong></th>
+		</tr>
+		<c:forEach items="${requestScope.bsnllist}" var="bsnlUser">
+			<tr>
+				<td>${bsnlUser.getPlanName()}</td>
+				<td>${bsnlUser.getPrice()}</td>
+				<td>${bsnlUser.getValidity()}</td>
+				<td>${bsnlUser.getBenfits()}</td>
+				<td>${bsnlUser.getOperator().getOperatorname()}</td>
+				<td class="links"><a
+					href="RechargeBsnlController?planName=${bsnlUser.getPlanName()}&price=${bsnlUser.getPrice()}&operator=${bsnlUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>

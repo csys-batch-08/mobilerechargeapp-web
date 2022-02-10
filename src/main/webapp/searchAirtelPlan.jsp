@@ -19,18 +19,13 @@
 		</div>
 	</form>
 	<table aria-describedby="searchJioplan" style="width: 100%">
-
 		<tr>
-
 			<th><strong>PLANNAME</strong></th>
 			<th><strong>PRICE</strong></th>
 			<th><strong>VALIDITY</strong></th>
 			<th><strong>BENEFITS</strong></th>
 			<th><strong>OPERATOR</strong></th>
-
 		</tr>
-
-
 		<c:forEach items="${requestScope.airtelplan}" var="airtelUser">
 			<tr>
 				<td>${airtelUser.getPlanName()}</td>
@@ -38,18 +33,11 @@
 				<td>${airtelUser.getValidity()}</td>
 				<td>${airtelUser.getBenfits()}</td>
 				<td>${airtelUser.getOperator().getOperatorname()}</td>
-
 				<td class="links"><a
 					href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a></td>
-
 			</tr>
 		</c:forEach>
-
 	</table>
-
-
-
-
 </body>
 </html>
 

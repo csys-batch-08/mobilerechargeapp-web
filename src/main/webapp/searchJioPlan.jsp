@@ -14,29 +14,20 @@
 
 <body>
 	<form>
-
-
 		<div class="header">
 			<a href="operator.jsp">Home</a> <a href="wallet.jsp">wallet</a> <a
 				href="history.jsp">RechargeHistory</a> <a href="aboutus.jsp">AboutUs</a>
 			<a href="ContactUs.jsp">ContactUs</a> <a href="index.jsp">Logout</a>
 		</div>
 	</form>
-
-
 	<table aria-describedby="searchjioplan" style="width: 100%">
-
 		<tr>
-
 			<th><strong>PLANNAME</strong></th>
 			<th><strong>PRICE</strong></th>
 			<th><strong>VALIDITY</strong></th>
 			<th><strong>BENEFITS</strong></th>
 			<th><strong>OPERATOR</strong></th>
-
 		</tr>
-
-
 		<c:forEach items="${requestScope.jioplan}" var="jioUser">
 			<tr>
 				<td>${jioUser.getPlanName()}</td>
@@ -46,12 +37,9 @@
 				<td>${jioUser.getOperator().getOperatorname()}</td>
 				<td class="links"><a
 					href="RechargeJioController?planName=${jioUser.getPlanName()}&price=${jioUser.getPrice()}&operator=${jioUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a></td>
-
 			</tr>
 		</c:forEach>
 
 	</table>
-
-
 </body>
 </html>

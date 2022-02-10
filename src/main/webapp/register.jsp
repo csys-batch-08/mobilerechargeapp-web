@@ -14,8 +14,6 @@
 	<form action="UserController" style="text-align: center" method="post">
 
 		<h1 style="font-style: italic;">Register Login</h1>
-
-
 		<label for="Username">UserName:</label> <input type="text"
 			name="username" id="Username"> <label for="Email">Email-id:</label>
 		<input type="email" name="email" id="Email"
@@ -25,25 +23,24 @@
 			name="phonenumber" id="Mobilenumber" pattern="[6-9]{1}[0-9]{9}"
 			title="Phone number with 7-9 and remaing 9 digit with 0-9" required><br>
 		<label for="PASSWORD">Password:</label> <input type="password"
-			name="password" aria-label="password" pattern="[a-zA-Z0-9&@#$_]{8,15}"
+			name="password" aria-label="password"
+			pattern="[a-zA-Z0-9&@#$_]{8,15}"
 			title="8
 				 or more character may include (&@#$_)" required><br>
 		<label for="Operatorname">OperatorName</label> <input type="text"
 			name="operatorName" id="Operatorname" required><br>
-		         
+
 		<div class="formBtn">
 			<input type="submit" value="SignIn">
 		</div>
 		<c:if test="${email!=null }">
-			     <h2>${email}</h2>
-			     <c:remove var="email" scope="session" />
-		         </c:if>
-      <c:if test="${phonenumber!=null }">
-			     <h2>${phonenumber}</h2>
-			     <c:remove var="phonenumber" scope="session" />
-		         </c:if>
-
+			<h2>${email}</h2>
+			<c:remove var="email" scope="session" />
+		</c:if>
+		<c:if test="${phonenumber!=null }">
+			<h2>${phonenumber}</h2>
+			<c:remove var="phonenumber" scope="session" />
+		</c:if>
 	</form>
-
 </body>
 </html>

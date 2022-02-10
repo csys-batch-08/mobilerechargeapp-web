@@ -19,9 +19,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 <body>
-
-
-
 	<div class="header">
 		<a href="operator.jsp">Home</a> <a href="wallet.jsp">wallet</a> <a
 			href="history.jsp">RechargeHistory</a> <a href="aboutus.jsp">AboutUs</a>
@@ -34,7 +31,7 @@
 			pattern="[7-9]{1}[0-9]{9}"
 			title="Phone number with 7-9 and remaing 9 digit with 0-9" required><br>		
 		<div class="formBtn">
-<!-- <button >RECHARGE</button> -->
+
 	<input type="submit" value="Recharge"> 
 		</div>
 		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

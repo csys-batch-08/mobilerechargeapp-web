@@ -12,26 +12,13 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"
 	crossorigin="anonymous"></script>
 <title>ShowAirtelPlan</title>
-
 <link rel="stylesheet" type="text/css" href="assets/css/plan.css">
 </head>
-
 <body>
-
-	<%-- 
-	<%String error=(String)session.getAttribute("balance");
-if(error!=null){
-%>
-	<h1><%=error %></h1>
-	<%session.removeAttribute("balance"); %>
-	<%} %> --%>
 	<c:if test="${balanceAirtel!=null }">
 		<h2>${balanceAirtel}</h2>
 		<c:remove var="balanceAirtel" scope="session" />
 	</c:if>
-
-
-
 	<nav>
 		<ul>
 			<div class="header">
@@ -44,30 +31,21 @@ if(error!=null){
 			</div>
 			<li class="search-icon">
 				<form action="SearchAirtelPlanController">
-					<input type="search" name="airtelplan" aria-label="airtelplan"> <label
-						class="icon"> <span class="fas fa-search"></span>
+					<input type="search" name="airtelplan" aria-label="airtelplan">
+					<label class="icon"> <span class="fas fa-search"></span>
 					</label>
 				</form>
 			</li>
 		</ul>
 	</nav>
-
-
-
-
 	<table aria-describedby="PlanAirtel" style="width: 100%;">
-
 		<tr>
-
 			<th scope="col"><strong>PLANNAME</strong></th>
 			<th scope="col"><strong>PRICE</strong></th>
 			<th scope="col"><strong>VALIDITY</strong></th>
 			<th scope="col"><strong>BENEFITS</strong></th>
 			<th scope="col"><strong>OPERATOR</strong></th>
-
 		</tr>
-
-
 		<c:forEach items="${requestScope.airtellist}" var="airtelUser">
 			<tr>
 				<td>${airtelUser.getPlanName()}</td>
@@ -79,10 +57,6 @@ if(error!=null){
 					href="RechargeAirtelController?planName=${airtelUser.getPlanName()}&price=${airtelUser.getPrice()}&operator=${airtelUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a></td>
 			</tr>
 		</c:forEach>
-
 	</table>
-
-
-
 </body>
 </html>

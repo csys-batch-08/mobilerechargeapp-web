@@ -13,23 +13,13 @@
 	crossorigin="anonymous"></script>
 <title>ShowPlanVodafone</title>
 
-<link rel="stylesheet" type="text/css" href="assets/css/plan.css"> 
+<link rel="stylesheet" type="text/css" href="assets/css/plan.css">
 </head>
-
-
 <body>
-
- <c:if test="${balanceVodafone!=null }">
-        <h2>${balanceVodafone}</h2>
-        <c:remove var="balanceVodafone" scope="session" />
-        </c:if> 
-
-
-
-
-
-
-
+	<c:if test="${balanceVodafone!=null }">
+		<h2>${balanceVodafone}</h2>
+		<c:remove var="balanceVodafone" scope="session" />
+	</c:if>
 	<nav>
 		<ul>
 			<div class="header">
@@ -49,35 +39,26 @@
 			</li>
 		</ul>
 	</nav>
-
-			<table aria-describedby="Planvodafone" style="width: 100%">
-
-				<tr>
-
-					<th><strong>PLANNAME</strong></th>
-					<th><strong>PRICE</strong></th>
-					<th><strong>VALIDITY</strong></th>
-					<th><strong>BENEFITS</strong></th>
-					<th><strong>OPERATOR</strong></th>
-
-				</tr>
-
-
-				<c:forEach items="${requestScope.Vodafonelist}" var="vodafoneUser">
-					<tr>
-						<td>${vodafoneUser.getPlanName()}</td>
-						<td>${vodafoneUser.getPrice()}</td>
-						<td>${vodafoneUser.getValidity()}</td>
-						<td>${vodafoneUser.getBenfits()}</td>
-						<td>${vodafoneUser.getOperator().getOperatorname()}</td>
-						<td class="links"><a
-							href="RechargeVodafonecontroller?planName=${vodafoneUser.getPlanName()}&price=${vodafoneUser.getPrice()}&operator=${vodafoneUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a>
-						</td>
-					</tr>
-				</c:forEach>
-
-			</table>
-	
-
+	<table aria-describedby="Planvodafone" style="width: 100%">
+		<tr>
+			<th><strong>PLANNAME</strong></th>
+			<th><strong>PRICE</strong></th>
+			<th><strong>VALIDITY</strong></th>
+			<th><strong>BENEFITS</strong></th>
+			<th><strong>OPERATOR</strong></th>
+		</tr>
+		<c:forEach items="${requestScope.Vodafonelist}" var="vodafoneUser">
+			<tr>
+				<td>${vodafoneUser.getPlanName()}</td>
+				<td>${vodafoneUser.getPrice()}</td>
+				<td>${vodafoneUser.getValidity()}</td>
+				<td>${vodafoneUser.getBenfits()}</td>
+				<td>${vodafoneUser.getOperator().getOperatorname()}</td>
+				<td class="links"><a
+					href="RechargeVodafonecontroller?planName=${vodafoneUser.getPlanName()}&price=${vodafoneUser.getPrice()}&operator=${vodafoneUser.getOperator().getOperatorname()}"><button>RECHARGE</button></a>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>
