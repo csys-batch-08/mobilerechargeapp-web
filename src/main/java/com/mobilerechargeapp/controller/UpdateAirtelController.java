@@ -17,9 +17,6 @@ import com.mobilerechargeapp.model.AirtelUser;
 import com.mobilerechargeapp.model.JioUser;
 import com.mobilerechargeapp.util.ConnectionClass;
 
-/**
- * Servlet implementation class UpdateairtrelController
- */
 @WebServlet("/UpdateairtelController")
 public class UpdateAirtelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

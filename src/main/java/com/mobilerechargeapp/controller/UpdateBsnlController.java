@@ -15,9 +15,6 @@ import com.mobilerechargeapp.exception.ErrorFound;
 import com.mobilerechargeapp.model.BsnlUser;
 import com.mobilerechargeapp.util.ConnectionClass;
 
-/**
- * Servlet implementation class updatebsnlController
- */
 @WebServlet("/updatebsnlController")
 public class UpdateBsnlController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,21 +33,20 @@ public class UpdateBsnlController extends HttpServlet {
 		BsnlUser bsnlUser = new BsnlUser();
 		boolean b = bsnlDao.updateBsnl(planname, price, validity, benefits, bsnlId);
 		try {
-		if (b) {
-			response.sendRedirect("Bsnl");
-		} else {
-			throw new ErrorFound();
+			if (b) {
+				response.sendRedirect("Bsnl");
+			} else {
+				throw new ErrorFound();
+			}
+		} catch (ErrorFound e) {
+			request.setAttribute("bsnlId", e.bsnlId());
+			try {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("updateBsnl.jsp");
+				dispatcher.forward(request, response);
+			} catch (ServletException | IOException e1) {
+				e1.printStackTrace();
+			}
 		}
-	} catch (ErrorFound e) {
-		request.setAttribute("bsnlId", e.bsnlId());
-		try {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("updateBsnl.jsp");
-			dispatcher.forward(request, response);
-		} catch (ServletException | IOException e1) {
-			e1.printStackTrace();
-		}
-		}
-
 	}
 
 }

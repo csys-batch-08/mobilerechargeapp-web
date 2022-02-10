@@ -23,66 +23,47 @@ public class ForgetPasswordController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 		UserDAOImpl userDAOImpl = new UserDAOImpl();
 		String password1 = request.getParameter("CONFIRM");
 		String password2 = request.getParameter("PASSWORD");
 		String emailId = null;
-
 		try {
 			emailId = request.getParameter("email");
 		} catch (NumberFormatException e1) {
 
 			e1.printStackTrace();
 		}
-
 		try {
-
 			if (userDAOImpl.emailValid(emailId) != null) {
-
 				try {
 					if (password1.equals(password2)) {
 						userDAOImpl.forgetPasssword(emailId, password2);
-
 						RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp?forgotpassword=sucess");
 						dispatcher.forward(request, response);
 					} else {
 						throw new ErrorFound();
-
 					}
 				} catch (ErrorFound e) {
-
 					request.setAttribute("PasswordError", e.forgetPassword());
-
 					try {
 						RequestDispatcher dispatcher = request.getRequestDispatcher("forgetPassword.jsp");
 						dispatcher.forward(request, response);
 					} catch (ServletException | IOException e1) {
-
 						e1.printStackTrace();
 					}
-
 				}
-
 			} else {
-
 				throw new ErrorFound();
-
 			}
 		} catch (ErrorFound e) {
-
 			request.setAttribute("mailError", e.emailValidate());
-
 			try {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("forgetPassword.jsp");
 				dispatcher.forward(request, response);
 			} catch (ServletException | IOException e1) {
-
 				e1.printStackTrace();
 			}
-
 		}
-
 	}
 }

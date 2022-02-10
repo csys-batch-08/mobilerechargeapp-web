@@ -22,7 +22,6 @@ public class AdminAirtelController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 		AirtelDAOImpl airtelDao = new AirtelDAOImpl();
 		AirtelUser airtelUser = new AirtelUser();

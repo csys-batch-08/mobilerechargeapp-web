@@ -1,6 +1,5 @@
 package com.mobilerechargeapp.daoimpl;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +11,7 @@ public class AdminDAOImpl implements AdminDao {
 	public boolean validateAdmin(String emailId, String password) {
 		Connection connection = ConnectionClass.getConnection();
 		String insertQuery = "select admin_emailid,password from Admin where Admin_emailid=? and password=?";
-       boolean flag = false;
+		boolean flag = false;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
@@ -21,17 +20,13 @@ public class AdminDAOImpl implements AdminDao {
 			preparedStatement.setString(2, password);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
-
 				flag = true;
 			}
-
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 		return flag;
-
 	}
 }

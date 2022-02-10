@@ -15,9 +15,6 @@ import com.mobilerechargeapp.exception.ErrorFound;
 import com.mobilerechargeapp.model.JioUser;
 import com.mobilerechargeapp.util.ConnectionClass;
 
-/**
- * Servlet implementation class UpdatejioController
- */
 @WebServlet("/UpdatejioController")
 public class UpdateJioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -49,9 +46,6 @@ public class UpdateJioController extends HttpServlet {
 			} catch (ServletException | IOException e1) {
 				e1.printStackTrace();
 			}
-
 		}
-
 	}
-
 }

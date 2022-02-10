@@ -31,8 +31,6 @@ public class DeleteBsnlController extends HttpServlet {
 			List<BsnlUser> bsnlUserList = bsnlDao.showBsnlplan();
 			request.setAttribute("bsnllist", bsnlUserList);
 			response.sendRedirect("Bsnl");
-
 		}
 	}
-
 }

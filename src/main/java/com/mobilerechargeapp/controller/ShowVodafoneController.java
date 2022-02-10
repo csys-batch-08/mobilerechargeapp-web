@@ -28,7 +28,5 @@ public class ShowVodafoneController extends HttpServlet {
 		request.setAttribute("Vodafonelist", vodafoneUserList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("planVodafoneUser.jsp");
 		requestDispatcher.forward(request, response);
-
 	}
-
 }

@@ -25,15 +25,8 @@ public class ShowJioController extends HttpServlet {
 		HttpSession session = request.getSession();
 		JioDAOImpl jioDao = new JioDAOImpl();
 		List<JioUser> jioUserList = jioDao.showUserJioplan();
-
 		request.setAttribute("jiolist", jioUserList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("planJioUser.jsp");
 		requestDispatcher.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-
 }

@@ -23,7 +23,6 @@ public class HistoryController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("CurrentUser");
 		SimpleDateFormat sdf = new SimpleDateFormat();
@@ -36,20 +35,15 @@ public class HistoryController extends HttpServlet {
 		try {
 			rechargeDate = sdf.parse(request.getParameter("Date"));
 		} catch (ParseException e) {
-
 			e.printStackTrace();
 		}
 		double amount = Double.parseDouble(request.getParameter("wallet"));
-
 		HistoryDetails historyDetails = new HistoryDetails(userId, operatorId, mobileNumber, planId, rechargeDate,
 				amount);
 		HistorydetailsDAOImpl historyDao = new HistorydetailsDAOImpl();
 		boolean b = historyDao.insertDetails(historyDetails);
-
-		if (b == true) {
+		if (b) {
 			response.sendRedirect("operator.jsp");
 		}
-
 	}
-
 }

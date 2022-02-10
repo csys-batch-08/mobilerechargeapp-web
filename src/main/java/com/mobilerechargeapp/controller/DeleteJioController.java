@@ -22,7 +22,6 @@ public class DeleteJioController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 		int jioId = Integer.parseInt(request.getParameter("jioId"));
 		JioDAOImpl jioDao = new JioDAOImpl();
@@ -31,9 +30,6 @@ public class DeleteJioController extends HttpServlet {
 			List<JioUser> jioUserList = jioDao.showJioplan();
 			request.setAttribute("jiolist", jioUserList);
 			response.sendRedirect("jio");
-
 		}
-
 	}
-
 }

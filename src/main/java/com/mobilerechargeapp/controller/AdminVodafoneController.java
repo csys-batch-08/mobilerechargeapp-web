@@ -22,11 +22,9 @@ public class AdminVodafoneController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 		VodafoneDAOImpl vodadoneDao = new VodafoneDAOImpl();
 		VodafoneUser vodafoneUser = new VodafoneUser();
-
 		List<VodafoneUser> vodafoneUserList = vodadoneDao.showViplan();
 		int findvodafoneId = vodadoneDao.findvodafoneId(vodafoneUser.getPlanName(), vodafoneUser.getPrice());
 		session.setAttribute("findvodafoneId", findvodafoneId);
@@ -34,5 +32,4 @@ public class AdminVodafoneController extends HttpServlet {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("vodafone.jsp");
 		requestDispatcher.forward(request, response);
 	}
-
 }

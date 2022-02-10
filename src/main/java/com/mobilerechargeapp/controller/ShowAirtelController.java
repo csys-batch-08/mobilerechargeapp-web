@@ -29,7 +29,5 @@ public class ShowAirtelController extends HttpServlet {
 		request.setAttribute("airtellist", airtelUserList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("planAirtelUser.jsp");
 		requestDispatcher.forward(request, response);
-
 	}
-
 }

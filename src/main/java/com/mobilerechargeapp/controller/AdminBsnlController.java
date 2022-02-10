@@ -21,7 +21,6 @@ public class AdminBsnlController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 		BsnlDAOImpl bsnlDao = new BsnlDAOImpl();
 		BsnlUser bsnlUser = new BsnlUser();
@@ -32,5 +31,4 @@ public class AdminBsnlController extends HttpServlet {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("bsnl.jsp");
 		requestDispatcher.forward(request, response);
 	}
-
 }

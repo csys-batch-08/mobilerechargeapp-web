@@ -33,15 +33,12 @@ public class BsnlDAOImpl implements BsnlDao {
 			preparedStatement.setString(4, bsnl.getBenfits());
 			preparedStatement.setInt(5, operatorId);
 			flag = preparedStatement.executeUpdate() > 0;
-
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 		return flag;
-
 	}
 
 	public int operatorName(String opertorName) {
@@ -63,7 +60,6 @@ public class BsnlDAOImpl implements BsnlDao {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 		return opId;
-
 	}
 
 	public boolean updateBsnl(String planName, Double price, String validity, String benefits, int bsnlId) {
@@ -72,7 +68,6 @@ public class BsnlDAOImpl implements BsnlDao {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		String updateQuery = "update bsnl_plans set plan_name=?,price=?,validity=?,benefits=? where bsnlplan_id=?";
-
 		try {
 			preparedStatement = connection.prepareStatement(updateQuery);
 			preparedStatement.setString(1, planName);
@@ -81,9 +76,7 @@ public class BsnlDAOImpl implements BsnlDao {
 			preparedStatement.setString(4, benefits);
 			preparedStatement.setInt(5, bsnlId);
 			flag = preparedStatement.executeUpdate() > 0;
-
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
@@ -110,7 +103,6 @@ public class BsnlDAOImpl implements BsnlDao {
 			flag = preparedStatement.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
-
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
@@ -131,7 +123,6 @@ public class BsnlDAOImpl implements BsnlDao {
 				status = resultSet.getString(1);
 			}
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
@@ -160,7 +151,6 @@ public class BsnlDAOImpl implements BsnlDao {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 		return bsnlId;
-
 	}
 
 	public List<BsnlUser> showBsnlplan() {
@@ -224,7 +214,6 @@ public class BsnlDAOImpl implements BsnlDao {
 		Connection connection = ConnectionClass.getConnection();
 		BsnlDAOImpl bsnlDao = new BsnlDAOImpl();
 		int validity = 0;
-		// int JioUserId = jioDao.findjioId(jioUser.getPlanName(), jioUser.getPrice());
 		String query = "select bsnlplan_id,plan_name,price,validity,benefits,operator_id from BSNL_plans where bsnlplan_id=?";
 		ResultSet resultSet = null;
 		PreparedStatement preparedStatement = null;
@@ -233,7 +222,6 @@ public class BsnlDAOImpl implements BsnlDao {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
-
 			if (resultSet.next()) {
 				OperatorDAOImpl operDao = new OperatorDAOImpl();
 				Operator operator = operDao.findOperator(resultSet.getInt(6));
@@ -241,15 +229,11 @@ public class BsnlDAOImpl implements BsnlDao {
 						resultSet.getString(5), operator);
 			}
 		} catch (SQLException e) {
-
 			e.printStackTrace();
-		}
-
-		finally {
+		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 		return plan;
-
 	}
 
 	public int findBsnlvalidity(BsnlUser bsnlUser) {
@@ -273,9 +257,7 @@ public class BsnlDAOImpl implements BsnlDao {
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
-
 		return validity;
-
 	}
 
 	public List<BsnlUser> showuserBsnlplan() {
@@ -299,7 +281,6 @@ public class BsnlDAOImpl implements BsnlDao {
 				bsnlList.add(bsnl);
 			}
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);

@@ -21,9 +21,7 @@ public class RechargewalletController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		Double amount = Double.parseDouble(request.getParameter("amount"));
-
 		UserDAOImpl userDao = new UserDAOImpl();
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("CurrentUser");
@@ -33,11 +31,8 @@ public class RechargewalletController extends HttpServlet {
 			session.setAttribute("amount", user.getWallet());
 			session.setAttribute("recharge", i);
 			response.sendRedirect("wallet.jsp");
-
 		} else {
 			response.sendRedirect("wallet.jsp");
 		}
-
 	}
-
 }

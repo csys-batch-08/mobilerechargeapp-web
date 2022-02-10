@@ -37,7 +37,7 @@ public class ShowValidityController extends HttpServlet {
 		User user = (User) session.getAttribute("CurrentUser");
 		String name = user.getUsername();
 		long validity = 0;
-        HistorydetailsDAOImpl hisDao = new HistorydetailsDAOImpl();
+		HistorydetailsDAOImpl hisDao = new HistorydetailsDAOImpl();
 		List<HistoryDetails> rechargeHistory = hisDao.findUserHistory(user);
 		if (!rechargeHistory.isEmpty()) {
 			HistoryDetails history = rechargeHistory.get(0);
@@ -51,27 +51,22 @@ public class ShowValidityController extends HttpServlet {
 				AirtelUser planAirtel = null;
 				VodafoneUser planVodafone = null;
 				BsnlUser planBsnl = null;
-
 				if (operator.getOperatorname().equals("jio")) {
-
 					JioDAOImpl jioDao = new JioDAOImpl();
 					planJio = jioDao.findPlan(history.getPlanId());
 					validity = Integer.valueOf(planJio.getValidity().split(" ")[0]) - days;
 				} else if (operator.getOperatorname().equals("Airtel")) {
 					AirtelDAOImpl airtelDao = new AirtelDAOImpl();
 					planAirtel = airtelDao.findPlan(history.getPlanId());
-
 					validity = Integer.valueOf(planAirtel.getValidity().split(" ")[0]) - days;
 				} else if (operator.getOperatorname().equals("Vodafone")) {
 					VodafoneDAOImpl vodafoneDao = new VodafoneDAOImpl();
 					planVodafone = vodafoneDao.findPlan(history.getPlanId());
 					validity = Integer.valueOf(planVodafone.getValidity().split(" ")[0]) - days;
-
 				} else if (operator.getOperatorname().equals("BSNL")) {
 					BsnlDAOImpl bsnlDao = new BsnlDAOImpl();
 					planBsnl = bsnlDao.findPlan(history.getPlanId());
 					validity = Integer.valueOf(planBsnl.getValidity().split(" ")[0]) - days;
-
 				}
 			}
 		}
@@ -79,5 +74,4 @@ public class ShowValidityController extends HttpServlet {
 		session.setAttribute("validity", validity);
 		response.sendRedirect("operator.jsp");
 	}
-
 }

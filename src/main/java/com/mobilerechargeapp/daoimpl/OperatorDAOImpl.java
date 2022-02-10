@@ -15,26 +15,22 @@ public class OperatorDAOImpl implements OperatorDao {
 		Connection connection = ConnectionClass.getConnection();
 //		String query = "select operator_id,operator_name from operator_details where operator_name='" + name + "'";
 		String query = "select operator_id,operator_name from operator_details where operator_name=?";
-
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, name);
 			resultSet = preparedStatement.executeQuery();
-			while(resultSet.next()) {
+			while (resultSet.next()) {
 				operator = new Operator(resultSet.getInt(1), resultSet.getString(2));
 //              operator=resultSet.getString(1);
-	
 			}
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
 		return operator;
-
 	}
 
 	public int findOperatorId(String name) {
@@ -50,30 +46,23 @@ public class OperatorDAOImpl implements OperatorDao {
 				oId = resultSet.getInt(1);
 			}
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
-
 		return oId;
-
 	}
 
 	public Operator findOperator1(int id) {
-
 		Connection connection = ConnectionClass.getConnection();
 		String query = "select  operator_id,operator_name from operator_details where operator_id='" + id + "'";
-
 		Operator operator = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-
 		try {
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
-
 				operator = new Operator(resultSet.getInt(1), resultSet.getString(2));
 			}
 		} catch (SQLException e) {
@@ -82,9 +71,7 @@ public class OperatorDAOImpl implements OperatorDao {
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
-
 		return operator;
-
 	}
 
 	public Operator findOperator(int operatorId) {
@@ -95,18 +82,15 @@ public class OperatorDAOImpl implements OperatorDao {
 		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(query);
-
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				operator = new Operator(resultSet.getInt(1), resultSet.getString(2));
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionClass.close(connection, preparedStatement, resultSet);
 		}
-
 		return operator;
 
 	}

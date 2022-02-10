@@ -23,7 +23,6 @@ public class SearchJioPlanController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String plan = request.getParameter("jioplan");
 		JioDAOImpl jioDao = new JioDAOImpl();
 		List<JioUser> showPlan = jioDao.showJioplan(plan);
@@ -32,5 +31,4 @@ public class SearchJioPlanController extends HttpServlet {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchJioPlan.jsp");
 		requestDispatcher.forward(request, response);
 	}
-
 }

@@ -29,7 +29,6 @@ public class RechargeController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("CurrentUser");
 		UserDAOImpl userDao = new UserDAOImpl();
@@ -41,7 +40,6 @@ public class RechargeController extends HttpServlet {
 		double amount = (double) session.getAttribute("price");
 		HistoryDetails history = null;
 		int planId;
-
 		if (operator.equals("jio")) {
 			JioDAOImpl jioDao = new JioDAOImpl();
 			planId = jioDao.findjioId(planName, amount);
@@ -60,24 +58,16 @@ public class RechargeController extends HttpServlet {
 		user.setWallet(user.getWallet() - amount);
 		userDao.updateuserWallet(user);
 		session.setAttribute("amount", user.getWallet());
-
 		long mobileNumber = Long.parseLong(request.getParameter("mobileNumber"));
-
 		history.setMobileNumber(mobileNumber);
-
 		HistorydetailsDAOImpl hisDao = new HistorydetailsDAOImpl();
-
 		boolean b = hisDao.insertDetails(history);
-		if (b)
-
-		{
+		if (b) {
 			PrintWriter out = response.getWriter();
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Recharge Successfully');");
 			out.println("location='ViewHistoryController';");
 			out.println("</script>");
 		}
-
 	}
-
 }

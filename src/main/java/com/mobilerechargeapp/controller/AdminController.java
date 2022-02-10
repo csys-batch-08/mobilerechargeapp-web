@@ -24,7 +24,6 @@ public class AdminController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String emailId = request.getParameter("email");
 		String password = request.getParameter("password");
 		boolean admin = false;
@@ -40,12 +39,11 @@ public class AdminController extends HttpServlet {
 
 			else if (user != null) {
 				try {
-				HttpSession session = request.getSession();
-				session.setAttribute("CurrentUser", user);
-				session.setAttribute("amount", user.getWallet());
-				response.sendRedirect("ShowValidityController");
-				}
-				catch(Exception e) {
+					HttpSession session = request.getSession();
+					session.setAttribute("CurrentUser", user);
+					session.setAttribute("amount", user.getWallet());
+					response.sendRedirect("ShowValidityController");
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			} else {
@@ -55,9 +53,6 @@ public class AdminController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("invalid", e.getMessage());
 			response.sendRedirect("index.jsp");
-
 		}
-
 	}
-
 }

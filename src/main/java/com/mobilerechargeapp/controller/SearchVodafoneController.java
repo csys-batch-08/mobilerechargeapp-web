@@ -23,7 +23,6 @@ public class SearchVodafoneController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String plan = request.getParameter("Viplan");
 		VodafoneDAOImpl vodafoneDao = new VodafoneDAOImpl();
 		List<VodafoneUser> showPlan = vodafoneDao.showViplan(plan);
@@ -31,7 +30,5 @@ public class SearchVodafoneController extends HttpServlet {
 		request.setAttribute("Viplan", showPlan);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchVodafonePlan.jsp");
 		requestDispatcher.forward(request, response);
-
 	}
-
 }

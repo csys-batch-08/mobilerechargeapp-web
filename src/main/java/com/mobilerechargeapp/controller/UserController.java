@@ -32,12 +32,10 @@ public class UserController extends HttpServlet {
 		long phonenumber = Long.parseLong(request.getParameter("phonenumber"));
 		String password = request.getParameter("password");
 		String operatorName = request.getParameter("operatorName");
-
 		OperatorDAOImpl operatorDao = new OperatorDAOImpl();
 		Operator operator = operatorDao.findOperator(operatorName);
 		Connection con = ConnectionClass.getConnection();
 		User user = new User(username, email, phonenumber, password, operator);
-
 		UserDAOImpl userDao = new UserDAOImpl();
 		boolean b = userDao.insertUser(user);
 		try {
@@ -45,24 +43,15 @@ public class UserController extends HttpServlet {
 				response.sendRedirect("index.jsp");
 			} else {
 				throw new ErrorFound();
-
 			}
 		} catch (ErrorFound e) {
 			request.setAttribute("email", e.getMessage2());
-
-//			session.setAttribute("email",e.getMessage2());
-//			session.setAttribute("phonenumber",e.getMessage3());
-//			response.sendRedirect("register.jsp");
-
 			try {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
 				dispatcher.forward(request, response);
 			} catch (ServletException | IOException e1) {
-
 				e1.printStackTrace();
 			}
 		}
-
 	}
-
 }

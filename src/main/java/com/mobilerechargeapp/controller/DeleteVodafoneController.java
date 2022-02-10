@@ -29,8 +29,6 @@ public class DeleteVodafoneController extends HttpServlet {
 			List<VodafoneUser> vodafoneUserList = vodafoneDao.showViplan();
 			request.setAttribute("vodafonelist", vodafoneUserList);
 			response.sendRedirect("vodafone.jsp");
-
 		}
 	}
-
 }

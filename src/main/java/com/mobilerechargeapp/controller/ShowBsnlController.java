@@ -30,5 +30,4 @@ public class ShowBsnlController extends HttpServlet {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("planBsnlUser.jsp");
 		requestDispatcher.forward(request, response);
 	}
-
 }

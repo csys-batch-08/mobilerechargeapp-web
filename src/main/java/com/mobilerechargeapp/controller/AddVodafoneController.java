@@ -23,7 +23,6 @@ public class AddVodafoneController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String planname = request.getParameter("planname");
 		Double price = Double.parseDouble(request.getParameter("price"));
 		String validity = request.getParameter("validity");
@@ -39,7 +38,5 @@ public class AddVodafoneController extends HttpServlet {
 		} else {
 			response.sendRedirect("invalid");
 		}
-
 	}
-
 }

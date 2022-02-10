@@ -23,7 +23,6 @@ public class SearchBsnlController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String plan = request.getParameter("bsnlplan");
 		BsnlDAOImpl bsnlDao = new BsnlDAOImpl();
 		List<BsnlUser> showPlan = bsnlDao.showBsnlplan(plan);

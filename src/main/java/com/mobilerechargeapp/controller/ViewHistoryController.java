@@ -29,7 +29,5 @@ public class ViewHistoryController extends HttpServlet {
 		session.setAttribute("List", list);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("history.jsp");
 		requestDispatcher.forward(request, response);
-
 	}
-
 }

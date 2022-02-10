@@ -11,11 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.mobilerechargeapp.daoimpl.AirtelDAOImpl;
-import com.mobilerechargeapp.daoimpl.JioDAOImpl;
 import com.mobilerechargeapp.model.AirtelUser;
-import com.mobilerechargeapp.util.ConnectionClass;
 
 @WebServlet("/DeleteairtelController")
 public class DeleteAirtelController extends HttpServlet {
@@ -29,13 +26,9 @@ public class DeleteAirtelController extends HttpServlet {
 		AirtelDAOImpl airtelDao = new AirtelDAOImpl();
 		boolean b = airtelDao.deleteAirtel(airtelId);
 		if (b) {
-
 			List<AirtelUser> airtelUserList = airtelDao.showAirtelplan();
 			request.setAttribute("airtellist", airtelUserList);
 			response.sendRedirect("airtel.jsp");
-
 		}
-
 	}
-
 }

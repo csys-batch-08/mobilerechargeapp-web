@@ -25,7 +25,6 @@ public class AddJioController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String planname = request.getParameter("planname");
 		Double price = Double.parseDouble(request.getParameter("price"));
 		String validity = request.getParameter("validity");
@@ -34,17 +33,14 @@ public class AddJioController extends HttpServlet {
 		OperatorDAOImpl operatorDao = new OperatorDAOImpl();
 		Operator operator = operatorDao.findOperator(operatorName);
 		Connection con = ConnectionClass.getConnection();
-
 		JioUser jioUser = new JioUser(planname, price, validity, benefits, operator);
 		JioDAOImpl jioDao = new JioDAOImpl();
 		boolean b = jioDao.insertJionet(jioUser);
-
 		if (b) {
 			HttpSession session = request.getSession();
 			session.setAttribute("add", b);
 			response.sendRedirect("jio");
 		}
-
 	}
 
 }
