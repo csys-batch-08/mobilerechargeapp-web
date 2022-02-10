@@ -67,10 +67,12 @@ public class User implements Serializable {
 	public void setOperator(Operator operator) {
 		this.operator = operator;
 	}
+
 	public User() {
 		super();
 
 	}
+
 	public User(String username, String emailid, long phonenumber, String password, Double wallet, Operator operator) {
 		super();
 		this.userName = username;
@@ -80,12 +82,12 @@ public class User implements Serializable {
 		this.wallet = wallet;
 		this.operator = operator;
 	}
+
 	public User(String username2, String email, long phonenumber2, String password2, Operator operator2) {
 		this.userName = username2;
 		this.emailId = email;
 		this.phoneNumber = phonenumber2;
 		this.password = password2;
-
 		this.operator = operator2;
 	}
 
@@ -114,5 +116,4 @@ public class User implements Serializable {
 				&& userId == other.userId && Objects.equals(userName, other.userName)
 				&& Objects.equals(wallet, other.wallet);
 	}
-
 }
