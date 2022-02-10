@@ -11,11 +11,6 @@ public class JioUser implements Serializable {
 	private String benfits;
 	private Operator operator;
 	private String status;
-	
-	
-	
-	
-
 	public int getJioId() {
 		return jioId;
 	}
