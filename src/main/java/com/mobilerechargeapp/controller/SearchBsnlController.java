@@ -27,8 +27,8 @@ public class SearchBsnlController extends HttpServlet {
 		BsnlDAOImpl bsnlDao = new BsnlDAOImpl();
 		List<BsnlUser> showPlan = bsnlDao.showBsnlplan(plan);
 		HttpSession session = request.getSession();
-		request.setAttribute("bsnlplan", showPlan);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchBsnlPlan.jsp");
+		request.setAttribute("plan", showPlan);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchJioPlan.jsp");
 		requestDispatcher.forward(request, response);
 
 	}

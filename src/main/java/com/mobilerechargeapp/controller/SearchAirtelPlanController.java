@@ -28,8 +28,8 @@ public class SearchAirtelPlanController extends HttpServlet {
 		AirtelDAOImpl airtelDao = new AirtelDAOImpl();
 		List<AirtelUser> showPlan = airtelDao.showAirtelplan(plan);
 		HttpSession session = request.getSession();
-		request.setAttribute("airtelplan", showPlan);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchAirtelPlan.jsp");
+		request.setAttribute("plan", showPlan);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchJioPlan.jsp");
 		requestDispatcher.forward(request, response);
 	}
 }

@@ -27,7 +27,7 @@
 			<th><strong>BENEFITS</strong></th>
 			<th><strong>OPERATOR</strong></th>
 		</tr>
-		<c:forEach items="${requestScope.jioplan}" var="jioUser">
+		<c:forEach items="${requestScope.plan}" var="jioUser">
 			<tr>
 				<td>${jioUser.getPlanName()}</td>
 				<td>${jioUser.getPrice()}</td>

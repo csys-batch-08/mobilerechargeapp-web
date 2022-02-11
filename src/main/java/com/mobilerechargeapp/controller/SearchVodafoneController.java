@@ -27,8 +27,8 @@ public class SearchVodafoneController extends HttpServlet {
 		VodafoneDAOImpl vodafoneDao = new VodafoneDAOImpl();
 		List<VodafoneUser> showPlan = vodafoneDao.showViplan(plan);
 		HttpSession session = request.getSession();
-		request.setAttribute("Viplan", showPlan);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchVodafonePlan.jsp");
+		request.setAttribute("plan", showPlan);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("searchJioPlan.jsp");
 		requestDispatcher.forward(request, response);
 	}
 }
